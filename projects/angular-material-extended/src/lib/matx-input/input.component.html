@@ -1,0 +1,11 @@
+<mat-form-field>
+  <mat-label>{{label || placeholder}}</mat-label>
+  <input matInput [placeholder]="placeholder || label"
+         [ngModel]="value"
+         (ngModelChange)="onChange($event)"
+         [required]="required"
+         [pattern]="pattern">
+  <mat-error>
+    <ng-content></ng-content>
+  </mat-error>
+</mat-form-field>

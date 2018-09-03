@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-material-extended": [
+        "dist/angular-material-extended"
+      ],
+      "angular-material-extended/*": [
+        "dist/angular-material-extended/*"
+      ]
+    }
   }
 }
