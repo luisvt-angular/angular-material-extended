@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
-import { InputComponent } from './matx-input/input.component';
-import {MatInputModule} from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import { GmapAutocompleteModule } from './gmap-autocomplete/gmap-autocomplete.module';
+import { InputModule } from './input/input.module';
+import { GmapSearchDialogModule } from './gmap-search-dialog/gmap-search-dialog.module';
 
 @NgModule({
   imports: [
-    MatInputModule,
-    FormsModule
+    InputModule,
+    GmapAutocompleteModule,
+    GmapSearchDialogModule
   ],
-  declarations: [InputComponent],
-  exports: [InputComponent]
+  exports: [
+    InputModule,
+    GmapAutocompleteModule,
+    GmapSearchDialogModule
+  ]
 })
-export class AngularMaterialExtendedModule { }
+export class AngularMaterialExtendedModule {
+}

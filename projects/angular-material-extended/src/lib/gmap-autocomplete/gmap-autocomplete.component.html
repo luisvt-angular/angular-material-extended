@@ -1,0 +1,21 @@
+<mat-form-field style="width: 100%">
+  <mat-label>{{label || placeholder}}</mat-label>
+  <input matInput
+         type="text"
+         [placeholder]="placeholder || label"
+         [matAutocomplete]="auto"
+         [formControl]="textBoxControl"
+         [required]="required">
+  <mat-icon matSuffix *ngIf="textBoxControl.value && !loading" (click)="textBoxControl.setValue(undefined)">close</mat-icon>
+  <mat-icon *ngIf="!loading" matSuffix (click)="getMyCurrentAddress($event)" style="cursor: pointer;">my_location</mat-icon>
+  <mat-spinner matSuffix *ngIf="loading" [diameter]="24"></mat-spinner>
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displaySelectedAddress">
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{option.address}}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error *ngIf="textBoxControl.invalid">
+    <ng-content></ng-content>
+  </mat-error>
+</mat-form-field>
+<div #search></div>

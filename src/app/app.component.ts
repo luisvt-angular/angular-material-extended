@@ -9,7 +9,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class AppComponent implements OnInit {
 
   form1Model = {
-    input1: 'test1'
+    input1: 'test1',
+    gmapInput1: {address: 'test1'}
   };
 
   form2: FormGroup;
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.form2 = this.fb.group({
-      input2: 'test2'
+      input2: 'test2',
+      gmapInput2: {address: 'test2'}
     });
   }
 }
