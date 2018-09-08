@@ -1,0 +1,43 @@
+<mat-expansion-panel expanded *ngIf="showSuggestedAddresses">
+  <mat-expansion-panel-header>
+    <mat-panel-title>Address Suggestions</mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-radio-group [(ngModel)]="selectedAddrress">
+    <mat-radio-button
+      *ngFor="let address of suggestedAddresses;"
+      [value]="address.formatted_address"
+      (click)="selectAddress(address)"
+      style="display: block">
+      <span class="select-list">{{address.formatted_address}}</span>
+    </mat-radio-button>
+    <br/>
+  </mat-radio-group>
+</mat-expansion-panel>
+<agm-map [fullscreenControl]="false"
+         [latitude]="address.coordinates?.latitude"
+         [longitude]="address.coordinates?.longitude"
+         [scrollwheel]="true"
+         [zoom]="zoom"
+         (mapClick)="setCurrentPosition($event)">
+
+    <agm-marker
+      [latitude]="address?.coordinates?.latitude"
+      [longitude]="address?.coordinates?.longitude">
+    </agm-marker>
+</agm-map>
+<section *ngIf="address.address" class="selected-address">
+  <span style="margin-right: 10px">Selected Address:</span>
+  <span>{{address.address}}</span>
+</section>
+<section class="selected-address">
+  <div style="text-align: center">
+    <button mat-raised-button color="warn" (click)="dialogRef.close()">
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="confirmAddress()" style="margin-left: 10px">
+      <mat-icon>done_all</mat-icon>
+      Confirm
+    </button>
+  </div>
+</section>
