@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  gmap_key: 'AIzaSyAj-KTKY2D55ZRb386NBbo1Il3oXfhjCtg'
+  gmap_key: 'AIzaSyD6zffrfSYHmNFlHlmq6jLz2sR2BkFbUaU'
 };
 
 /*

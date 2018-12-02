@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment';
 import { ValidatorsModule } from 'ngx-validators';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,8 @@ import { ValidatorsModule } from 'ngx-validators';
     ReactiveFormsModule,
     AngularMaterialExtendedModule,
     ValidatorsModule,
+    MatFormFieldModule,
+    MatInputModule,
     AgmCoreModule.forRoot({
       apiKey: environment.gmap_key,
       libraries: ['places']

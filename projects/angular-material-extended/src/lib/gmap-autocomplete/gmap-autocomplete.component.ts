@@ -22,10 +22,10 @@ declare var google: any;
 })
 export class GmapAutocompleteComponent extends DefaultValueAccessor implements OnInit {
 
-  @ViewChild('search') searchElement: ElementRef;
-
   autocompleteService;
-  placesService;
+
+  /** @type google.maps.Geocoder */
+  geocoder;
   options = [];
   textBoxControl = new FormControl();
   loading = false;
@@ -51,11 +51,11 @@ export class GmapAutocompleteComponent extends DefaultValueAccessor implements O
           return;
         }
         if (value.hasOwnProperty('id')) {
-          this.placesService.getDetails({placeId: value.id, fields: ['formatted_address', 'geometry']}, result => {
+          this.geocoder.geocode({placeId: value.id}, results => {
             this.ngZone.run(() => {
               this.textBoxControl.setValue(<Address>{
-                address: result.formatted_address,
-                coordinates: {latitude: result.geometry.location.lat(), longitude: result.geometry.location.lng()}
+                address: results[0].formatted_address,
+                coordinates: {latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng()}
               });
             });
           });
@@ -82,9 +82,9 @@ export class GmapAutocompleteComponent extends DefaultValueAccessor implements O
                 id: result.place_id
               }));
             } else {
-              this.placesService.findPlaceFromQuery({query: value, fields: ['formatted_address', 'geometry']}, placeResults =>
+              this.geocoder.geocode({address: value}, geocodeResults =>
                 this.ngZone.run(() => {
-                  this.options = placeResults && placeResults.map(result => (<Address>{
+                  this.options = geocodeResults && geocodeResults.map(result => (<Address>{
                     address: result.formatted_address || `${result.geometry.location.lat()}, ${result.geometry.location.lng()}`,
                     coordinates: {latitude: result.geometry.location.lat(), longitude: result.geometry.location.lng()}
                   }));
@@ -95,7 +95,7 @@ export class GmapAutocompleteComponent extends DefaultValueAccessor implements O
 
     this.mapsApiLoader.load().then(() => {
       this.autocompleteService = new google.maps.places.AutocompleteService();
-      this.placesService = new google.maps.places.PlacesService(this.searchElement.nativeElement);
+      this.geocoder = new google.maps.Geocoder();
     });
   }
 

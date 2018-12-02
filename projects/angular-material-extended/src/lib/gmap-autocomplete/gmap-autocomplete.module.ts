@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { GmapAutocompleteComponent } from './gmap-autocomplete.component';
 import { CommonModule } from '@angular/common';
 import {
-  MatAutocompleteModule, MatButtonModule, MatDialogModule,
-  MatExpansionModule,
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatOptionModule, MatProgressSpinnerModule, MatRadioModule
+  MatOptionModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-import { GmapSearchDialogModule } from '../gmap-search-dialog/gmap-search-dialog.module';
 
 
 @NgModule({
@@ -26,8 +27,7 @@ import { GmapSearchDialogModule } from '../gmap-search-dialog/gmap-search-dialog
     MatButtonModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    AgmCoreModule,
-    GmapSearchDialogModule
+    AgmCoreModule
   ],
   declarations: [GmapAutocompleteComponent],
   exports: [GmapAutocompleteComponent]

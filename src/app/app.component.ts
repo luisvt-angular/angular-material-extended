@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,8 @@ export class AppComponent implements OnInit {
 
   form1Model = {
     input1: 'test1',
+    matxInput1: 'test1',
+    numberInput1: 1,
     gmapInput1: {address: 'test1'}
   };
 
@@ -20,6 +22,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.form2 = this.fb.group({
       input2: 'test2',
+      matxInput2: 'test2',
+      numberInput2: 1,
       gmapInput2: {address: 'test2'}
     });
   }

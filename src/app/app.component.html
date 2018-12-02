@@ -3,36 +3,119 @@
 
 <h1>Template Driven Form</h1>
 <form #form1="ngForm">
-  <matx-input placeholder="Input 2"
+  <matx-input placeholder="Matx Input 1"
               required
+              pattern="[a-z ]*"
               noEmptyString
-              pattern="[a-z]*"
-              [(ngModel)]="form1Model.input1"
-              #input1="ngModel"
-              name="input1">error</matx-input>
+              [(ngModel)]="form1Model.matxInput1"
+              #matxInput1="ngModel"
+              name="matxInput1">
+    <matx-errors [field]="matxInput1" [errorMessages]="{
+      noEmptyString: 'This field should not contain blank spaces only'
+    }"></matx-errors>
+  </matx-input>
+  <mat-form-field style="width: 100%">
+    <input matInput
+           placeholder="Input 1"
+           required
+           pattern="[a-z ]*"
+           noEmptyString
+           [(ngModel)]="form1Model.input1"
+           #input1="ngModel"
+           name="input1">
+    <mat-error>
+      <matx-errors [field]="input1" [errorMessages]="{
+          pattern: 'This field only accepts letters and spaces',
+          noEmptyString: 'This field should not contain blank spaces only'
+      }"></matx-errors>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field style="width: 100%">
+    <input matInput
+           type="number"
+           placeholder="Number Input 1"
+           required
+           [(ngModel)]="form1Model.numberInput1"
+           #numberInput1="ngModel"
+           name="numberInput1"
+           min="2"
+           max="10"
+           step="1">
+    <mat-error>
+      <matx-errors [field]="numberInput1"></matx-errors>
+    </mat-error>
+  </mat-form-field>
 
   <matx-gmap-autocomplete placeholder="GMap Input 1"
                           required
                           name="gmapInput1"
                           [(ngModel)]="form1Model.gmapInput1"
-                          #gmapInput1="ngModel"></matx-gmap-autocomplete>
+                          #gmapInput1="ngModel">
+    <matx-errors [field]="gmapInput1"></matx-errors>
+  </matx-gmap-autocomplete>
   <pre>form1.valid: {{form1.valid}}</pre>
+  <pre>form1.dirty: {{form1.dirty}}</pre>
+  <pre>form1.touched: {{form1.touched}}</pre>
+  <pre>matxInput1.valid: {{matxInput1.valid}}</pre>
+  <pre>matxInput1.errors: {{matxInput1.errors | json}}</pre>
   <pre>input1.valid: {{input1.valid}}</pre>
+  <pre>input1.errors: {{input1.errors | json}}</pre>
   <pre>gmapInput1.valid: {{gmapInput1.valid}}
 gmapInput1.value: {{gmapInput1.value | json}}</pre>
 </form>
 
 <h1>Model-Driven Form</h1>
 <form [formGroup]="form2">
-  <matx-input placeholder="Input 2"
+  <matx-input placeholder="Matx Input 2"
               required
-              pattern="[a-z]*"
-              formControlName="input2">error</matx-input>
+              pattern="[a-z ]*"
+              noEmptyString
+              formControlName="matxInput2">
+    <matx-errors [field]="form2.get('input2')" [errorMessages]="{
+      pattern: 'This field only accepts letters and spaces',
+      noEmptyString: 'This field should not contain blank spaces only'
+    }"></matx-errors>
+  </matx-input>
+  <mat-form-field style="width: 100%">
+    <input matInput
+           placeholder="Input 2"
+           required
+           pattern="[a-z ]*"
+           noEmptyString
+           formControlName="input2">
+    <mat-error>
+      <matx-errors [field]="form2.get('input2')" [errorMessages]="{
+          pattern: 'This field only accepts letters and spaces',
+          noEmptyString: 'This field should not contain blank spaces only'
+      }"></matx-errors>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field style="width: 100%">
+    <input matInput
+           type="number"
+           placeholder="Number Input 2"
+           required
+           formControlName="numberInput2"
+           min="2"
+           max="10"
+           step="1">
+    <mat-error>
+      <matx-errors [field]="form2.get('numberInput2')"></matx-errors>
+    </mat-error>
+  </mat-form-field>
+
   <matx-gmap-autocomplete placeholder="GMap Input 2"
                           required
-                          formControlName="gmapInput2"></matx-gmap-autocomplete>
+                          formControlName="gmapInput2">
+    <matx-errors [field]="form2.get('gmapInput2')">s</matx-errors>
+  </matx-gmap-autocomplete>
   <pre>form2.valid: {{form2.valid}}</pre>
   <pre>input2.valid: {{form2.get('input2').valid}}</pre>
+  <pre>input2.dirty: {{form2.get('input2').dirty}}</pre>
+  <pre>input2.touched: {{form2.get('input2').touched}}</pre>
+  <pre>input2.errors: {{form2.get('input2').errors | json}}</pre>
   <pre>gmapInput2.valid: {{form2.get('gmapInput2').valid}}
+gmapInput2.dirty: {{form2.get('gmapInput2').dirty}}
+gmapInput2.touched: {{form2.get('gmapInput2').touched}}
 gmapInput2.value: {{form2.get('gmapInput2').value | json}}</pre>
 </form>

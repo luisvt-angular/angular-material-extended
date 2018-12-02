@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+// Workaround for https://github.com/angular/material2/issues/4580.
+mat-form-field .mat-form-field {
+  &-underline {
+    position: static;
+    bottom: auto;
+  }
+  &-subscript-wrapper {
+    position: static;
+  }
+}
+

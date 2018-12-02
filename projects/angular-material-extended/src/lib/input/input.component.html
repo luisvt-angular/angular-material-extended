@@ -1,8 +1,7 @@
 <mat-form-field style="width: 100%;">
   <mat-label>{{label || placeholder}}</mat-label>
   <input matInput [placeholder]="placeholder || label"
-         [ngModel]="value"
-         (ngModelChange)="onChange($event)"
+         [formControl]="control"
          [required]="required"
          [pattern]="pattern">
   <mat-error>
