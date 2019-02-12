@@ -23,6 +23,12 @@
       ],
       "angular-material-extended/*": [
         "dist/angular-material-extended/*"
+      ],
+      "matx-gmap": [
+        "dist/matx-gmap"
+      ],
+      "matx-gmap/*": [
+        "dist/matx-gmap/*"
       ]
     }
   }

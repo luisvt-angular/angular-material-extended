@@ -3,7 +3,7 @@ import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/f
 import { MapsAPILoader } from '@agm/core';
 import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Address } from '../models/address';
+import { MatxGmapAddress } from '../models/matx-gmap-address';
 import { MatDialog } from '@angular/material';
 import { MatxGmapSearchDialogComponent } from '../matx-gmap-search-dialog/matx-gmap-search-dialog.component';
 
@@ -53,7 +53,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
         if (value.hasOwnProperty('id')) {
           this.geocoder.geocode({placeId: value.id}, results => {
             this.ngZone.run(() => {
-              this.textBoxControl.setValue(<Address>{
+              this.textBoxControl.setValue(<MatxGmapAddress>{
                 address: results[0].formatted_address,
                 coordinates: {latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng()}
               });
@@ -84,7 +84,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
             } else {
               this.geocoder.geocode({address: value}, geocodeResults =>
                 this.ngZone.run(() => {
-                  this.options = geocodeResults && geocodeResults.map(result => (<Address>{
+                  this.options = geocodeResults && geocodeResults.map(result => (<MatxGmapAddress>{
                     address: result.formatted_address || `${result.geometry.location.lat()}, ${result.geometry.location.lng()}`,
                     coordinates: {latitude: result.geometry.location.lat(), longitude: result.geometry.location.lng()}
                   }));
@@ -99,7 +99,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
     });
   }
 
-  writeValue(address: Address): void {
+  writeValue(address: MatxGmapAddress): void {
     this.textBoxControl.setValue(address);
   }
 
@@ -136,7 +136,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
           maxWidth: '800px',
           width: '90%',
           height: '90%',
-          data: <Address>{
+          data: <MatxGmapAddress>{
             showSuggestions: !!(address && address.address),
             address: address && address.address || `${result.coords.latitude}, ${result.coords.longitude}`,
             coordinates: {

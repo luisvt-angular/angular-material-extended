@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, NgZone, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MapsAPILoader } from '@agm/core';
-import { Address } from '../models/address';
+import { MatxGmapAddress } from '../models/matx-gmap-address';
 
 declare let google;
 
@@ -24,7 +24,7 @@ export class MatxGmapSearchDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<MatxGmapSearchDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public address: Address,
+    @Inject(MAT_DIALOG_DATA) public address: MatxGmapAddress,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
   ) {

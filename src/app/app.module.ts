@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MatxModule } from '../../projects/angular-material-extended/src/public_api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -10,6 +9,8 @@ import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment';
 import { ValidatorsModule } from 'ngx-validators';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatxModule } from '../../projects/angular-material-extended/src/public_api';
+import { MatxGmapModule } from '../../projects/matx-gmap/src/public_api';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     MatxModule,
+    MatxGmapModule,
     ValidatorsModule,
     MatFormFieldModule,
     MatInputModule,
