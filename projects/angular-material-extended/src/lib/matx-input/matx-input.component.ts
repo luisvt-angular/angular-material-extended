@@ -3,11 +3,11 @@ import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from 
 
 @Component({
   selector: 'matx-input, matx-input[ngModel], matx-input[formControl], matx-input[formControlName], matx-input[ngDefaultControl]',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.css'],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => InputComponent), multi: true}]
+  templateUrl: './matx-input.component.html',
+  styleUrls: ['./matx-input.component.css'],
+  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MatxInputComponent), multi: true}]
 })
-export class InputComponent extends DefaultValueAccessor implements AfterContentInit {
+export class MatxInputComponent extends DefaultValueAccessor implements AfterContentInit {
 
   @Input() label: string;
 
@@ -16,6 +16,8 @@ export class InputComponent extends DefaultValueAccessor implements AfterContent
   @Input() required: boolean | '';
 
   @Input() pattern: string;
+
+  @Input() type: 'text' | 'password' | 'tel' | 'number' | 'email' | 'search' | 'url' = 'text';
 
   @ContentChild(NgControl) ngControl: NgControl;
 

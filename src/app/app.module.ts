@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AngularMaterialExtendedModule } from '../../projects/angular-material-extended/src/public_api';
+import { MatxModule } from '../../projects/angular-material-extended/src/public_api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -20,7 +20,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularMaterialExtendedModule,
+    MatxModule,
     ValidatorsModule,
     MatFormFieldModule,
     MatInputModule,

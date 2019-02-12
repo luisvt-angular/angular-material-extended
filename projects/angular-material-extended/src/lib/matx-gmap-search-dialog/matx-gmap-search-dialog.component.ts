@@ -3,14 +3,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MapsAPILoader } from '@agm/core';
 import { Address } from '../models/address';
 
-declare var google: any;
+declare let google;
 
 @Component({
   selector: 'matx-gmap-search-dialog',
-  templateUrl: './gmap-search-dialog.component.html',
-  styleUrls: ['./gmap-search-dialog.component.scss']
+  templateUrl: './matx-gmap-search-dialog.component.html',
+  styleUrls: ['./matx-gmap-search-dialog.component.scss']
 })
-export class GmapSearchDialogComponent implements OnInit {
+export class MatxGmapSearchDialogComponent implements OnInit {
   showDefaultLocation = true;
   showSuggestedAddresses = false;
 
@@ -23,7 +23,7 @@ export class GmapSearchDialogComponent implements OnInit {
   geocoder = new google.maps.Geocoder();
 
   constructor(
-    public dialogRef: MatDialogRef<GmapSearchDialogComponent>,
+    public dialogRef: MatDialogRef<MatxGmapSearchDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public address: Address,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone

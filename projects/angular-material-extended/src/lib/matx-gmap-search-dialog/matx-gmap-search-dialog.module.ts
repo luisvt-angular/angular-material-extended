@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { GmapSearchDialogComponent } from './gmap-search-dialog.component';
+import { MatxGmapSearchDialogComponent } from './matx-gmap-search-dialog.component';
 import { MatButtonModule, MatExpansionModule, MatIconModule, MatRadioModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -16,9 +16,9 @@ import { AgmCoreModule } from '@agm/core';
     MatIconModule,
     MatButtonModule
   ],
-  declarations: [GmapSearchDialogComponent],
-  entryComponents: [GmapSearchDialogComponent],
-  exports: [GmapSearchDialogComponent]
+  declarations: [MatxGmapSearchDialogComponent],
+  entryComponents: [MatxGmapSearchDialogComponent],
+  exports: [MatxGmapSearchDialogComponent]
 })
-export class GmapSearchDialogModule {
+export class MatxGmapSearchDialogModule {
 }

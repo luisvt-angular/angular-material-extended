@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { GmapAutocompleteComponent } from './gmap-autocomplete.component';
+import { MatxGmapAutocompleteComponent } from './matx-gmap-autocomplete.component';
 import { CommonModule } from '@angular/common';
 import {
   MatAutocompleteModule,
@@ -29,8 +29,8 @@ import { AgmCoreModule } from '@agm/core';
     ReactiveFormsModule,
     AgmCoreModule
   ],
-  declarations: [GmapAutocompleteComponent],
-  exports: [GmapAutocompleteComponent]
+  declarations: [MatxGmapAutocompleteComponent],
+  exports: [MatxGmapAutocompleteComponent]
 })
-export class GmapAutocompleteModule {
+export class MatxGmapAutocompleteModule {
 }

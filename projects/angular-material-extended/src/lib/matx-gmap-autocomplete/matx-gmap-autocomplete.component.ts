@@ -5,7 +5,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Address } from '../models/address';
 import { MatDialog } from '@angular/material';
-import { GmapSearchDialogComponent } from '../gmap-search-dialog/gmap-search-dialog.component';
+import { MatxGmapSearchDialogComponent } from '../matx-gmap-search-dialog/matx-gmap-search-dialog.component';
 
 declare var google: any;
 
@@ -16,11 +16,11 @@ declare var google: any;
     ' matx-gmap-autocomplete[formControl],' +
     ' matx-gmap-autocomplete[formControlName]' +
     ' matx-gmap-autocomplete[ngDefaultControl]',
-  templateUrl: './gmap-autocomplete.component.html',
-  styleUrls: ['./gmap-autocomplete.component.scss'],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => GmapAutocompleteComponent), multi: true}]
+  templateUrl: './matx-gmap-autocomplete.component.html',
+  styleUrls: ['./matx-gmap-autocomplete.component.scss'],
+  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MatxGmapAutocompleteComponent), multi: true}]
 })
-export class GmapAutocompleteComponent extends DefaultValueAccessor implements OnInit {
+export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implements OnInit {
 
   autocompleteService;
 
@@ -116,7 +116,7 @@ export class GmapAutocompleteComponent extends DefaultValueAccessor implements O
       address = this.textBoxControl.value;
     }
     if (address && address.coordinates) {
-      this.matDialog.open(GmapSearchDialogComponent, {
+      this.matDialog.open(MatxGmapSearchDialogComponent, {
         maxHeight: '650px',
         maxWidth: '800px',
         width: '90%',
@@ -131,7 +131,7 @@ export class GmapAutocompleteComponent extends DefaultValueAccessor implements O
       this.loading = true;
       navigator.geolocation.getCurrentPosition(result => {
         this.loading = false;
-        this.matDialog.open(GmapSearchDialogComponent, {
+        this.matDialog.open(MatxGmapSearchDialogComponent, {
           maxHeight: '650px',
           maxWidth: '800px',
           width: '90%',

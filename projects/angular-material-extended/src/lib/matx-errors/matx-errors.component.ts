@@ -3,10 +3,10 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'matx-errors',
-  templateUrl: './errors.component.html',
-  styleUrls: ['./errors.component.css']
+  templateUrl: './matx-errors.component.html',
+  styleUrls: ['./matx-errors.component.css']
 })
-export class ErrorsComponent {
+export class MatxErrorsComponent {
   @Input() field: AbstractControl;
 
   get errorKeys() {

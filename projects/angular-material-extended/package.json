@@ -1,6 +1,16 @@
 {
   "name": "angular-material-extended",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "description": "This project contains some useful components to extends [Angular Material](https://material.angular.io/)",
+  "homepage": "https://github.com/luisvt-angular/angular-material-extended",
+  "bugs": {
+    "url": "https://github.com/luisvt-angular/angular-material-extended/issues"
+  },
+  "author":  "Luis Vargas <luisvargastijerino@gmail.com>",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/luisvt-angular/angular-material-extendedt"
+  },
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^7.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^7.0.0",

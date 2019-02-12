@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GmapAutocompleteComponent } from './gmap-autocomplete.component';
+import { MatxGmapAutocompleteComponent } from './gmap-autocomplete.component';
 
 describe('MatxGmapAutocompleteComponent', () => {
-  let component: GmapAutocompleteComponent;
-  let fixture: ComponentFixture<GmapAutocompleteComponent>;
+  let component: MatxGmapAutocompleteComponent;
+  let fixture: ComponentFixture<MatxGmapAutocompleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GmapAutocompleteComponent ]
+      declarations: [ MatxGmapAutocompleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GmapAutocompleteComponent);
+    fixture = TestBed.createComponent(MatxGmapAutocompleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

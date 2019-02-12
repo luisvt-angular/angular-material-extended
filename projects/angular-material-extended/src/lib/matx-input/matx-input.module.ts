@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { InputComponent } from './input.component';
+import { MatxInputComponent } from './matx-input.component';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -12,8 +12,8 @@ import { CommonModule } from '@angular/common';
     MatFormFieldModule,
     MatInputModule
   ],
-  declarations: [InputComponent],
-  exports: [InputComponent]
+  declarations: [MatxInputComponent],
+  exports: [MatxInputComponent]
 })
-export class InputModule {
+export class MatxInputModule {
 }
