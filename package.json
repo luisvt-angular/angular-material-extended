@@ -27,6 +27,8 @@
     "@angular/router": "^7.1.1",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
+    "highlight.js": "^9.14.2",
+    "ngx-highlightjs": "^3.0.3",
     "ngx-validators": "^4.2.0",
     "rxjs": "^6.3.3",
     "zone.js": "~0.8.26"
@@ -40,7 +42,7 @@
     "@types/googlemaps": "^3.30.16",
     "@types/jasmine": "^2.8.12",
     "@types/jasminewd2": "^2.0.6",
-    "@types/node": "~8.9.4",
+    "@types/node": "^11.9.4",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",

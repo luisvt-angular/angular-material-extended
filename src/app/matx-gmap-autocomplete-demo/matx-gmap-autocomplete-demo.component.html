@@ -1,0 +1,29 @@
+<h1>Outside Forms</h1>
+<matx-gmap-autocomplete label="GMap Input 0"></matx-gmap-autocomplete>
+
+<h1>Template Driven Form</h1>
+<form #form1="ngForm">
+  <matx-gmap-autocomplete placeholder="GMap Input 1"
+                          required
+                          name="gmapInput1"
+                          [(ngModel)]="form1Model.gmapInput1"
+                          #gmapInput1="ngModel">
+    <matx-errors [field]="gmapInput1"></matx-errors>
+  </matx-gmap-autocomplete>
+  <pre>gmapInput1.valid: {{gmapInput1.valid}}
+    gmapInput1.value: {{gmapInput1.value | json}}</pre>
+</form>
+
+<h1>Model-Driven Form</h1>
+<form [formGroup]="form2">
+  <matx-gmap-autocomplete placeholder="GMap Input 2"
+                          required
+                          formControlName="gmapInput2">
+    <matx-errors [field]="form2.get('gmapInput2')">s</matx-errors>
+  </matx-gmap-autocomplete>
+  <pre>form2.valid: {{form2.valid}}</pre>
+  <pre>gmapInput2.valid: {{form2.get('gmapInput2').valid}}
+    gmapInput2.dirty: {{form2.get('gmapInput2').dirty}}
+    gmapInput2.touched: {{form2.get('gmapInput2').touched}}
+    gmapInput2.value: {{form2.get('gmapInput2').value | json}}</pre>
+</form>

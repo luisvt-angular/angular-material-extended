@@ -1,0 +1,25 @@
+<mat-form-field style="width: 100%;">
+  <mat-label>{{label || placeholder}}</mat-label>
+  <input type="text" matInput [formControl]="myControl"
+         [required]="required"
+         [placeholder]="placeholder || label"
+         #autocompleteTrigger="matAutocompleteTrigger"
+         [matAutocomplete]="myAutocomplete">
+  <button *ngIf="!loading" mat-icon-button matSuffix (click)="search($event)">
+    <mat-icon>search</mat-icon>
+  </button>
+  <button mat-icon-button matSuffix *ngIf="myControl.value && !loading" (click)="clear($event)">
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+  <mat-spinner matSuffix *ngIf="loading" [diameter]="24"></mat-spinner>
+  <mat-autocomplete #myAutocomplete="matAutocomplete" [displayWith]="displayWith">
+    <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="handleChange($event)">
+      {{displayField ? option[displayField] : displayWith(option)}}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error>
+    <ng-content></ng-content>
+  </mat-error>
+</mat-form-field>
