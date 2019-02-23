@@ -24,7 +24,6 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
 
   autocompleteService;
 
-  /** @type google.maps.Geocoder */
   geocoder;
   options = [];
   textBoxControl = new FormControl();
