@@ -30,7 +30,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() required: boolean | '';
 
-  @Input() field: string;
+  @Input() displayField: string;
 
   @Input() noneText: string;
 
@@ -46,7 +46,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   ngOnInit(): void {
     this.displayWith = this.displayWith || ((option) =>
-      typeof option === 'string' ? option : option[this.field]);
+      typeof option === 'string' ? option : option[this.displayField]);
   }
 
   ngAfterContentInit() {

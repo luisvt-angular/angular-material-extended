@@ -65,7 +65,9 @@ export interface MatxPromptInput {
   name: string;
   options?: string[] | any[] | Observable<[]>;
   noneText?: string;
+  displayField?: string;
   displayWith?: (option) => string;
+  filterBy?: (value: string) => Observable<any[]>;
 }
 
 export interface MatxPromptAction {

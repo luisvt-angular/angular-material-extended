@@ -14,7 +14,7 @@
                    [placeholder]="input.placeholder"
                    [options]="input.options"
                    [displayWith]="input.displayWith"
-                   [field]="input.field"
+                   [displayField]="input.displayField"
                    [noneText]="input.noneText"
                    [(ngModel)]="result[input.name]"
                    [name]="input.name">
@@ -23,6 +23,8 @@
                          [label]="input.label"
                          [placeholder]="input.placeholder || input.label"
                          [options]="input.options"
+                         [filterBy]="input.filterBy"
+                         [displayField]="input.displayField"
                          [(ngModel)]="result[input.name]"
                          [name]="input.name"
       ></matx-autocomplete>

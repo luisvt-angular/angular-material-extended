@@ -1,11 +1,11 @@
 <h1>Outside Forms</h1>
 <matx-select [(ngModel)]="model1" [options]="['Option 1', 'Option 2']"></matx-select>
 <pre>model00: {{model1}}</pre>
-<matx-select [(ngModel)]="model2" [options]="[{name: 'Option 1'}, {name: 'Option 2'}]" field="name"></matx-select>
+<matx-select [(ngModel)]="model2" [options]="[{name: 'Option 1'}, {name: 'Option 2'}]" displayField="name"></matx-select>
 <pre>model01: {{model2 | json}}</pre>
-<matx-select [(ngModel)]="model3" [options]="stringOptions$" field="name"></matx-select>
+<matx-select [(ngModel)]="model3" [options]="stringOptions$" displayField="name"></matx-select>
 <pre>model01: {{model3 | json}}</pre>
-<matx-select [(ngModel)]="model4" [options]="objectOptions$" field="name"></matx-select>
+<matx-select [(ngModel)]="model4" [options]="objectOptions$" displayField="name"></matx-select>
 <pre>model01: {{model4 | json}}</pre>
 
 <h1>Template Driven Form</h1>
