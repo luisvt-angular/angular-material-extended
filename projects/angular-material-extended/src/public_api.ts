@@ -11,3 +11,5 @@ export * from './lib/matx-autocomplete/matx-autocomplete.module';
 export * from './lib/matx-autocomplete/matx-autocomplete.component';
 export * from './lib/matx-menu-button/matx-menu-button.component';
 export * from './lib/controllers/matx-sidenav-menu.controller';
+export * from './lib/matx-select/matx-select.module';
+export * from './lib/matx-prompt/matx-prompt.controller';

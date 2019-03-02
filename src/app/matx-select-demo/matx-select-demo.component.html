@@ -1,0 +1,41 @@
+<h1>Outside Forms</h1>
+<matx-select [(ngModel)]="model1" [options]="['Option 1', 'Option 2']"></matx-select>
+<pre>model00: {{model1}}</pre>
+<matx-select [(ngModel)]="model2" [options]="[{name: 'Option 1'}, {name: 'Option 2'}]" field="name"></matx-select>
+<pre>model01: {{model2 | json}}</pre>
+<matx-select [(ngModel)]="model3" [options]="stringOptions$" field="name"></matx-select>
+<pre>model01: {{model3 | json}}</pre>
+<matx-select [(ngModel)]="model4" [options]="objectOptions$" field="name"></matx-select>
+<pre>model01: {{model4 | json}}</pre>
+
+<h1>Template Driven Form</h1>
+<form #form1="ngForm">
+  <matx-select placeholder="Select Input 1"
+               [options]="stringOptions$"
+               required
+               name="autocompleteInput1"
+               [(ngModel)]="form1Model.model1"
+               noneText=""
+               #select1="ngModel">
+    <matx-errors [field]="select1"></matx-errors>
+  </matx-select>
+  <pre>form1.valid: {{form1.valid | json}}</pre>
+  <pre>select1.valid: {{select1.valid | json}}</pre>
+  <pre>select1.value: {{select1.value | json}}</pre>
+</form>
+
+<h1>Model-Driven Form</h1>
+<form [formGroup]="form2">
+  <matx-select placeholder="Select Input 2"
+               [options]="stringOptions$"
+               noneText=""
+               required
+               formControlName="model1">
+    <matx-errors [field]="form2.get('model1')">s</matx-errors>
+  </matx-select>
+  <pre>form2.valid: {{form2.valid}}</pre>
+  <pre>select1.valid: {{form2.get('model1').valid}}</pre>
+  <pre>select1.dirty: {{form2.get('model1').dirty}}</pre>
+  <pre>select1.touched: {{form2.get('model1').touched}}</pre>
+  <pre>select1.value: {{form2.get('model1').value | json}}</pre>
+</form>

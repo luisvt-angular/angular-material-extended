@@ -6,24 +6,34 @@ import { MatxBackButtonComponent } from './matx-back-button/matx-back-button.com
 import { MatxMenuButtonComponent } from './matx-menu-button/matx-menu-button.component';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatxPromptModule } from './matx-prompt/matx-prompt.module';
+import { MatxSelectModule } from './matx-select/matx-select.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MatxInputModule,
     MatxErrorsModule,
     MatxAutocompleteModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatxSelectModule,
+    MatxPromptModule
   ],
   exports: [
     MatxInputModule,
     MatxErrorsModule,
     MatxAutocompleteModule,
     MatxMenuButtonComponent,
-    MatxBackButtonComponent
+    MatxBackButtonComponent,
+    MatxSelectModule
   ],
-  declarations: [MatxBackButtonComponent, MatxMenuButtonComponent]
+  declarations: [
+    MatxBackButtonComponent,
+    MatxMenuButtonComponent
+  ]
 })
 export class MatxModule {
 }

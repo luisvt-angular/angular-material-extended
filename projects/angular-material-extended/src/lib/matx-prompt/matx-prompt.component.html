@@ -1,0 +1,47 @@
+<h2 *ngIf="data.title" matDialogTitle>{{data.title}}</h2>
+<mat-dialog-content>
+  <p *ngIf="data.message">{{data.message}}</p>
+  <form *ngIf="data.inputs">
+    <ng-template ngFor let-input [ngForOf]="data.inputs">
+      <matx-input *ngIf="input.type === 'text'"
+                  [label]="input.label"
+                  [placeholder]="input.placeholder"
+                  [(ngModel)]="result[input.name]"
+                  [name]="input.name">
+      </matx-input>
+      <matx-select *ngIf="input.type === 'select'"
+                   [label]="input.label"
+                   [placeholder]="input.placeholder"
+                   [options]="input.options"
+                   [displayWith]="input.displayWith"
+                   [field]="input.field"
+                   [noneText]="input.noneText"
+                   [(ngModel)]="result[input.name]"
+                   [name]="input.name">
+      </matx-select>
+      <matx-autocomplete *ngIf="input.type === 'autocomplete'"
+                         [label]="input.label"
+                         [placeholder]="input.placeholder || input.label"
+                         [options]="input.options"
+                         [(ngModel)]="result[input.name]"
+                         [name]="input.name"
+      ></matx-autocomplete>
+      <mat-form-field *ngIf="input.type === 'date'" style="width: 100%;">
+        <mat-label>{{input.label || input.placeholder}}</mat-label>
+        <input matInput
+               [matDatepicker]="picker"
+               [placeholder]="input.placeholder || input.label"
+               [(ngModel)]="result[input.name]"
+               [name]="input.name"
+        ><mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </ng-template>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="data.actions">
+  <ng-template ngFor let-action [ngForOf]="data.actions">
+    <!-- action as MatxPromptAction -->
+    <button mat-raised-button (click)="execActionCb(action)" [color]="action.color">{{getActionText(action)}}</button>
+  </ng-template>
+</mat-dialog-actions>

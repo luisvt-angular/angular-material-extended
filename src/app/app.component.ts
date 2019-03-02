@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
     {name: 'Gmap-Autocomplete', url: '/matx-gmap-autocomplete'},
     {name: 'Back-Button', url: '/matx-back-button'},
     {name: 'Menu-Button', url: '/matx-menu-button'},
+    {name: 'Select', url: '/matx-select'},
+    {name: 'Prompt', url: '/matx-prompt'},
   ];
 
   sources = {
@@ -40,6 +42,14 @@ export class AppComponent implements OnInit {
     '/matx-menu-button': {
       html: require('!raw-loader!./matx-menu-button-demo/matx-menu-button-demo.component.html'),
       ts: require('!raw-loader!./matx-menu-button-demo/matx-menu-button-demo.component.ts')
+    },
+    '/matx-select': {
+      html: require('!raw-loader!./matx-select-demo/matx-select-demo.component.html'),
+      ts: require('!raw-loader!./matx-select-demo/matx-select-demo.component.ts')
+    },
+    '/matx-prompt': {
+      html: require('!raw-loader!./matx-prompt-demo/matx-prompt-demo.component.html'),
+      ts: require('!raw-loader!./matx-prompt-demo/matx-prompt-demo.component.ts')
     },
   };
 

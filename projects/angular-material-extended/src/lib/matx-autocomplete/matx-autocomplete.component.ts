@@ -26,8 +26,6 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   @Input() displayField: string;
 
-  @Input() formLocation: string;
-
   @Input() filterBy: (filterVal: string) => Observable<any>;
 
   @Input() options: any[];

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build_demo": "ng build --prod --aot --base-href=/angular-material-extended/ --output-path=docs",
     "build_lib": "ng build --prod angular-material-extended && ng build matx-gmap && cp README.md dist/angular-material-extended",
     "publish_lib": "npm run build_lib && cd dist/angular-material-extended && npm publish",
     "test": "ng test",

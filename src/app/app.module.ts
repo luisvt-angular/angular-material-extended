@@ -9,9 +9,10 @@ import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment';
 import { ValidatorsModule } from 'ngx-validators';
 import {
+  MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatNativeDateModule,
   MatSidenavModule,
   MatTabsModule,
   MatToolbarModule
@@ -27,6 +28,8 @@ import typescript from 'highlight.js/lib/languages/typescript';
 import xml from 'highlight.js/lib/languages/xml';
 import { MatxBackButtonDemoComponent } from './matx-back-button-demo/matx-back-button-demo.component';
 import { MatxMenuButtonDemoComponent } from './matx-menu-button-demo/matx-menu-button-demo.component';
+import { MatxPromptDemoComponent } from './matx-prompt-demo/matx-prompt-demo.component';
+import { MatxSelectDemoComponent } from './matx-select-demo/matx-select-demo.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/matx-input'},
@@ -35,6 +38,8 @@ const appRoutes: Routes = [
   {path: 'matx-gmap-autocomplete', component: MatxGmapAutocompleteDemoComponent},
   {path: 'matx-back-button', component: MatxBackButtonDemoComponent},
   {path: 'matx-menu-button', component: MatxMenuButtonDemoComponent},
+  {path: 'matx-select', component: MatxSelectDemoComponent},
+  {path: 'matx-prompt', component: MatxPromptDemoComponent},
 ];
 
 export function hljsLanguages() {
@@ -51,7 +56,9 @@ export function hljsLanguages() {
     MatxInputDemoComponent,
     MatxGmapAutocompleteDemoComponent,
     MatxBackButtonDemoComponent,
-    MatxMenuButtonDemoComponent
+    MatxMenuButtonDemoComponent,
+    MatxPromptDemoComponent,
+    MatxSelectDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +78,8 @@ export function hljsLanguages() {
     MatListModule,
     MatTabsModule,
     MatToolbarModule,
+    MatButtonModule,
+    MatNativeDateModule,
     AgmCoreModule.forRoot({
       apiKey: environment.gmap_key,
       libraries: ['places']
