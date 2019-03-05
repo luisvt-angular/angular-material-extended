@@ -32,7 +32,33 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() displayField: string;
 
+  @Input() compareField: string;
+
   @Input() noneText: string;
+
+  _displayWith: Function;
+
+  get displayWith(): Function {
+    return option =>
+      !option ? ''
+        : typeof option === 'string' ? option
+        : this._displayWith ? this._displayWith(option)
+          : option[this.displayField];
+  }
+
+  @Input()
+  set displayWith(displayWith: Function) {
+    this._displayWith = displayWith;
+  }
+
+  @Input() compareWith;
+
+  _compareWith = (o1, o2) => {
+    return o1 && o2 && (o1 === o2
+      || this.compareWith && this.compareWith(o1, o2)
+      || this.compareField && o1[this.compareField] === o2[this.compareField]
+      || o1[this.displayField] === o2[this.displayField]);
+  };
 
   @ContentChild(NgControl) ngControl: NgControl;
 
@@ -45,8 +71,6 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   }
 
   ngOnInit(): void {
-    this.displayWith = this.displayWith || ((option) =>
-      typeof option === 'string' ? option : option[this.displayField]);
   }
 
   ngAfterContentInit() {
@@ -72,6 +96,4 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
     super.writeValue(value);
   }
 
-  @Input()
-  displayWith;
 }

@@ -18,10 +18,11 @@ export class MatxSelectDemoComponent implements OnInit {
 
   stringOptions$ = of(['Option 1', 'Option 2']);
 
-  objectOptions$ = of([{name: 'Option 1'}, {name: 'Option 2'}]);
+  objectOptions$ = of([{id: 1, name: 'Option 1'}, {id: 2, name: 'Option 2'}]);
 
   form1Model = {
-    model1: 'Option 1'
+    select1: 'Option 1',
+    select2: {id: 2, name: 'Option 2'}
   };
 
   form2: FormGroup;
@@ -30,8 +31,12 @@ export class MatxSelectDemoComponent implements OnInit {
 
   ngOnInit() {
     this.form2 = this.fb.group({
-      model1: 'Option 2'
+      select1: 'Option 2',
+      select2: {id: 2, name: 'Option 2'}
     });
   }
 
+  compareById(o1, o2) {
+    return o1.id === o2.id;
+  }
 }
