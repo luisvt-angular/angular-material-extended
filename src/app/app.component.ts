@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { MatxSidenavMenuController } from '../../projects/angular-material-extended/src/public_api';
+import { MatxSidenavMenuController } from 'angular-material-extended';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 declare let google: any;

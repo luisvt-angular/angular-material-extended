@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatxPromptController } from '../../../projects/angular-material-extended/src/public_api';
+import { MatxPromptController } from 'angular-material-extended';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -8,6 +8,17 @@ import { delay } from 'rxjs/operators';
   templateUrl: './matx-prompt-demo.component.html'
 })
 export class MatxPromptDemoComponent implements OnInit {
+
+  mainModuleCode = `
+@NgModule({
+  ...
+  entryComponents: [
+    ...
+    MatxPromptComponent
+    ...
+  ]
+})
+export class AppModule {}`;
 
   result;
 
@@ -28,12 +39,14 @@ export class MatxPromptDemoComponent implements OnInit {
           type: 'autocomplete',
           label: 'Autocomplete Input 1',
           name: 'autocompleteInput1',
+          value: 'Option 1',
           options: ['Option 1', 'Option 2']
         },
         {
           type: 'autocomplete',
           label: 'Autocomplete Input 2',
           name: 'autocompleteInput2',
+          value: {name: 'Option 2'},
           displayField: 'name',
           filterBy: value =>
             of([{name: 'Option 1'}, {name: 'Option 2'}].filter(it => it.name.toLowerCase().includes(value.toLowerCase())))

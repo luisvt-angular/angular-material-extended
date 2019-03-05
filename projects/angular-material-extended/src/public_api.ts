@@ -14,4 +14,5 @@ export * from './lib/controllers/matx-sidenav-menu.controller';
 export * from './lib/matx-select/matx-select.module';
 export * from './lib/matx-select/matx-select.component';
 export * from './lib/matx-prompt/matx-prompt.module';
+export * from './lib/matx-prompt/matx-prompt.component';
 export * from './lib/matx-prompt/matx-prompt.controller';

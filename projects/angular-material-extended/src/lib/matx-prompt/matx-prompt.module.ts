@@ -15,7 +15,6 @@ import { MatxSelectModule } from '../matx-select/matx-select.module';
 import { MatxInputModule } from '../matx-input/matx-input.module';
 
 @NgModule({
-  declarations: [MatxPromptComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,8 +28,7 @@ import { MatxInputModule } from '../matx-input/matx-input.module';
     MatxSelectModule,
     MatxInputModule
   ],
-  entryComponents: [
-    MatxPromptComponent
-  ]
+  declarations: [MatxPromptComponent],
+  exports: [MatxPromptComponent]
 })
 export class MatxPromptModule { }

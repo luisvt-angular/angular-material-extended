@@ -2,7 +2,7 @@ import { Component, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2,
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { MatAutocompleteTrigger, MatOptionSelectionChange } from '@angular/material';
-import { debounceTime, delay, filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { debounceTime, filter, map, switchMap, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'matx-autocomplete',
@@ -30,7 +30,19 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   @Input() options: any[];
 
-  @Input() displayWith = (option): string => !option ? '' : typeof option === 'string' ? option : option[this.displayField];
+  private _displayWith: Function;
+
+  get displayWith(): Function {
+    return option =>
+      !option ? '' : typeof option === 'string' ? option
+        : this._displayWith
+          ? this._displayWith(option)
+          : option[this.displayField];
+  }
+
+  @Input() set displayWith(_displayWith: Function) {
+    this._displayWith = _displayWith;
+  }
 
   loading = false;
 
@@ -78,7 +90,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
     }
 
     setTimeout(() => {
-      this.myControl.setValue(this.displayWith(this.initialValue), {emitEvent: !!this.initialValue});
+      this.myControl.setValue(this.displayWith(this.initialValue), {emitEvent: false});
     }, 100);
   }
 
@@ -94,7 +106,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
       this.autocompleteTrigger.openPanel();
     } else {
       this.loading = true;
-      this.filterBy(value).pipe(take(1)).subscribe(values => {
+      this.filterBy(this.displayWith(value)).pipe(take(1)).subscribe(values => {
         this.loading = false;
         this.filteredOptions = values;
         this.autocompleteTrigger.openPanel();

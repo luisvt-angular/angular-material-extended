@@ -16,6 +16,9 @@ export class MatxPromptComponent implements OnInit {
               private dialogRef: MatDialogRef<any>) { }
 
   ngOnInit() {
+    for (const input of this.data.inputs) {
+      this.result[input.name] = input.value;
+    }
   }
 
   getActionText(action: MatxPromptAction) {

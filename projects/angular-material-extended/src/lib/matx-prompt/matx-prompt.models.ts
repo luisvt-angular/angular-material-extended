@@ -63,6 +63,7 @@ export interface MatxPromptInput {
   label?: string;
   placeholder?: string;
   name: string;
+  value?;
   options?: string[] | any[] | Observable<[]>;
   noneText?: string;
   displayField?: string;

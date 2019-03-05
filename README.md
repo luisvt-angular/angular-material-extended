@@ -5,6 +5,16 @@ This project contains some useful components to extends [Angular Material](https
 
 [demo](https://luisvt-angular.github.io/angular-material-extended)
 
+# Components
+
+- [matx-input](https://luisvt-angular.github.io/angular-material-extended/#/matx-input)
+- [matx-autocomplete](https://luisvt-angular.github.io/angular-material-extended/#/matx-autocomplete)
+- [matx-gmap-autocomplete](https://luisvt-angular.github.io/angular-material-extended/#/matx-gmap-autocomplete)
+- [matx-back-button](https://luisvt-angular.github.io/angular-material-extended/#/matx-back-button)
+- [matx-menu-button](https://luisvt-angular.github.io/angular-material-extended/#/matx-menu-button)
+- [matx-select](https://luisvt-angular.github.io/angular-material-extended/#/matx-select)
+- [matx-prompt](https://luisvt-angular.github.io/angular-material-extended/#/matx-prompt)
+
 # Contributing
 
 ## Development server

@@ -12,12 +12,13 @@ import {
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-  MatListModule, MatNativeDateModule,
+  MatListModule,
+  MatNativeDateModule,
   MatSidenavModule,
   MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
-import { MatxModule } from '../../projects/angular-material-extended/src/public_api';
+import { MatxModule, MatxPromptComponent } from 'angular-material-extended';
 import { MatxGmapModule } from '../../projects/matx-gmap/src/public_api';
 import { MatxAutocompleteDemoComponent } from './matx-autocomplete-demo/matx-autocomplete-demo.component';
 import { MatxInputDemoComponent } from './matx-input-demo/matx-input-demo.component';
@@ -86,6 +87,7 @@ export function hljsLanguages() {
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MatxPromptComponent]
 })
 export class AppModule {}

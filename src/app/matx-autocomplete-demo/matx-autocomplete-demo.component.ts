@@ -10,7 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class MatxAutocompleteDemoComponent implements OnInit {
 
   form1Model = {
-    autocompleteInput1: 'Florida'
+    autocompleteInput1: 'Florida',
+    autocompleteInput2: {name: 'Alabama'}
   };
 
   form2: FormGroup;
@@ -19,7 +20,8 @@ export class MatxAutocompleteDemoComponent implements OnInit {
 
   ngOnInit(): void {
     this.form2 = this.fb.group({
-      autocompleteInput2: 'Alabama'
+      autocompleteInput1: 'Alabama',
+      autocompleteInput2: {name: 'Florida'}
     });
   }
 
