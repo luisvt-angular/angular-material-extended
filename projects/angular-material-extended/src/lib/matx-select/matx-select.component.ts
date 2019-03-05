@@ -92,8 +92,8 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   }
 
   writeValue(value: any): void {
-    this.control.setValue(value);
-    super.writeValue(value);
+    this.control.setValue(value, {emitEvent: false});
+    // super.writeValue(value);
   }
 
 }
