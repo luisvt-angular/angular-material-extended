@@ -36,6 +36,8 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() noneText: string;
 
+  @Input() disabled: boolean | '';
+
   _displayWith: Function;
 
   get displayWith(): Function {

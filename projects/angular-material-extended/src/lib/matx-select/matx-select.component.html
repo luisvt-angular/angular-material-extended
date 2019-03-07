@@ -1,6 +1,6 @@
 <mat-form-field style="width: 100%;">
   <mat-label>{{label || placeholder}}</mat-label>
-  <mat-select [formControl]="control" [required]="required" [compareWith]="_compareWith">
+  <mat-select [formControl]="control" [required]="required" [compareWith]="_compareWith" [disabled]="disabled">
     <mat-option *ngIf="noneText !== null && noneText !== undefined">{{noneText}}</mat-option>
     <mat-option *ngFor="let option of _options" [value]="option">{{displayWith(option)}}</mat-option>
   </mat-select>
