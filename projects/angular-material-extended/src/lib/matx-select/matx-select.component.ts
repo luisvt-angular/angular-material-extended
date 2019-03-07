@@ -36,7 +36,10 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() noneText: string;
 
-  @Input() disabled: boolean | '';
+  @Input() set disabled(disabled: boolean | '') {
+    if (disabled === true || disabled === '') { this.control.disable(); }
+    else { this.control.enable(); }
+  }
 
   _displayWith: Function;
 
