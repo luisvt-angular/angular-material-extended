@@ -1,4 +1,4 @@
-<ul *ngIf="field && !field.valid && (field.touched || field.dirty)">
+<ul *ngIf="field && !field.valid">
   <li *ngFor="let key of errorKeys">
     {{ getErrorMessage(key, field.errors) }}
   </li>

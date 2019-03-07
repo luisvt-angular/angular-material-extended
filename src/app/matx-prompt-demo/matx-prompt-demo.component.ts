@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatxPromptController } from 'angular-material-extended';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-matx-prompt-demo',
@@ -20,7 +21,7 @@ export class MatxPromptDemoComponent implements OnInit {
 })
 export class AppModule {}`;
 
-  result;
+  result: any = {};
 
   constructor(private promptCtrl: MatxPromptController) { }
 
@@ -33,8 +34,18 @@ export class AppModule {}`;
       title: 'Prompt Title',
       message: 'Prompt message',
       inputs: [
-        {type: 'text', label: 'Text Input', name: 'textInput'},
-        {type: 'select', label: 'Select Input', name: 'selectInput', options: ['Option 1', 'Option 2']},
+        {
+          type: 'text',
+          label: 'Text Input',
+          name: 'textInput',
+          value: this.result.textInput,
+          required: true,
+          validators: Validators.pattern(/^[A-Za-z]*$/),
+          errorMessages: {
+            pattern: 'This field only accepts letters'
+          }
+        },
+        {type: 'select', label: 'Select Input', name: 'selectInput', options: ['Option 1', 'Option 2'], required: true},
         {
           type: 'autocomplete',
           label: 'Autocomplete Input 1',
@@ -59,6 +70,7 @@ export class AppModule {}`;
         {
           text: 'Save',
           color: 'primary',
+          type: 'submit',
           callback: (result) => {
             this.result = result;
           }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatxPromptComponent } from './matx-prompt.component';
 import {
   MatButtonModule,
@@ -13,11 +13,13 @@ import {
 import { MatxAutocompleteModule } from '../matx-autocomplete/matx-autocomplete.module';
 import { MatxSelectModule } from '../matx-select/matx-select.module';
 import { MatxInputModule } from '../matx-input/matx-input.module';
+import { MatxErrorsModule } from '../matx-errors/matx-errors.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
+    MatxErrorsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -31,4 +33,4 @@ import { MatxInputModule } from '../matx-input/matx-input.module';
   declarations: [MatxPromptComponent],
   exports: [MatxPromptComponent]
 })
-export class MatxPromptModule { }
+export class MatxPromptModule {}

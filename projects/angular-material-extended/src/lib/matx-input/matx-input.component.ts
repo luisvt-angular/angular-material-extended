@@ -37,7 +37,6 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
   }
 
   writeValue(value: any): void {
-    this.control.setValue(value);
-    super.writeValue(value);
+    this.control.setValue(value, {emitEvent: false});
   }
 }

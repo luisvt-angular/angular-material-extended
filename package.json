@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng build --watch --project=angular-material-extended & ng serve",
     "build_demo": "ng build --prod --aot --base-href=/angular-material-extended/ --output-path=docs",
     "build_lib": "ng build --prod angular-material-extended && ng build matx-gmap && cp README.md dist/angular-material-extended",
     "publish_lib": "yarn run build_lib && cd dist/angular-material-extended && yarn publish",

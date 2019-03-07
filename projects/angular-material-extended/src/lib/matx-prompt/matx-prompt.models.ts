@@ -2,6 +2,7 @@ import { DialogPosition, DialogRole } from '@angular/material';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import { Observable } from 'rxjs';
+import { ValidatorFn, Validators } from '@angular/forms';
 
 export interface MatxPromptConfig extends MatxPromptData {
   /** ID for the dialog. If omitted, a unique one will be generated. */
@@ -64,6 +65,9 @@ export interface MatxPromptInput {
   placeholder?: string;
   name: string;
   value?;
+  required?: boolean;
+  validators?: ValidatorFn | ValidatorFn[];
+  errorMessages?: {[name: string]: string | Function};
   options?: string[] | any[] | Observable<[]>;
   noneText?: string;
   displayField?: string;
@@ -73,6 +77,9 @@ export interface MatxPromptInput {
 
 export interface MatxPromptAction {
   text: string;
-  callback: Function;
+  type?: 'button' | 'submit';
+  callback: (result) => void | Promise<void>;
   color?: string;
+  showLoading?: boolean;
+  _loading?: boolean;
 }
