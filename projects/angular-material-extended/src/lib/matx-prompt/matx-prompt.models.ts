@@ -78,7 +78,7 @@ export interface MatxPromptInput {
 export interface MatxPromptAction {
   text: string;
   type?: 'button' | 'submit';
-  callback: (result) => void | Promise<void>;
+  callback: (result) => any | Promise<any>;
   color?: string;
   showLoading?: boolean;
   _loading?: boolean;
