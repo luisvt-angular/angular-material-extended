@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class MatxSelectDemoComponent implements OnInit {
 
-  model1: string;
+  model1 = 'Option 2';
 
   model2: any;
 

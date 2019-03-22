@@ -62,7 +62,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
     return o1 && o2 && (o1 === o2
       || this.compareWith && this.compareWith(o1, o2)
       || this.compareField && o1[this.compareField] === o2[this.compareField]
-      || o1[this.displayField] === o2[this.displayField]);
+      || this.displayField && o1[this.displayField] === o2[this.displayField]);
   };
 
   @ContentChild(NgControl) ngControl: NgControl;
