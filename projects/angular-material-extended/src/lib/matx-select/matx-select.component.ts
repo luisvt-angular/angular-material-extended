@@ -46,7 +46,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   get displayWith(): Function {
     return option =>
       !option ? ''
-        : typeof option === 'string' ? option
+        : (typeof option === 'string' || typeof option === 'number') ? option
         : this._displayWith ? this._displayWith(option)
           : option[this.displayField];
   }

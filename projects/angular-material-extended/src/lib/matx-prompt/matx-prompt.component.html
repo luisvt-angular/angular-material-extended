@@ -4,7 +4,8 @@
     <p *ngIf="data.message">{{data.message}}</p>
     <ng-template [ngIf]="data.inputs">
       <ng-template ngFor let-input [ngForOf]="data.inputs">
-        <matx-input *ngIf="input.type === 'text'"
+        <matx-input *ngIf="input.type === 'text' || input.type === 'number'"
+                    [type]="input.type"
                     [label]="input.label"
                     [placeholder]="input.placeholder"
                     [formControlName]="input.name"
