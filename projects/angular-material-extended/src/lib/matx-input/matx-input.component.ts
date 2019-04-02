@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChild, ElementRef, forwardRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ElementRef, forwardRef, Input, Renderer2 } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 @Component({
@@ -19,6 +19,12 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
 
   @Input() type: 'text' | 'password' | 'tel' | 'number' | 'email' | 'search' | 'url' = 'text';
 
+  @Input() min: string | number;
+
+  @Input() max: string | number;
+
+  @Input() step: string | number;
+
   @ContentChild(NgControl) ngControl: NgControl;
 
   control = new FormControl();
@@ -28,7 +34,13 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
   }
 
   ngAfterContentInit() {
-    this.control.valueChanges.subscribe(value => this.onChange(value));
+    this.control.valueChanges.subscribe(value => {
+      if (this.type === 'number') {
+        this.onChange(Number(value))
+      } else {
+        this.onChange(value);
+      }
+    });
     if (this.ngControl && this.ngControl.statusChanges) {
       this.ngControl.control.statusChanges.subscribe(() => {
         this.control.setErrors(this.ngControl.errors);

@@ -29,6 +29,17 @@
       }"></matx-errors>
     </mat-error>
   </mat-form-field>
+  <matx-input type="number"
+              placeholder="Matx Number Input 1"
+              required
+              [(ngModel)]="form1Model.matxNumberInput1"
+              #matxNumberInput1="ngModel"
+              name="matxNumberInput1"
+              min="2"
+              max="10"
+              step="0.01">
+    <matx-errors [field]="matxNumberInput1"></matx-errors>
+  </matx-input>
   <mat-form-field style="width: 100%">
     <input matInput
            type="number"
@@ -39,7 +50,7 @@
            name="numberInput1"
            min="2"
            max="10"
-           step="1">
+           step="0.01">
     <mat-error>
       <matx-errors [field]="numberInput1"></matx-errors>
     </mat-error>
@@ -52,6 +63,7 @@
   <pre>matxInput1.errors: {{matxInput1.errors | json}}</pre>
   <pre>input1.valid: {{input1.valid}}</pre>
   <pre>input1.errors: {{input1.errors | json}}</pre>
+  <pre>form1Model: {{form1Model | json}}</pre>
 </form>
 
 <h1>Model-Driven Form</h1>
@@ -80,6 +92,15 @@
       }"></matx-errors>
     </mat-error>
   </mat-form-field>
+  <matx-input type="number"
+              placeholder="Matx Number Input 2"
+              required
+              formControlName="matxNumberInput2"
+              min="2"
+              max="10"
+              step="1">
+    <matx-errors [field]="form2.get('matxNumberInput2')"></matx-errors>
+  </matx-input>
   <mat-form-field style="width: 100%">
     <input matInput
            type="number"
