@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 import { ValidatorsModule } from 'ngx-validators';
 import {
   MatButtonModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatListModule,
   MatNativeDateModule,
@@ -81,6 +81,7 @@ export function hljsLanguages() {
     MatToolbarModule,
     MatButtonModule,
     MatNativeDateModule,
+    MatIconModule,
     AgmCoreModule.forRoot({
       apiKey: environment.gmap_key,
       libraries: ['places']

@@ -1,5 +1,8 @@
 <h1>Outside Forms</h1>
-<matx-input label="Input 0"></matx-input>
+<matx-input label="Input 0">
+  <ng-container matPrefix>$</ng-container>
+  <mat-icon matSuffix>mode_edit</mat-icon>
+</matx-input>
 <h1>Template Driven Form</h1>
 <form #form1="ngForm">
   <matx-input placeholder="Matx Input 1"
