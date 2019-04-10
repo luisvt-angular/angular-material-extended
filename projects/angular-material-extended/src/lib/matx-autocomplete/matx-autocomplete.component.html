@@ -5,10 +5,10 @@
          [placeholder]="placeholder || label"
          #autocompleteTrigger="matAutocompleteTrigger"
          [matAutocomplete]="myAutocomplete">
-  <button *ngIf="!loading" mat-icon-button matSuffix (click)="search($event)">
+  <button type=button *ngIf="!loading" mat-icon-button matSuffix (click)="search($event)">
     <mat-icon>search</mat-icon>
   </button>
-  <button mat-icon-button matSuffix *ngIf="myControl.value && !loading" (click)="clear($event)">
+  <button type=button mat-icon-button matSuffix *ngIf="myControl.value && !loading" (click)="clear($event)">
     <mat-icon>
       close
     </mat-icon>
