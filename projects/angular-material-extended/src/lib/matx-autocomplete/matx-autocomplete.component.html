@@ -1,14 +1,16 @@
-<mat-form-field style="width: 100%;">
+<mat-form-field style="width: 100%;" [hideRequiredMarker]="hideRequiredMarker" [floatLabel]="floatLabel">
   <mat-label>{{label || placeholder}}</mat-label>
-  <input type="text" matInput [formControl]="myControl"
+  <input type="text" matInput [formControl]="formControl"
          [required]="required"
          [placeholder]="placeholder || label"
          #autocompleteTrigger="matAutocompleteTrigger"
          [matAutocomplete]="myAutocomplete">
-  <button type=button *ngIf="!loading" mat-icon-button matSuffix (click)="search($event)">
+  <button type=button *ngIf="!loading" mat-icon-button matSuffix (click)="search($event)"
+          [disabled]="formControl.disabled">
     <mat-icon>search</mat-icon>
   </button>
-  <button type=button mat-icon-button matSuffix *ngIf="myControl.value && !loading" (click)="clear($event)">
+  <button type=button *ngIf="formControl.value && !loading" mat-icon-button matSuffix (click)="clear($event)"
+          [disabled]="formControl.disabled">
     <mat-icon>
       close
     </mat-icon>

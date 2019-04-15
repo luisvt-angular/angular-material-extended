@@ -1,5 +1,15 @@
-import { Component, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AfterContentInit,
+  Component, ContentChild,
+  ElementRef,
+  forwardRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
+import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { MatAutocompleteTrigger, MatOptionSelectionChange } from '@angular/material';
 import { debounceTime, filter, map, switchMap, take, tap } from 'rxjs/operators';
@@ -14,9 +24,11 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   private initialValue;
 
-  myControl = new FormControl();
+  formControl = new FormControl();
 
   filteredOptions: any[] = [];
+
+  @ContentChild(NgControl) ngControl: NgControl;
 
   @Input() required: boolean | '';
 
@@ -29,6 +41,18 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   @Input() filterBy: (filterVal: string) => Observable<any>;
 
   @Input() options: any[];
+
+  @Input() hideRequiredMarker: boolean | '';
+
+  @Input() floatLabel: 'auto' | 'always' | 'never';
+
+  @Input() set disabled(disabled: string | boolean) {
+    if (disabled === '' || disabled === true) {
+      this.formControl.disable({emitEvent: false});
+    } else {
+      this.formControl.enable({emitEvent: false});
+    }
+  }
 
   private _displayWith: Function;
 
@@ -59,23 +83,32 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   ngOnInit() {
     if (this.options) {
-      this.subscription = this.myControl.valueChanges.pipe(
-        filter(value => value !== this.selectedValue),
-        map(value => this.displayWith(value))
-      ).subscribe(value => {
-        this.selectedValue = null;
-        this.filteredOptions = this.options.filter(option => this.displayWith(option).toLowerCase().includes(value.toLowerCase()));
-        this.autocompleteTrigger.openPanel();
-      });
-    } else {
-      this.subscription = this.myControl.valueChanges.pipe(
+      this.subscription = this.formControl.valueChanges.pipe(
         filter(value => value !== this.selectedValue),
         map(value => this.displayWith(value)),
         tap(() => {
           this.onChange(undefined);
-          this.myControl.markAsTouched();
-          this.myControl.markAsDirty();
-          if (this.required || this.required === '') { this.myControl.setErrors({required: {value: undefined}}); }
+          this.formControl.markAsTouched();
+          this.formControl.markAsDirty();
+          if (this.required || this.required === '') { this.formControl.setErrors({required: {value: undefined}}); }
+          this.filteredOptions = [];
+        })
+      ).subscribe(value => {
+        this.selectedValue = null;
+        this.filteredOptions = this.options.filter(option =>
+          this.displayWith(option).toLowerCase()
+            .includes(this.displayWith(value).toLowerCase()));
+        this.autocompleteTrigger.openPanel();
+      });
+    } else {
+      this.subscription = this.formControl.valueChanges.pipe(
+        filter(value => value !== this.selectedValue),
+        map(value => this.displayWith(value)),
+        tap(() => {
+          this.onChange(undefined);
+          this.formControl.markAsTouched();
+          this.formControl.markAsDirty();
+          if (this.required || this.required === '') { this.formControl.setErrors({required: {value: undefined}}); }
           this.loading = true;
           this.filteredOptions = [];
         }),
@@ -90,7 +123,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
     }
 
     setTimeout(() => {
-      this.myControl.setValue(this.displayWith(this.initialValue), {emitEvent: false});
+      this.formControl.setValue(this.displayWith(this.initialValue), {emitEvent: false});
     }, 100);
   }
 
@@ -100,9 +133,10 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   search(event: MouseEvent) {
     event.stopPropagation();
-    const value = this.myControl.value;
+    const value = this.formControl.value;
     if (this.options) {
-      this.filteredOptions = this.options.filter(option => this.displayWith(option).toLowerCase().includes(value.toLowerCase()));
+      this.filteredOptions = this.options.filter(option =>
+        this.displayWith(option).toLowerCase().includes(this.displayWith(value).toLowerCase()));
       this.autocompleteTrigger.openPanel();
     } else {
       this.loading = true;
@@ -116,10 +150,10 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   clear(event: MouseEvent) {
     event.stopPropagation();
-    this.myControl.setValue(undefined);
+    this.formControl.setValue(undefined);
     this.onChange(undefined);
-    this.myControl.markAsTouched();
-    this.myControl.markAsDirty();
+    this.formControl.markAsTouched();
+    this.formControl.markAsDirty();
   }
 
   writeValue(value) {

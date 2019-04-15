@@ -1,20 +1,26 @@
-<mat-form-field style="width: 100%">
+<mat-form-field style="width: 100%" [hideRequiredMarker]="hideRequiredMarker" [floatLabel]="floatLabel">
   <mat-label>{{label || placeholder}}</mat-label>
   <input matInput
          type="text"
          [placeholder]="placeholder || label"
          [matAutocomplete]="auto"
-         [formControl]="textBoxControl"
+         [formControl]="formControl"
          [required]="required">
-  <mat-icon matSuffix *ngIf="textBoxControl.value && !loading" (click)="textBoxControl.setValue(undefined)">close</mat-icon>
-  <mat-icon *ngIf="!loading" matSuffix (click)="getMyCurrentAddress($event)" style="cursor: pointer;">my_location</mat-icon>
+  <button type="button" *ngIf="formControl.value && !loading" mat-icon-button matSuffix
+          (click)="formControl.setValue(undefined)" [disabled]="formControl.disabled">
+    <mat-icon>close</mat-icon>
+  </button>
+  <button type="button" *ngIf="!loading" mat-icon-button matSuffix (click)="getMyCurrentAddress($event)"
+          [disabled]="formControl.disabled">
+    <mat-icon>my_location</mat-icon>
+  </button>
   <mat-spinner matSuffix *ngIf="loading" [diameter]="24"></mat-spinner>
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displaySelectedAddress">
     <mat-option *ngFor="let option of options" [value]="option">
       {{option.address}}
     </mat-option>
   </mat-autocomplete>
-  <mat-error *ngIf="textBoxControl.invalid">
+  <mat-error *ngIf="formControl.invalid">
     <ng-content></ng-content>
   </mat-error>
 </mat-form-field>

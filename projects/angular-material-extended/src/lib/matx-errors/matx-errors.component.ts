@@ -10,7 +10,7 @@ export class MatxErrorsComponent {
   @Input() field: AbstractControl;
 
   get errorKeys() {
-    return Object.keys(this.field.errors);
+    return this.field.errors ? Object.keys(this.field.errors) : [];
   }
 
   private _errorMessages = {

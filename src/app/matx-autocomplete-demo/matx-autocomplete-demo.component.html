@@ -1,14 +1,44 @@
 <h1>Outside Forms</h1>
-<matx-autocomplete label="Autocomplete 00" [options]="['Alabama', 'Florida']"></matx-autocomplete>
-<matx-autocomplete label="Autocomplete 01" [options]="[
-    {name: 'Alabama'}, {name: 'Alabamas'},
-    {name: 'Florida'}
-  ]" displayField="name"></matx-autocomplete>
+<matx-autocomplete label="Autocomplete 00" [options]="options0"></matx-autocomplete>
+<matx-autocomplete label="Autocomplete 01" [options]="options1" displayField="name"></matx-autocomplete>
 <matx-autocomplete label="Autocomplete 02" [filterBy]="filterStringObservables"></matx-autocomplete>
 <matx-autocomplete label="Autocomplete 03" [filterBy]="filterObjectObservables" displayField="name"></matx-autocomplete>
 
 <h1>Template Driven Form</h1>
 <form #form1="ngForm">
+  <mat-checkbox [(ngModel)]="disableAutocomplete0" name="disableAutocomplete0">
+    Disable Template Autocomplete Input 0
+  </mat-checkbox>
+  <br>
+  <mat-checkbox [(ngModel)]="hideRequiredMarkerAutocomplete0" name="hideRequiredMarkerAutocomplete0">
+    Hide Required Marker Template Autocomplete Input 0
+  </mat-checkbox>
+  <div>
+    <label>Float label: </label>
+    <mat-radio-group [(ngModel)]="floatLabel0" name="floatLabel0">
+      <mat-radio-button value="auto">Auto</mat-radio-button>
+      <mat-radio-button value="always">Always</mat-radio-button>
+      <mat-radio-button value="never">Never</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <br>
+  <br>
+  <matx-autocomplete placeholder="Template Autocomplete Input 0"
+                     [disabled]="disableAutocomplete0"
+                     [hideRequiredMarker]="hideRequiredMarkerAutocomplete0"
+                     [floatLabel]="floatLabel0"
+                     [options]="options1"
+                     displayField="name"
+                     required
+                     name="autocompleteInput0"
+                     [(ngModel)]="form1Model.autocompleteInput0"
+                     #autocompleteInput0="ngModel">
+    <matx-errors [field]="autocompleteInput0"></matx-errors>
+  </matx-autocomplete>
+  <pre>form1.valid: {{form1.valid | json}}</pre>
+  <pre>autocompleteInput0.valid: {{autocompleteInput0.valid | json}}</pre>
+  <pre>autocompleteInput0.value: {{autocompleteInput0.value | json}}</pre>
+
   <matx-autocomplete placeholder="Template Autocomplete Input 1"
                      [filterBy]="filterStringObservables"
                      required
@@ -20,6 +50,7 @@
   <pre>form1.valid: {{form1.valid | json}}</pre>
   <pre>autocompleteInput1.valid: {{autocompleteInput1.valid | json}}</pre>
   <pre>autocompleteInput1.value: {{autocompleteInput1.value | json}}</pre>
+
   <matx-autocomplete placeholder="Template Autocomplete Input 2"
                      [filterBy]="filterObjectObservables"
                      displayField="name"

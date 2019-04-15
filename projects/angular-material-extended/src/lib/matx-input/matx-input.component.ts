@@ -25,16 +25,28 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
 
   @Input() step: string | number;
 
+  @Input() hideRequiredMarker: boolean | '';
+
+  @Input() floatLabel: 'auto' | 'always' | 'never';
+
+  @Input() set disabled(disabled: string | boolean) {
+    if (disabled === '' || disabled === true) {
+      this.formControl.disable({emitEvent: false});
+    } else {
+      this.formControl.enable({emitEvent: false});
+    }
+  }
+
   @ContentChild(NgControl) ngControl: NgControl;
 
-  control = new FormControl();
+  formControl = new FormControl();
 
   constructor(_renderer: Renderer2, _elementRef: ElementRef) {
     super(_renderer, _elementRef, false);
   }
 
   ngAfterContentInit() {
-    this.control.valueChanges.subscribe(value => {
+    this.formControl.valueChanges.subscribe(value => {
       if (this.type === 'number') {
         this.onChange(Number(value))
       } else {
@@ -43,12 +55,12 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
     });
     if (this.ngControl && this.ngControl.statusChanges) {
       this.ngControl.control.statusChanges.subscribe(() => {
-        this.control.setErrors(this.ngControl.errors);
+        this.formControl.setErrors(this.ngControl.errors);
       });
     }
   }
 
   writeValue(value: any): void {
-    this.control.setValue(value, {emitEvent: false});
+    this.formControl.setValue(value, {emitEvent: false});
   }
 }

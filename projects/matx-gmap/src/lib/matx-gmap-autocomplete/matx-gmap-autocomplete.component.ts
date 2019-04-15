@@ -26,12 +26,24 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
 
   geocoder;
   options = [];
-  textBoxControl = new FormControl();
+  formControl = new FormControl();
   loading = false;
 
   @Input() label: string;
   @Input() placeholder: string;
   @Input() required: boolean | '';
+
+  @Input() hideRequiredMarker: boolean | '';
+
+  @Input() floatLabel: 'auto' | 'always' | 'never';
+
+  @Input() set disabled(disabled: string | boolean) {
+    if (disabled === '' || disabled === true) {
+      this.formControl.disable({emitEvent: false});
+    } else {
+      this.formControl.enable({emitEvent: false});
+    }
+  }
 
   constructor(private mapsApiLoader: MapsAPILoader,
               private matDialog: MatDialog,
@@ -42,7 +54,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
   }
 
   ngOnInit() {
-    this.textBoxControl.valueChanges
+    this.formControl.valueChanges
       .pipe(debounceTime(500))
       .subscribe((value): Observable<any[]> => {
         if (!value) {
@@ -52,7 +64,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
         if (value.hasOwnProperty('id')) {
           this.geocoder.geocode({placeId: value.id}, results => {
             this.ngZone.run(() => {
-              this.textBoxControl.setValue(<MatxGmapAddress>{
+              this.formControl.setValue(<MatxGmapAddress>{
                 address: results[0].formatted_address,
                 coordinates: {latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng()}
               });
@@ -66,7 +78,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
 
         if (typeof value === 'string') {
           this.onChange(undefined);
-          this.textBoxControl.setErrors({'required': {value: undefined}});
+          this.formControl.setErrors({'required': {value: undefined}});
         }
 
         if (typeof value !== 'string') {
@@ -99,7 +111,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
   }
 
   writeValue(address: MatxGmapAddress): void {
-    this.textBoxControl.setValue(address);
+    this.formControl.setValue(address);
   }
 
   displaySelectedAddress(option) {
@@ -109,10 +121,10 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
   getMyCurrentAddress(event: MouseEvent) {
     event.stopPropagation();
     let address;
-    if (typeof this.textBoxControl.value === 'string') {
-      address = {address: this.textBoxControl.value};
+    if (typeof this.formControl.value === 'string') {
+      address = {address: this.formControl.value};
     } else {
-      address = this.textBoxControl.value;
+      address = this.formControl.value;
     }
     if (address && address.coordinates) {
       this.matDialog.open(MatxGmapSearchDialogComponent, {
@@ -123,7 +135,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
         data: address
       }).afterClosed().subscribe(result => {
         if (result) {
-          this.textBoxControl.setValue(result);
+          this.formControl.setValue(result);
         }
       });
     } else if ('geolocation' in navigator) {
@@ -145,7 +157,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
           }
         }).afterClosed().subscribe(result2 => {
           if (result2) {
-            this.textBoxControl.setValue(result2);
+            this.formControl.setValue(result2);
           }
         });
       });

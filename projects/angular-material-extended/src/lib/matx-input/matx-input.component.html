@@ -1,8 +1,8 @@
-<mat-form-field style="width: 100%;">
+<mat-form-field style="width: 100%;" [hideRequiredMarker]="hideRequiredMarker" [floatLabel]="floatLabel">
   <mat-label>{{label || placeholder}}</mat-label>
   <ng-container matPrefix><ng-content select="[matPrefix]"></ng-content></ng-container>
   <input matInput [placeholder]="placeholder || label"
-         [formControl]="control"
+         [formControl]="formControl"
          [required]="required"
          [pattern]="pattern"
          [type]="type"

@@ -36,9 +36,16 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() noneText: string;
 
-  @Input() set disabled(disabled: boolean | '') {
-    if (disabled === true || disabled === '') { this.control.disable(); }
-    else { this.control.enable(); }
+  @Input() hideRequiredMarker: boolean | '';
+
+  @Input() floatLabel: 'auto' | 'always' | 'never';
+
+  @Input() set disabled(disabled: string | boolean) {
+    if (disabled === '' || disabled === true) {
+      this.formControl.disable({emitEvent: false});
+    } else {
+      this.formControl.enable({emitEvent: false});
+    }
   }
 
   _displayWith: Function;
@@ -67,7 +74,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @ContentChild(NgControl) ngControl: NgControl;
 
-  control = new FormControl();
+  formControl = new FormControl();
 
   subscription: Subscription;
 
@@ -79,10 +86,10 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   }
 
   ngAfterContentInit() {
-    this.subscription = this.control.valueChanges.subscribe(value => this.onChange(value));
+    this.subscription = this.formControl.valueChanges.subscribe(value => this.onChange(value));
     if (this.ngControl && this.ngControl.statusChanges) {
       this.subscription.add(this.ngControl.control.statusChanges.subscribe(() => {
-        this.control.setErrors(this.ngControl.errors);
+        this.formControl.setErrors(this.ngControl.errors);
       }));
     }
     if (this.options instanceof Observable) {
@@ -97,8 +104,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   }
 
   writeValue(value: any): void {
-    this.control.setValue(value, {emitEvent: false});
-    // super.writeValue(value);
+    this.formControl.setValue(value, {emitEvent: false});
   }
 
 }
