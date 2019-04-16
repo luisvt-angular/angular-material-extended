@@ -59,7 +59,7 @@ export class AppModule {}`;
           name: 'autocompleteInput2',
           value: {name: 'Option 2'},
           displayField: 'name',
-          filterBy: value =>
+          filterBy: () => value =>
             of([{name: 'Option 1'}, {name: 'Option 2'}].filter(it => it.name.toLowerCase().includes(value.toLowerCase())))
               .pipe(delay(3000))
         },
