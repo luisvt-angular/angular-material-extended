@@ -27,7 +27,7 @@
                            [label]="input.label"
                            [placeholder]="input.placeholder || input.label"
                            [options]="input.options"
-                           [filterBy]="input.filterBy?.call(form)"
+                           [filterBy]="input.filterBy?.call(input, form)"
                            [displayField]="input.displayField"
                            [displayWith]="input.displayWith"
                            [formControlName]="input.name"
