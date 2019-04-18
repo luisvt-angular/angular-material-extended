@@ -71,8 +71,10 @@ export class AppModule {}`;
           text: 'Save',
           color: 'primary',
           type: 'submit',
+          showLoading: true,
           callback: (result) => {
             this.result = result;
+            return new Promise(resolve => setTimeout(resolve, 2000))
           }
         }
       ]

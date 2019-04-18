@@ -55,7 +55,8 @@
       <!-- action as MatxPromptAction -->
       <button mat-raised-button [attr.type]="action.type || 'button'"
               (click)="execActionCb(action)"
-              [color]="action.color">
+              [color]="action.color"
+              [disabled]="action._loading">
         <mat-spinner *ngIf="action._loading" diameter="24" style="display: inline-flex"></mat-spinner>
         {{getActionText(action)}}
       </button>
