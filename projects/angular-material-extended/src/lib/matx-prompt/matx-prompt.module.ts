@@ -8,6 +8,7 @@ import {
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
+  MatProgressSpinnerModule,
   MatSelectModule
 } from '@angular/material';
 import { MatxAutocompleteModule } from '../matx-autocomplete/matx-autocomplete.module';
@@ -28,7 +29,8 @@ import { MatxErrorsModule } from '../matx-errors/matx-errors.module';
     MatxAutocompleteModule,
     MatButtonModule,
     MatxSelectModule,
-    MatxInputModule
+    MatxInputModule,
+    MatProgressSpinnerModule
   ],
   declarations: [MatxPromptComponent],
   exports: [MatxPromptComponent]

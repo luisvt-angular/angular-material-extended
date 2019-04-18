@@ -79,7 +79,7 @@ export interface MatxPromptAction {
   text: string;
   type?: 'button' | 'submit';
   callback: (result) => any | Promise<any>;
-  color?: string;
+  color?: 'primary' | 'accent' | 'warn';
   showLoading?: boolean;
   _loading?: boolean;
 }
