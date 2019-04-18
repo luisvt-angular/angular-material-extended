@@ -11,6 +11,12 @@ export interface MatxPromptConfig extends MatxPromptData {
   role?: DialogRole;
   /** Custom class for the overlay pane. */
   panelClass?: string | string[];
+  /** Whether the dialog has a backdrop. */
+  hasBackdrop?: boolean;
+  /** Custom class for the backdrop, */
+  backdropClass?: string;
+  /** Whether the user can use escape or clicking on the backdrop to close the modal. */
+  disableClose?: boolean;
   /** Width of the dialog. */
   width?: string;
   /** Height of the dialog. */

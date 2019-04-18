@@ -13,7 +13,10 @@ export class MatxPromptController {
   prompt(config: MatxPromptConfig) {
     this.dialog.open(MatxPromptComponent, {
       role: config.role,
-      hasBackdrop: true,
+      panelClass: config.panelClass,
+      hasBackdrop: config.hasBackdrop || true,
+      backdropClass: config.backdropClass,
+      disableClose: config.disableClose || false,
       width: config.width,
       height: config.height,
       minWidth: config.minWidth,
