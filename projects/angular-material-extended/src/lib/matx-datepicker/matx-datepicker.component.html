@@ -1,0 +1,16 @@
+<mat-form-field style="width: 100%;" [hideRequiredMarker]="hideRequiredMarker=== '' ||  hideRequiredMarker === true" [floatLabel]="floatLabel">
+  <mat-label>{{label || placeholder}}</mat-label>
+  <input matInput
+         [matDatepicker]="picker"
+         [placeholder]="placeholder || label"
+         [formControl]="formControl"
+         [required]="required === '' || required === true"
+         [min]="min"
+         [max]="max"
+         [autocomplete]="autocomplete">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-error>
+    <ng-content select="matx-errors"></ng-content>
+  </mat-error>
+</mat-form-field>

@@ -1,0 +1,37 @@
+<h1>Outside Forms</h1>
+<matx-datepicker label="MatxDatepicker 0" autocomplete="off">
+  <ng-container matPrefix>$</ng-container>
+  <mat-icon matSuffix>mode_edit</mat-icon>
+</matx-datepicker>
+<h1>Template Driven Form</h1>
+<form #form1="ngForm">
+  <matx-datepicker placeholder="Matx Datepicker 1"
+                   required
+                   [(ngModel)]="form1Model.matxDatepicker1"
+                   #matxDatepicker1="ngModel"
+                   name="matxDatepicker1">
+    <matx-errors [field]="matxDatepicker1"></matx-errors>
+  </matx-datepicker>
+
+  <pre>form1.valid: {{form1.valid}}</pre>
+  <pre>form1.dirty: {{form1.dirty}}</pre>
+  <pre>form1.touched: {{form1.touched}}</pre>
+  <pre>matxDatepicker1.valid: {{matxDatepicker1.valid}}</pre>
+  <pre>matxDatepicker1.errors: {{matxDatepicker1.errors | json}}</pre>
+  <pre>form1Model: {{form1Model | json}}</pre>
+</form>
+
+<h1>Model-Driven Form</h1>
+<form [formGroup]="form2">
+  <matx-datepicker placeholder="Matx Datepicker 2"
+                   required
+                   formControlName="matxDatepicker2">
+    <matx-errors [field]="form2.get('matxDatepicker2')"></matx-errors>
+  </matx-datepicker>
+
+  <pre>form2.valid: {{form2.valid}}</pre>
+  <pre>input2.valid: {{form2.get('matxDatepicker2').valid}}</pre>
+  <pre>input2.dirty: {{form2.get('matxDatepicker2').dirty}}</pre>
+  <pre>input2.touched: {{form2.get('matxDatepicker2').touched}}</pre>
+  <pre>input2.errors: {{form2.get('matxDatepicker2').errors | json}}</pre>
+</form>

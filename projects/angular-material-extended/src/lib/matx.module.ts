@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatxPromptModule } from './matx-prompt/matx-prompt.module';
 import { MatxSelectModule } from './matx-select/matx-select.module';
+import { MatxDatepickerModule } from './matx-datepicker/matx-datepicker.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { MatxSelectModule } from './matx-select/matx-select.module';
     MatButtonModule,
     MatIconModule,
     MatxSelectModule,
-    MatxPromptModule
+    MatxPromptModule,
+    MatxDatepickerModule
   ],
   exports: [
     MatxInputModule,
@@ -36,6 +38,7 @@ import { MatxSelectModule } from './matx-select/matx-select.module';
     MatxBackButtonComponent,
     MatxSelectModule,
     MatxPromptModule,
+    MatxDatepickerModule,
     MatDialogModule,
     MatInputModule,
     MatDatepickerModule

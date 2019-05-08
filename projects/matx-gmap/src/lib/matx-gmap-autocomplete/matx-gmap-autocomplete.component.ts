@@ -37,6 +37,10 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
 
+  @Input() set disabledControl(disabled: string | boolean) {
+    this.disabled = disabled;
+  }
+
   @Input() set disabled(disabled: string | boolean) {
     if (disabled === '' || disabled === true) {
       this.formControl.disable({emitEvent: false});

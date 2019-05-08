@@ -28,8 +28,6 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   filteredOptions: any[] = [];
 
-  @ContentChild(NgControl) ngControl: NgControl;
-
   @Input() required: boolean | '';
 
   @Input() placeholder: string;
@@ -45,6 +43,10 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   @Input() hideRequiredMarker: boolean | '';
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
+
+  @Input() set disabledControl(disabled: string | boolean) {
+    this.disabled = disabled;
+  }
 
   @Input() set disabled(disabled: string | boolean) {
     if (disabled === '' || disabled === true) {

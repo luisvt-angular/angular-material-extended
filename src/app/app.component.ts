@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
 
   menuItems = [
     {name: 'Input', url: '/matx-input'},
+    {name: 'Datepicker', url: '/matx-datepicker'},
     {name: 'Autocomplete', url: '/matx-autocomplete'},
     {name: 'Gmap-Autocomplete', url: '/matx-gmap-autocomplete'},
     {name: 'Back-Button', url: '/matx-back-button'},
@@ -26,6 +27,10 @@ export class AppComponent implements OnInit {
     '/matx-input': {
       html: require('!raw-loader!./matx-input-demo/matx-input-demo.component.html'),
       ts: require('!raw-loader!./matx-input-demo/matx-input-demo.component.ts')
+    },
+    '/matx-datepicker': {
+      html: require('!raw-loader!./matx-datepicker-demo/matx-datepicker-demo.component.html'),
+      ts: require('!raw-loader!./matx-datepicker-demo/matx-datepicker-demo.component.ts')
     },
     '/matx-autocomplete': {
       html: require('!raw-loader!./matx-autocomplete-demo/matx-autocomplete-demo.component.html'),

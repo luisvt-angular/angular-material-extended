@@ -1,13 +1,22 @@
-import { AfterContentInit, Component, ContentChild, ElementRef, forwardRef, Input, Renderer2 } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  ElementRef,
+  forwardRef,
+  Input,
+  OnInit,
+  Renderer2
+} from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 @Component({
-  selector: 'matx-input, matx-input[ngModel], matx-input[formControl], matx-input[formControlName], matx-input[ngDefaultControl]',
-  templateUrl: './matx-input.component.html',
-  styleUrls: ['./matx-input.component.css'],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MatxInputComponent), multi: true}]
+  selector: 'matx-datepicker, matx-datepicker[ngModel], matx-datepicker[formControl], matx-datepicker[formControlName], matx-datepicker[ngDefaultControl]',
+  templateUrl: './matx-datepicker.component.html',
+  styleUrls: ['./matx-datepicker.component.scss'],
+  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MatxDatepickerComponent), multi: true}]
 })
-export class MatxInputComponent extends DefaultValueAccessor implements AfterContentInit {
+export class MatxDatepickerComponent extends DefaultValueAccessor implements AfterContentInit {
 
   @Input() label: string;
 
@@ -15,19 +24,15 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
 
   @Input() required: boolean | '';
 
-  @Input() pattern: string;
+  @Input() min: string;
 
-  @Input() type: 'text' | 'password' | 'tel' | 'number' | 'email' | 'search' | 'url' = 'text';
-
-  @Input() min: string | number;
-
-  @Input() max: string | number;
-
-  @Input() step: string | number;
+  @Input() max: string;
 
   @Input() hideRequiredMarker: boolean | '';
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
+
+  @Input() autocomplete: string = 'off';
 
   @Input() set disabledControl(disabled: string | boolean) {
     this.disabled = disabled;
@@ -51,11 +56,7 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
 
   ngAfterContentInit() {
     this.formControl.valueChanges.subscribe(value => {
-      if (this.type === 'number') {
-        this.onChange(Number(value))
-      } else {
         this.onChange(value);
-      }
     });
     if (this.ngControl && this.ngControl.statusChanges) {
       this.ngControl.control.statusChanges.subscribe(() => {

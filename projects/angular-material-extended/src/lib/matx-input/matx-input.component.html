@@ -3,7 +3,7 @@
   <ng-container matPrefix><ng-content select="[matPrefix]"></ng-content></ng-container>
   <input matInput [placeholder]="placeholder || label"
          [formControl]="formControl"
-         [required]="required"
+         [required]="required === '' || required === true"
          [pattern]="pattern"
          [type]="type"
          [min]="min"

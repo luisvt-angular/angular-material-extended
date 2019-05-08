@@ -15,6 +15,7 @@ import { MatxAutocompleteModule } from '../matx-autocomplete/matx-autocomplete.m
 import { MatxSelectModule } from '../matx-select/matx-select.module';
 import { MatxInputModule } from '../matx-input/matx-input.module';
 import { MatxErrorsModule } from '../matx-errors/matx-errors.module';
+import { MatxDatepickerModule } from '../matx-datepicker/matx-datepicker.module';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { MatxErrorsModule } from '../matx-errors/matx-errors.module';
     MatButtonModule,
     MatxSelectModule,
     MatxInputModule,
+    MatxDatepickerModule,
     MatProgressSpinnerModule
   ],
   declarations: [MatxPromptComponent],

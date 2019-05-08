@@ -22,6 +22,7 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { MatxModule, MatxPromptComponent } from 'angular-material-extended';
+// import { MatxModule, MatxPromptComponent } from '../../projects/angular-material-extended/src/public_api';
 import { MatxGmapModule } from '../../projects/matx-gmap/src/public_api';
 import { MatxAutocompleteDemoComponent } from './matx-autocomplete-demo/matx-autocomplete-demo.component';
 import { MatxInputDemoComponent } from './matx-input-demo/matx-input-demo.component';
@@ -34,10 +35,12 @@ import { MatxBackButtonDemoComponent } from './matx-back-button-demo/matx-back-b
 import { MatxMenuButtonDemoComponent } from './matx-menu-button-demo/matx-menu-button-demo.component';
 import { MatxPromptDemoComponent } from './matx-prompt-demo/matx-prompt-demo.component';
 import { MatxSelectDemoComponent } from './matx-select-demo/matx-select-demo.component';
+import { MatxDatepickerDemoComponent } from './matx-datepicker-demo/matx-datepicker-demo.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/matx-input'},
   {path: 'matx-input', component: MatxInputDemoComponent},
+  {path: 'matx-datepicker', component: MatxDatepickerDemoComponent},
   {path: 'matx-autocomplete', component: MatxAutocompleteDemoComponent},
   {path: 'matx-gmap-autocomplete', component: MatxGmapAutocompleteDemoComponent},
   {path: 'matx-back-button', component: MatxBackButtonDemoComponent},
@@ -62,7 +65,8 @@ export function hljsLanguages() {
     MatxBackButtonDemoComponent,
     MatxMenuButtonDemoComponent,
     MatxPromptDemoComponent,
-    MatxSelectDemoComponent
+    MatxSelectDemoComponent,
+    MatxDatepickerDemoComponent
   ],
   imports: [
     BrowserModule,
