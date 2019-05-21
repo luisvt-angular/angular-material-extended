@@ -29,6 +29,8 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
 
+  @Input() autocomplete: string = 'off';
+
   @Input() set disabledControl(disabled: string | boolean) {
     this.disabled = disabled;
   }

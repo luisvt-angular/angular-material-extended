@@ -10,7 +10,8 @@
                     [placeholder]="input.placeholder"
                     [formControlName]="input.name"
                     [required]="input.required"
-                    [disabledControl]="input.disabled && input.disabled(form)">
+                    [disabledControl]="input.disabled && input.disabled(form)"
+                    [autocomplete]="input.autocomplete || 'off'">
           <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
         </matx-input>
         <matx-select *ngIf="input.type === 'select'"
@@ -35,7 +36,8 @@
                            [formControlName]="input.name"
                            [required]="input.required"
                            [disabledControl]="input.disabled && input.disabled(form)"
-                           (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)">
+                           (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
+                           [autocomplete]="input.autocomplete">
           <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
         </matx-autocomplete>
         <matx-datepicker *ngIf="input.type === 'date'"
@@ -44,7 +46,8 @@
                          [formControlName]="input.name"
                          [required]="input.required"
                          [disabledControl]="input.disabled && input.disabled(form)"
-                         (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)">
+                         (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
+                         [autocomplete]="input.autocomplete">
           <mat-error>
             <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
           </mat-error>

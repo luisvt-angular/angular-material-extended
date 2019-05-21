@@ -1,3 +1,7 @@
+# 0.6.1
+
+- Add `autocomplete` attribute to `matx-input`, `matx-autocomplete`, `matx-prompt`
+
 # 0.6.0
 
 - Add `ngModelChange` and `disabled` attributes to `MatxPromptInput`
