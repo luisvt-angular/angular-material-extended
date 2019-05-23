@@ -106,7 +106,6 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
       });
     } else {
       this.subscription = this.formControl.valueChanges.pipe(
-        tap((value) => console.log('valueChanges - value: ', value)),
         filter(value => value !== this.selectedValue),
         map(value => this.displayWith(value)),
         tap(() => {
@@ -164,7 +163,6 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   writeValue(value) {
     this.initialValue = value;
     this.selectedValue = value;
-    console.log('writeValue - value: ', value);
     if (value === null) {
       this.formControl.setValue(null, {emitViewToModelChange: false, emitModelToViewChange: true})
     }

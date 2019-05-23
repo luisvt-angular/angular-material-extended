@@ -1,3 +1,7 @@
+# 0.6.2
+
+- Remove logs from `matx-autocomplete`
+
 # 0.6.1
 
 - Add `autocomplete` attribute to `matx-input`, `matx-autocomplete`, `matx-prompt`
