@@ -1,3 +1,7 @@
+# 0.6.3
+
+- Add `minlength` and `maxlength` input attributes to `matx-input` 
+
 # 0.6.2
 
 - Remove logs from `matx-autocomplete`

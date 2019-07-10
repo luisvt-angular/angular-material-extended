@@ -23,6 +23,10 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
 
   @Input() max: string | number;
 
+  @Input() minlength: string | number;
+
+  @Input() maxlength: string | number;
+
   @Input() step: string | number;
 
   @Input() hideRequiredMarker: boolean | '';
