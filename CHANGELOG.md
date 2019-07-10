@@ -1,3 +1,7 @@
+# 0.6.4
+
+- Fix wording in default errors of `matx-errors`
+
 # 0.6.3
 
 - Add `minlength` and `maxlength` input attributes to `matx-input` 
