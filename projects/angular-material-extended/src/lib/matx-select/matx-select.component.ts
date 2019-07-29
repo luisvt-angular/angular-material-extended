@@ -18,7 +18,7 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./matx-select.component.scss'],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MatxSelectComponent), multi: true}]
 })
-export class MatxSelectComponent extends DefaultValueAccessor implements OnInit, AfterContentInit, OnDestroy {
+export class MatxSelectComponent extends DefaultValueAccessor implements OnInit, OnDestroy {
 
   @Input() options: any[] | Observable<any[]>;
 
@@ -69,6 +69,8 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() compareWith;
 
+  @Input() multiple: boolean | '';
+
   _compareWith = (o1, o2) => {
     return o1 && o2 && (o1 === o2
       || this.compareWith && this.compareWith(o1, o2)
@@ -80,16 +82,13 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   formControl = new FormControl();
 
-  subscription: Subscription;
+  private subscription: Subscription;
 
   constructor(_renderer: Renderer2, _elementRef: ElementRef) {
     super(_renderer, _elementRef, false);
   }
 
-  ngOnInit(): void {
-  }
-
-  ngAfterContentInit() {
+  ngOnInit() {
     this.subscription = this.formControl.valueChanges.subscribe(value => this.onChange(value));
     if (this.ngControl && this.ngControl.statusChanges) {
       this.subscription.add(this.ngControl.control.statusChanges.subscribe(() => {

@@ -1,3 +1,7 @@
+# 0.6.5
+
+- Add `multiple` attribute to `matx-select`
+
 # 0.6.4
 
 - Fix wording in default errors of `matx-errors`
