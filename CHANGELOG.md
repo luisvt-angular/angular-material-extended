@@ -1,3 +1,7 @@
+# 0.6.6
+
+- Add `iff` attribute to `MatxPromptInput`
+
 # 0.6.5
 
 - Add `multiple` attribute to `matx-select`

@@ -74,7 +74,7 @@ export interface MatxPromptInput {
   required?: boolean;
   validators?: ValidatorFn | ValidatorFn[];
   errorMessages?: {[name: string]: string | Function};
-  options?: string[] | any[] | Observable<[]>;
+  options?: string[] | any[] | Observable<any[]>;
   noneText?: string;
   displayField?: string;
   displayWith?: (option) => string;
@@ -82,6 +82,7 @@ export interface MatxPromptInput {
   disabled?: (form?: FormGroup) => void;
   ngModelChange?: (value, form?: FormGroup) => void;
   autocomplete?: 'on' | 'off' | string;
+  iff?: (form?: FormGroup) => boolean
 }
 
 export interface MatxPromptAction {

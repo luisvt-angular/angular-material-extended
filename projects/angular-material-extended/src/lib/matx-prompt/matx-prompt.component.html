@@ -4,54 +4,56 @@
     <p *ngIf="data.message">{{data.message}}</p>
     <ng-template [ngIf]="data.inputs">
       <ng-template ngFor let-input [ngForOf]="data.inputs">
-        <matx-input *ngIf="input.type === 'text' || input.type === 'number'"
-                    [type]="input.type"
-                    [label]="input.label"
-                    [placeholder]="input.placeholder"
-                    [formControlName]="input.name"
-                    [required]="input.required"
-                    [disabledControl]="input.disabled && input.disabled(form)"
-                    [autocomplete]="input.autocomplete || 'off'">
-          <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
-        </matx-input>
-        <matx-select *ngIf="input.type === 'select'"
-                     [label]="input.label"
-                     [placeholder]="input.placeholder"
-                     [options]="input.options"
-                     [displayWith]="input.displayWith"
-                     [displayField]="input.displayField"
-                     [noneText]="input.noneText"
-                     [formControlName]="input.name"
-                     [required]="input.required"
-                     [disabledControl]="input.disabled && input.disabled(form)">
-          <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
-        </matx-select>
-        <matx-autocomplete *ngIf="input.type === 'autocomplete'"
-                           [label]="input.label"
+        <ng-template [ngIf]="!input.iff || input.iff(form)">
+          <matx-input *ngIf="input.type === 'text' || input.type === 'number'"
+                      [type]="input.type"
+                      [label]="input.label"
+                      [placeholder]="input.placeholder"
+                      [formControlName]="input.name"
+                      [required]="input.required"
+                      [disabledControl]="input.disabled && input.disabled(form)"
+                      [autocomplete]="input.autocomplete || 'off'">
+            <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
+          </matx-input>
+          <matx-select *ngIf="input.type === 'select'"
+                       [label]="input.label"
+                       [placeholder]="input.placeholder"
+                       [options]="input.options"
+                       [displayWith]="input.displayWith"
+                       [displayField]="input.displayField"
+                       [noneText]="input.noneText"
+                       [formControlName]="input.name"
+                       [required]="input.required"
+                       [disabledControl]="input.disabled && input.disabled(form)">
+            <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
+          </matx-select>
+          <matx-autocomplete *ngIf="input.type === 'autocomplete'"
+                             [label]="input.label"
+                             [placeholder]="input.placeholder || input.label"
+                             [options]="input.options"
+                             [filterBy]="input.filterBy && input.filterBy(form)"
+                             [displayField]="input.displayField"
+                             [displayWith]="input.displayWith"
+                             [formControlName]="input.name"
+                             [required]="input.required"
+                             [disabledControl]="input.disabled && input.disabled(form)"
+                             (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
+                             [autocomplete]="input.autocomplete">
+            <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
+          </matx-autocomplete>
+          <matx-datepicker *ngIf="input.type === 'date'"
+                           [label]="input.label || input.placeholder"
                            [placeholder]="input.placeholder || input.label"
-                           [options]="input.options"
-                           [filterBy]="input.filterBy && input.filterBy(form)"
-                           [displayField]="input.displayField"
-                           [displayWith]="input.displayWith"
                            [formControlName]="input.name"
                            [required]="input.required"
                            [disabledControl]="input.disabled && input.disabled(form)"
                            (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
                            [autocomplete]="input.autocomplete">
-          <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
-        </matx-autocomplete>
-        <matx-datepicker *ngIf="input.type === 'date'"
-                         [label]="input.label || input.placeholder"
-                         [placeholder]="input.placeholder || input.label"
-                         [formControlName]="input.name"
-                         [required]="input.required"
-                         [disabledControl]="input.disabled && input.disabled(form)"
-                         (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
-                         [autocomplete]="input.autocomplete">
-          <mat-error>
-            <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
-          </mat-error>
-        </matx-datepicker>
+            <mat-error>
+              <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
+            </mat-error>
+          </matx-datepicker>
+        </ng-template>
       </ng-template>
     </ng-template>
   </mat-dialog-content>
