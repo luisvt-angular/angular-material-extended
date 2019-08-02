@@ -24,6 +24,8 @@
                        [noneText]="input.noneText"
                        [formControlName]="input.name"
                        [required]="input.required"
+                       [multiple]="input.multiple"
+                       (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
                        [disabledControl]="input.disabled && input.disabled(form)">
             <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
           </matx-select>

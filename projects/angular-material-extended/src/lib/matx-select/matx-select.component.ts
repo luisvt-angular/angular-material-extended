@@ -1,16 +1,6 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChild,
-  ElementRef,
-  forwardRef,
-  Input,
-  OnDestroy,
-  OnInit,
-  Renderer2
-} from '@angular/core';
+import { Component, ContentChild, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'matx-select',
@@ -22,7 +12,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() options: any[] | Observable<any[]>;
 
-  _options: any[];
+  options$ = new BehaviorSubject([]);
 
   @Input() label: string;
 
@@ -69,14 +59,14 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() compareWith;
 
-  @Input() multiple: boolean | '';
-
   _compareWith = (o1, o2) => {
     return o1 && o2 && (o1 === o2
       || this.compareWith && this.compareWith(o1, o2)
       || this.compareField && o1[this.compareField] === o2[this.compareField]
       || this.displayField && o1[this.displayField] === o2[this.displayField]);
   };
+
+  @Input() multiple: boolean | '';
 
   @ContentChild(NgControl) ngControl: NgControl;
 
@@ -95,15 +85,17 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
         this.formControl.setErrors(this.ngControl.errors);
       }));
     }
-    if (this.options instanceof Observable) {
-      this.subscription.add(this.options.subscribe(options => this._options = options));
+    if (this.options instanceof BehaviorSubject) {
+      this.options$ = this.options;
+    } else if (this.options instanceof Observable) {
+      this.subscription.add(this.options.subscribe(this.options$));
     } else {
-      this._options = this.options;
+      this.options$.next(this.options);
     }
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription && this.subscription.unsubscribe();
   }
 
   writeValue(value: any): void {

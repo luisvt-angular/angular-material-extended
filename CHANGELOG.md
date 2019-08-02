@@ -1,3 +1,9 @@
+# 0.6.7
+
+- Add multiple to `MatxPromptInput` model
+- Add `ngModelChange` to `matx-select` in `matx-prompt` template
+- Use `BehaiviorSubject` for `options` in `matx-select`
+
 # 0.6.6
 
 - Add `iff` attribute to `MatxPromptInput`

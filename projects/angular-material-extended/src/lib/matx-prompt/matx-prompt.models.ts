@@ -82,7 +82,8 @@ export interface MatxPromptInput {
   disabled?: (form?: FormGroup) => void;
   ngModelChange?: (value, form?: FormGroup) => void;
   autocomplete?: 'on' | 'off' | string;
-  iff?: (form?: FormGroup) => boolean
+  iff?: (form?: FormGroup) => boolean,
+  multiple?: boolean
 }
 
 export interface MatxPromptAction {
