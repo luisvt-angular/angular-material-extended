@@ -16,5 +16,8 @@ export * from './lib/matx-select/matx-select.component';
 export * from './lib/matx-prompt/matx-prompt.module';
 export * from './lib/matx-prompt/matx-prompt.component';
 export * from './lib/matx-prompt/matx-prompt.controller';
+export * from './lib/matx-loading/matx-loading.module';
+export * from './lib/matx-loading/matx-loading.component';
+export * from './lib/matx-loading/matx-loading.controller';
 export * from './lib/matx-datepicker/matx-datepicker.component';
 export * from './lib/matx-datepicker/matx-datepicker.module';

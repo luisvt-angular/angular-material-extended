@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { MatxPromptModule } from './matx-prompt/matx-prompt.module';
 import { MatxSelectModule } from './matx-select/matx-select.module';
 import { MatxDatepickerModule } from './matx-datepicker/matx-datepicker.module';
+import { MatxLoadingModule } from './matx-loading/matx-loading.module';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { MatxDatepickerModule } from './matx-datepicker/matx-datepicker.module';
     MatIconModule,
     MatxSelectModule,
     MatxPromptModule,
+    MatxLoadingModule,
     MatxDatepickerModule
   ],
   exports: [
@@ -38,6 +40,7 @@ import { MatxDatepickerModule } from './matx-datepicker/matx-datepicker.module';
     MatxBackButtonComponent,
     MatxSelectModule,
     MatxPromptModule,
+    MatxLoadingModule,
     MatxDatepickerModule,
     MatDialogModule,
     MatInputModule,
