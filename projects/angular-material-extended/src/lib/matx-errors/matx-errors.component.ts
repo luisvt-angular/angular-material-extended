@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, NgModel, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'matx-errors',
@@ -7,7 +7,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
   styleUrls: ['./matx-errors.component.css']
 })
 export class MatxErrorsComponent {
-  @Input() field: AbstractControl;
+  @Input() field: AbstractControl | NgModel;
 
   get errorKeys() {
     return this.field.errors ? Object.keys(this.field.errors) : [];

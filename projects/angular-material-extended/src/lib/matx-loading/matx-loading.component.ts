@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MatxLoadingData } from './matx-loading.models';
 
 @Component({
-  selector: 'matx-matx-loading',
+  selector: 'matx-loading',
   templateUrl: './matx-loading.component.html',
   styleUrls: ['./matx-loading.component.scss']
 })

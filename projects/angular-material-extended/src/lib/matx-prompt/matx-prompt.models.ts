@@ -66,16 +66,22 @@ export interface MatxPromptData {
 }
 
 export interface MatxPromptInput {
-  type: 'text' | 'number' | 'select' | 'autocomplete' | 'date';
+  type: 'text' | 'number' | 'select' | 'autocomplete' | 'date' | 'textarea';
   label?: string;
   placeholder?: string;
   name: string;
   value?;
   required?: boolean;
+  min?: string | number | Date;
+  max?: string | number | Date;
+  minLength?: string | number;
+  maxLength?: string | number;
+  rows?: string | number;
   validators?: ValidatorFn | ValidatorFn[];
   errorMessages?: {[name: string]: string | Function};
   options?: string[] | any[] | Observable<any[]>;
   noneText?: string;
+  compareField?: string;
   displayField?: string;
   displayWith?: (option) => string;
   filterBy?: (form?: FormGroup) => (value: string) => Observable<any[]>;

@@ -1,9 +1,9 @@
 <h2 *ngIf="data.title" matDialogTitle>{{data.title}}</h2>
 <mat-dialog-content>
-  <div style="display: flex">
+  <div style="display: flex; height: 70px; align-items: center;">
     <div style="flex: 1; margin-right: 15px;">
       <mat-spinner diameter="48"></mat-spinner>
     </div>
-    <div style="flex: 1; align-self: center;">{{data.message}}</div>
+    <div style="flex: 1">{{data.message}}</div>
   </div>
 </mat-dialog-content>

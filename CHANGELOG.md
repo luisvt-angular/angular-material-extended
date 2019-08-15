@@ -1,3 +1,10 @@
+# 0.7.0
+
+- Fix `matx-loading` dialog body resizing and name
+- Add `min`, `max`, `minLength` and `maxLength` to `MatxPromptInput`
+- Add compare string or number with `comparableField` in `matx-select`
+- Add `matx-textarea` component
+
 # 0.6.8
 
 - Add `matx-loading` component and controller

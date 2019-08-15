@@ -16,6 +16,7 @@ import { MatxSelectModule } from '../matx-select/matx-select.module';
 import { MatxInputModule } from '../matx-input/matx-input.module';
 import { MatxErrorsModule } from '../matx-errors/matx-errors.module';
 import { MatxDatepickerModule } from '../matx-datepicker/matx-datepicker.module';
+import { MatxTextareaModule } from '../matx-textarea/matx-textarea.module';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { MatxDatepickerModule } from '../matx-datepicker/matx-datepicker.module'
     MatxSelectModule,
     MatxInputModule,
     MatxDatepickerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatxTextareaModule
   ],
   declarations: [MatxPromptComponent],
   exports: [MatxPromptComponent]

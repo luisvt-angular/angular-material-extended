@@ -17,6 +17,7 @@ import { MatxPromptModule } from './matx-prompt/matx-prompt.module';
 import { MatxSelectModule } from './matx-select/matx-select.module';
 import { MatxDatepickerModule } from './matx-datepicker/matx-datepicker.module';
 import { MatxLoadingModule } from './matx-loading/matx-loading.module';
+import { MatxTextareaModule } from './matx-textarea/matx-textarea.module';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { MatxLoadingModule } from './matx-loading/matx-loading.module';
     MatxSelectModule,
     MatxPromptModule,
     MatxLoadingModule,
-    MatxDatepickerModule
+    MatxDatepickerModule,
+    MatxTextareaModule
   ],
   exports: [
     MatxInputModule,
@@ -42,6 +44,7 @@ import { MatxLoadingModule } from './matx-loading/matx-loading.module';
     MatxPromptModule,
     MatxLoadingModule,
     MatxDatepickerModule,
+    MatxTextareaModule,
     MatDialogModule,
     MatInputModule,
     MatDatepickerModule

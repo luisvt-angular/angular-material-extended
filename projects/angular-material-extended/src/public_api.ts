@@ -21,3 +21,6 @@ export * from './lib/matx-loading/matx-loading.component';
 export * from './lib/matx-loading/matx-loading.controller';
 export * from './lib/matx-datepicker/matx-datepicker.component';
 export * from './lib/matx-datepicker/matx-datepicker.module';
+
+export * from './lib/matx-textarea/matx-textarea.module';
+export * from './lib/matx-textarea/matx-textarea.component';

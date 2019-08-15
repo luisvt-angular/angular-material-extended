@@ -12,7 +12,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() options: any[] | Observable<any[]>;
 
-  options$ = new BehaviorSubject([]);
+  options$: any = new BehaviorSubject([]);
 
   @Input() label: string;
 
@@ -23,6 +23,8 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   @Input() displayField: string;
 
   @Input() compareField: string;
+
+  @Input() valueField: string;
 
   @Input() noneText: string;
 
@@ -47,8 +49,8 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   get displayWith(): Function {
     return option =>
       !option ? ''
-        : (typeof option === 'string' || typeof option === 'number') ? option
         : this._displayWith ? this._displayWith(option)
+        : (typeof option === 'string' || typeof option === 'number') ? option
           : option[this.displayField];
   }
 
@@ -62,7 +64,10 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   _compareWith = (o1, o2) => {
     return o1 && o2 && (o1 === o2
       || this.compareWith && this.compareWith(o1, o2)
-      || this.compareField && o1[this.compareField] === o2[this.compareField]
+      || this.compareField
+        && (typeof o2 === 'string' || typeof o2 === 'number'
+          ? o1[this.compareField] === o2
+          : o1[this.compareField] === o2[this.compareField])
       || this.displayField && o1[this.displayField] === o2[this.displayField]);
   };
 
