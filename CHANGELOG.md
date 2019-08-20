@@ -1,3 +1,8 @@
+# 0.7.1
+
+- Fix `matx-select` when passing `Observable` to `options` field
+- Add `indexValue` attribute to `matx-select`
+
 # 0.7.0
 
 - Fix `matx-loading` dialog body resizing and name

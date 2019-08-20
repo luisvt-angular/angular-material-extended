@@ -46,7 +46,7 @@ export class MatxDatepickerComponent extends DefaultValueAccessor implements Aft
     }
   }
 
-  @ContentChild(NgControl) ngControl: NgControl;
+  @ContentChild(NgControl,  {static: true}) ngControl: NgControl;
 
   formControl = new FormControl();
 

@@ -7,7 +7,7 @@ mat-sidenav {
 }
 
 .mat-list-item.active {
-  background-color: indigo;
+  background-color: #3f51b5;
   color: white;
 }
 
@@ -18,9 +18,10 @@ section {
 }
 
 mat-tab-group {
-  height: 100%;
+  height: calc(100% - 64px);
 
-  ::ng-deep > .mat-tab-body-wrapper {
-    padding: 15px;
+  ::ng-deep .mat-tab-body-content {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }

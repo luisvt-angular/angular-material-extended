@@ -1,15 +1,5 @@
-import {
-  AfterContentInit,
-  Component, ContentChild,
-  ElementRef,
-  forwardRef,
-  Input,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
-import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { Component, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { MatAutocompleteTrigger, MatOptionSelectionChange } from '@angular/material';
 import { debounceTime, filter, map, switchMap, take, tap } from 'rxjs/operators';
@@ -78,7 +68,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   private subscription: Subscription;
 
-  @ViewChild('autocompleteTrigger') autocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild('autocompleteTrigger', {static: true}) autocompleteTrigger: MatAutocompleteTrigger;
 
   constructor(_renderer: Renderer2,
               _elementRef: ElementRef) {

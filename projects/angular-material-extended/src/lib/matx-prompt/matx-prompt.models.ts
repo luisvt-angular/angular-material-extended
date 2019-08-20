@@ -83,6 +83,7 @@ export interface MatxPromptInput {
   noneText?: string;
   compareField?: string;
   displayField?: string;
+  indexValue?: boolean;
   displayWith?: (option) => string;
   filterBy?: (form?: FormGroup) => (value: string) => Observable<any[]>;
   disabled?: (form?: FormGroup) => void;

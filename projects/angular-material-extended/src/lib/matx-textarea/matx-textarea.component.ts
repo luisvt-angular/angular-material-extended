@@ -48,7 +48,7 @@ export class MatxTextareaComponent extends DefaultValueAccessor implements After
     }
   }
 
-  @ContentChild(NgControl) ngControl: NgControl;
+  @ContentChild(NgControl,  {static: true}) ngControl: NgControl;
 
   formControl = new FormControl();
 

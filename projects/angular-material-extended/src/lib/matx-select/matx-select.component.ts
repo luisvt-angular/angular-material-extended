@@ -26,6 +26,8 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() valueField: string;
 
+  @Input() indexValue: boolean | '' | null;
+
   @Input() noneText: string;
 
   @Input() hideRequiredMarker: boolean | '';
@@ -62,18 +64,19 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   @Input() compareWith;
 
   _compareWith = (o1, o2) => {
-    return o1 && o2 && (o1 === o2
-      || this.compareWith && this.compareWith(o1, o2)
-      || this.compareField
-        && (typeof o2 === 'string' || typeof o2 === 'number'
-          ? o1[this.compareField] === o2
-          : o1[this.compareField] === o2[this.compareField])
-      || this.displayField && o1[this.displayField] === o2[this.displayField]);
+    return o1 !== null && o1 !== undefined && o2 !== null && o2 !== undefined
+      && (o1 === o2
+        || this.compareWith && this.compareWith(o1, o2)
+        || this.compareField
+          && (typeof o2 === 'string' || typeof o2 === 'number'
+            ? o1[this.compareField] === o2
+            : o1[this.compareField] === o2[this.compareField])
+        || this.displayField && o1[this.displayField] === o2[this.displayField]);
   };
 
   @Input() multiple: boolean | '';
 
-  @ContentChild(NgControl) ngControl: NgControl;
+  @ContentChild(NgControl, {static: true}) ngControl: NgControl;
 
   formControl = new FormControl();
 
@@ -93,7 +96,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
     if (this.options instanceof BehaviorSubject) {
       this.options$ = this.options;
     } else if (this.options instanceof Observable) {
-      this.subscription.add(this.options.subscribe(this.options$));
+      this.subscription.add(this.options.subscribe(options => this.options$.next(options)));
     } else {
       this.options$.next(this.options);
     }

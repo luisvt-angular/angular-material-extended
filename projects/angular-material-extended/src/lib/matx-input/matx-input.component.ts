@@ -47,7 +47,7 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
     }
   }
 
-  @ContentChild(NgControl) ngControl: NgControl;
+  @ContentChild(NgControl,  {static: true}) ngControl: NgControl;
 
   formControl = new FormControl();
 
