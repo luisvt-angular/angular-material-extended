@@ -1,3 +1,8 @@
+# 0.7.2
+
+- Fix `matx-prompt` component selector
+- Add `valueField` to `MatxPromptInput` model
+
 # 0.7.1
 
 - Fix `matx-select` when passing `Observable` to `options` field

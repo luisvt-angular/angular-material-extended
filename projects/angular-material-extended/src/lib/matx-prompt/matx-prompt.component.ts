@@ -5,7 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
-  selector: 'matx-matx-prompt',
+  selector: 'matx-prompt',
   templateUrl: './matx-prompt.component.html',
   styleUrls: ['./matx-prompt.component.scss']
 })
