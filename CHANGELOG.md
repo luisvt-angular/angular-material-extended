@@ -1,3 +1,7 @@
+# 0.7.4
+
+- Fix `MatxSelectComponent.writeValue` function when `multiple` is true and `value` is not array
+
 # 0.7.3
 
 - Fix `MatxSelectComponent._compareWith` function when `fieldValue` is passed
