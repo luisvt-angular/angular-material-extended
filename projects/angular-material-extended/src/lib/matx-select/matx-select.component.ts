@@ -1,6 +1,6 @@
 import { Component, ContentChild, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'matx-select',
@@ -63,15 +63,16 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() compareWith;
 
-  _compareWith = (o1, o2) => {
-    return o1 !== null && o1 !== undefined && o2 !== null && o2 !== undefined
-      && (o1 === o2
-        || this.compareWith && this.compareWith(o1, o2)
-        || this.compareField
-          && (typeof o2 === 'string' || typeof o2 === 'number'
-            ? o1[this.compareField] === o2
-            : o1[this.compareField] === o2[this.compareField])
-        || this.displayField && o1[this.displayField] === o2[this.displayField]);
+  _compareWith = (option, value) => {
+    return option !== null && option !== undefined && value !== null && value !== undefined
+      && (option === value
+        || this.compareWith && this.compareWith(option, value)
+        || (typeof option === 'object'
+          && (this.compareField
+            && (typeof value === 'string' || typeof value === 'number'
+              ? option[this.compareField] === value
+              : option[this.compareField] === value[this.compareField])
+            || this.displayField && option[this.displayField] === value[this.displayField])));
   };
 
   @Input() multiple: boolean | '';

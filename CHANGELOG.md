@@ -1,3 +1,7 @@
+# 0.7.3
+
+- Fix `MatxSelectComponent._compareWith` function when `fieldValue` is passed
+
 # 0.7.2
 
 - Fix `matx-prompt` component selector
