@@ -1,3 +1,7 @@
+# 0.7.5
+
+- Add `multiple` to `MatxAutocomplete` component
+
 # 0.7.4
 
 - Fix `MatxSelectComponent.writeValue` function when `multiple` is true and `value` is not array

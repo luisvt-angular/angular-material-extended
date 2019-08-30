@@ -1,24 +1,35 @@
 <mat-form-field style="width: 100%;" [hideRequiredMarker]="hideRequiredMarker" [floatLabel]="floatLabel">
-<!--  <mat-label>{{label || placeholder}}</mat-label>-->
-  <input type="text" matInput [formControl]="formControl"
-         [required]="required"
-         [placeholder]="placeholder || label"
-         #autocompleteTrigger="matAutocompleteTrigger"
-         [matAutocomplete]="myAutocomplete"
-         [autocomplete]="autocomplete">
+  <mat-label>{{label || placeholder}}</mat-label>
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let option of selectedOptions; index as selectedIndex"
+              (removed)="removeSelected(selectedIndex)"
+              (click)="editSelected(selectedIndex)"
+              (keydown.enter)="editSelected(selectedIndex)">
+      {{displayField ? option[displayField] : displayWith(option)}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input id="" [placeholder]="placeholder || label"
+           #inputEl
+           [formControl]="formControl"
+           [required]="required"
+           #autocompleteTrigger="matAutocompleteTrigger"
+           [matAutocomplete]="myAutocomplete"
+           [autocomplete]="autocomplete"
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="false">
+  </mat-chip-list>
   <button type=button *ngIf="!loading" mat-icon-button matSuffix (click)="search($event)"
           [disabled]="formControl.disabled">
     <mat-icon>search</mat-icon>
   </button>
-  <button type=button *ngIf="formControl.value && !loading" mat-icon-button matSuffix (click)="clear($event)"
+  <button type=button *ngIf="(inputEl.value || selectedOptions.length > 0) && !loading" mat-icon-button matSuffix (click)="clear($event)"
           [disabled]="formControl.disabled">
-    <mat-icon>
-      close
-    </mat-icon>
+    <mat-icon>close</mat-icon>
   </button>
   <mat-spinner matSuffix *ngIf="loading" [diameter]="24"></mat-spinner>
-  <mat-autocomplete #myAutocomplete="matAutocomplete" [displayWith]="displayWith">
-    <mat-option *ngFor="let option of filteredOptions" [value]="option" (onSelectionChange)="handleChange($event)">
+  <mat-autocomplete #myAutocomplete="matAutocomplete" [displayWith]="displayWith" (optionSelected)="handleChange($event)">
+    <mat-option *ngFor="let option of filteredOptions" [value]="option">
       {{displayField ? option[displayField] : displayWith(option)}}
     </mat-option>
   </mat-autocomplete>

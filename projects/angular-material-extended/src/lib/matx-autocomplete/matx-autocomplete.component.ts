@@ -1,8 +1,10 @@
 import { Component, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { MatAutocompleteTrigger, MatOptionSelectionChange } from '@angular/material';
-import { debounceTime, filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { MatAutocompleteTrigger } from '@angular/material';
+import { debounceTime, delay, filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'matx-autocomplete',
@@ -12,13 +14,33 @@ import { debounceTime, filter, map, switchMap, take, tap } from 'rxjs/operators'
 })
 export class MatxAutocompleteComponent extends DefaultValueAccessor implements OnInit, OnDestroy {
 
-  private initialValue;
-
   formControl = new FormControl();
 
   filteredOptions: any[] = [];
 
+  readonly separatorKeysCodes = [ENTER, COMMA];
+
   @Input() required: boolean | '';
+
+  private _multiple: boolean | '';
+
+  get multiple(): boolean | '' {
+    return this._multiple;
+  }
+
+  @Input() set multiple(value: boolean | '') {
+    this._multiple = value || value === '';
+  }
+
+  private _repeatable: boolean | '';
+
+  get repeatable(): boolean | "" {
+    return this._repeatable;
+  }
+
+  @Input() set repeatable(value: boolean | "") {
+    this._repeatable = value || value === '';
+  }
 
   @Input() placeholder: string;
 
@@ -26,7 +48,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   @Input() displayField: string;
 
-  @Input() filterBy: (filterVal: string) => Observable<any>;
+  @Input() filterBy: (filterVal: string) => Observable<any[]>;
 
   @Input() options: any[];
 
@@ -64,9 +86,13 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   loading = false;
 
-  private selectedValue;
+  selectedValue;
+
+  selectedOptions = [];
 
   private subscription: Subscription;
+
+  @ViewChild('inputEl', {static: true}) inputEl;
 
   @ViewChild('autocompleteTrigger', {static: true}) autocompleteTrigger: MatAutocompleteTrigger;
 
@@ -96,6 +122,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
       });
     } else {
       this.subscription = this.formControl.valueChanges.pipe(
+        delay(100),
         filter(value => value !== this.selectedValue),
         map(value => this.displayWith(value)),
         tap(() => {
@@ -115,10 +142,6 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
         this.autocompleteTrigger.openPanel();
       });
     }
-
-    setTimeout(() => {
-      this.formControl.setValue(this.displayWith(this.initialValue), {emitEvent: false});
-    }, 100);
   }
 
   ngOnDestroy(): void {
@@ -127,7 +150,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   search(event: MouseEvent) {
     event.stopPropagation();
-    const value = this.formControl.value;
+    const value = this.inputEl.nativeElement.value;
     if (this.options) {
       this.filteredOptions = this.options.filter(option =>
         this.displayWith(option).toLowerCase().includes(this.displayWith(value).toLowerCase()));
@@ -144,6 +167,10 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   clear(event: MouseEvent) {
     event.stopPropagation();
+    if (this.multiple && !this.inputEl.nativeElement.value) {
+      this.selectedOptions = [];
+    }
+    this.inputEl.nativeElement.value = '';
     this.formControl.setValue(undefined);
     this.onChange(undefined);
     this.formControl.markAsTouched();
@@ -151,17 +178,36 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   }
 
   writeValue(value) {
-    this.initialValue = value;
-    this.selectedValue = value;
-    if (value === null) {
-      this.formControl.setValue(null, {emitViewToModelChange: false, emitModelToViewChange: true})
+    if (this.multiple) {
+      this.selectedOptions = value;
+    } else {
+      this.selectedValue = value;
+      this.inputEl.nativeElement.value = this.displayWith(value);
     }
   }
 
-  handleChange(event: MatOptionSelectionChange) {
-    if (event.isUserInput) {
-      this.selectedValue = event.source.value;
-      this.onChange(event.source.value);
+  handleChange(event: MatAutocompleteSelectedEvent) {
+    this.selectedValue = event.option.value;
+    if (this._multiple) {
+      this.inputEl.nativeElement.value = '';
+      if (this.repeatable || !this.selectedOptions.some(o => event.option.viewValue === this.displayWith(o))) {
+        this.selectedOptions.push(event.option.value);
+        this.onChange(this.selectedOptions);
+      }
+    } else {
+      this.inputEl.nativeElement.value = event.option.viewValue;
+      this.onChange(event.option.value);
     }
+  }
+
+  removeSelected(selectedIndex: number) {
+    this.selectedOptions.splice(selectedIndex, 1);
+    this.onChange(this.selectedOptions);
+  }
+
+  editSelected(selectedIndex: number) {
+    this.inputEl.nativeElement.value = this.displayWith(this.selectedOptions[selectedIndex]);
+    this.selectedValue = null;
+    this.removeSelected(selectedIndex);
   }
 }

@@ -25,7 +25,8 @@ export class MatxAutocompleteDemoComponent implements OnInit {
     autocompleteInputDisabled: {name: 'Alabama'},
     autocompleteInput0: {name: 'Alabama'},
     autocompleteInput1: 'Florida',
-    autocompleteInput2: {name: 'Alabama'}
+    autocompleteInput2: {name: 'Alabama'},
+    autocompleteInput3: [{name: 'Florida'}]
   };
 
   form2: FormGroup;

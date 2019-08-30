@@ -4,6 +4,12 @@
 <matx-autocomplete label="Autocomplete 02" [filterBy]="filterStringObservables"></matx-autocomplete>
 <matx-autocomplete label="Autocomplete 03" [filterBy]="filterObjectObservables" displayField="name"></matx-autocomplete>
 
+<h1>Outside Forms Multiple</h1>
+<matx-autocomplete label="Autocomplete 00" [options]="options0" multiple></matx-autocomplete>
+<matx-autocomplete label="Autocomplete 01" [options]="options1" displayField="name" multiple></matx-autocomplete>
+<matx-autocomplete label="Autocomplete 02" [filterBy]="filterStringObservables" multiple></matx-autocomplete>
+<matx-autocomplete label="Autocomplete 03" [filterBy]="filterObjectObservables" displayField="name" multiple></matx-autocomplete>
+
 <h1>Template Driven Form</h1>
 <form #form1="ngForm">
   <mat-checkbox [(ngModel)]="disableAutocomplete0" name="disableAutocomplete0">
@@ -63,6 +69,20 @@
   <pre>form1.valid: {{form1.valid | json}}</pre>
   <pre>autocompleteInput2.valid: {{autocompleteInput2.valid | json}}</pre>
   <pre>autocompleteInput2.value: {{autocompleteInput2.value | json}}</pre>
+
+  <matx-autocomplete placeholder="Template Autocomplete Input 3"
+                     [filterBy]="filterObjectObservables"
+                     displayField="name"
+                     [minlength]="1"
+                     name="autocompleteInput3"
+                     [(ngModel)]="form1Model.autocompleteInput3"
+                     #autocompleteInput3="ngModel"
+                     multiple>
+    <matx-errors [field]="autocompleteInput3" [errorMessages]="{minLength: 'At least 3 items are required'}"></matx-errors>
+  </matx-autocomplete>
+  <pre>form1.valid: {{form1.valid | json}}</pre>
+  <pre>autocompleteInput2.valid: {{autocompleteInput3.valid | json}}</pre>
+  <pre>autocompleteInput2.value: {{autocompleteInput3.value | json}}</pre>
 </form>
 
 <h1>Model-Driven Form</h1>

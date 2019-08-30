@@ -9,6 +9,7 @@ import {
 } from '@angular/material';
 import { MatxAutocompleteComponent } from './matx-autocomplete.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule,
   ],
   declarations: [MatxAutocompleteComponent],
   exports: [MatxAutocompleteComponent]
