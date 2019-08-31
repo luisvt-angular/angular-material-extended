@@ -47,6 +47,7 @@
                              [required]="input.required"
                              [disabledControl]="input.disabled && input.disabled(form)"
                              (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
+                             [multiple]="input.multiple"
                              [autocomplete]="input.autocomplete">
             <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
           </matx-autocomplete>

@@ -1,3 +1,7 @@
+# 0.7.6
+
+- Add `multiple` to `MatxPrompt.autocomplete` component
+
 # 0.7.5
 
 - Add `multiple` to `MatxAutocomplete` component
