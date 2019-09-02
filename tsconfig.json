@@ -19,17 +19,17 @@
       "dom"
     ],
     "paths": {
+      "angular-material-extended/matx-gmap": [
+        "projects/matx-gmap/src/public_api"
+      ],
+      "angular-material-extended/matx-gmap/*": [
+        "prjects/matx-gmap/src/lib/*"
+      ],
       "angular-material-extended": [
-        "dist/angular-material-extended"
+        "projects/angular-material-extended/src/public_api"
       ],
-      "angular-material-extended/*": [
-        "dist/angular-material-extended/*"
-      ],
-      "matx-gmap": [
-        "dist/matx-gmap"
-      ],
-      "matx-gmap/*": [
-        "dist/matx-gmap/*"
+      "angular-material-extended/lib/*": [
+        "projects/angular-material-extended/src/lib/*"
       ]
     }
   }

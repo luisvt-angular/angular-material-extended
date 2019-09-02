@@ -8,19 +8,19 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 import { MatxAutocompleteComponent } from './matx-autocomplete.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     MatAutocompleteModule,
     MatInputModule,
     MatIconModule,
     MatProgressSpinnerModule,
     MatButtonModule,
     MatChipsModule,
+    FormsModule,
   ],
   declarations: [MatxAutocompleteComponent],
   exports: [MatxAutocompleteComponent]

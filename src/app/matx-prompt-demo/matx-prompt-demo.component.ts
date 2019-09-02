@@ -45,16 +45,27 @@ export class AppModule {}`;
         }
       }, {
         type: 'select',
-        label: 'Select Input',
-        name: 'selectInput',
+        label: 'Select Input 1',
+        name: 'selectInput1',
         options: ['Option 1', 'Option 2'],
         required: true
+      }, {
+        type: 'select',
+        label: 'Select Input 2',
+        name: 'selectInput2',
+        options: ['Option 1', 'Option 2'],
+        value: 'Option 1',
+        multiple: true,
+        required: true,
+        validators: [Validators.minLength(2)],
+        errorMessages: {minlength: 'This field requires at least 2 items'}
       }, {
         type: 'autocomplete',
         label: 'Autocomplete Input 1',
         name: 'autocompleteInput1',
         value: 'Option 1',
-        options: ['Option 1', 'Option 2']
+        options: ['Option 1', 'Option 2'],
+        required: true
       }, {
         type: 'autocomplete',
         label: 'Autocomplete Input 2',
@@ -71,9 +82,12 @@ export class AppModule {}`;
         value: [{name: 'Option 1'}],
         displayField: 'name',
         multiple: true,
+        required: true,
         filterBy: () => value =>
           of([{name: 'Option 1'}, {name: 'Option 2'}].filter(it => it.name.toLowerCase().includes(value.toLowerCase())))
-            .pipe(delay(3000))
+            .pipe(delay(3000)),
+        validators: [Validators.minLength(2)],
+        errorMessages: {minlength: 'This field requires at least 2 items'}
       }, {type: 'date', label: 'Date Input', name: 'dateInput'}
       ],
       actions: [

@@ -1,3 +1,8 @@
+# 0.7.7
+
+- Fix `matx-autocomplete` to update errors when using forms
+- Fix `matx-select` reactive form errors
+
 # 0.7.6
 
 - Add `multiple` to `MatxPrompt.autocomplete` component

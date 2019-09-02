@@ -22,8 +22,7 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { MatxModule, MatxPromptComponent } from 'angular-material-extended';
-// import { MatxModule, MatxPromptComponent } from '../../projects/angular-material-extended/src/public_api';
-import { MatxGmapModule } from '../../projects/matx-gmap/src/public_api';
+import { MatxGmapModule } from "angular-material-extended/matx-gmap";
 import { MatxAutocompleteDemoComponent } from './matx-autocomplete-demo/matx-autocomplete-demo.component';
 import { MatxInputDemoComponent } from './matx-input-demo/matx-input-demo.component';
 import { MatxGmapAutocompleteDemoComponent } from './matx-gmap-autocomplete-demo/matx-gmap-autocomplete-demo.component';

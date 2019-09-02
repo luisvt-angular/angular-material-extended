@@ -11,7 +11,7 @@
 <matx-autocomplete label="Autocomplete 03" [filterBy]="filterObjectObservables" displayField="name" multiple></matx-autocomplete>
 
 <h1>Template Driven Form</h1>
-<form #form1="ngForm">
+<form #form1="ngForm" (submit)="checkForm1(form1)">
   <mat-checkbox [(ngModel)]="disableAutocomplete0" name="disableAutocomplete0">
     Disable Template Autocomplete Input 0
   </mat-checkbox>
@@ -70,23 +70,64 @@
   <pre>autocompleteInput2.valid: {{autocompleteInput2.valid | json}}</pre>
   <pre>autocompleteInput2.value: {{autocompleteInput2.value | json}}</pre>
 
+  <h2>Multiple</h2>
   <matx-autocomplete placeholder="Template Autocomplete Input 3"
-                     [filterBy]="filterObjectObservables"
+                     [options]="options1"
                      displayField="name"
-                     [minlength]="1"
                      name="autocompleteInput3"
                      [(ngModel)]="form1Model.autocompleteInput3"
                      #autocompleteInput3="ngModel"
-                     multiple>
-    <matx-errors [field]="autocompleteInput3" [errorMessages]="{minLength: 'At least 3 items are required'}"></matx-errors>
+                     multiple
+                     minlength="3"
+                     required>
+    <matx-errors [field]="autocompleteInput3"
+                 [errorMessages]="{minlength: 'This field requires at least 3 items'}"></matx-errors>
   </matx-autocomplete>
   <pre>form1.valid: {{form1.valid | json}}</pre>
-  <pre>autocompleteInput2.valid: {{autocompleteInput3.valid | json}}</pre>
-  <pre>autocompleteInput2.value: {{autocompleteInput3.value | json}}</pre>
+  <pre>autocompleteInput3.valid: {{autocompleteInput3.valid | json}}</pre>
+  <pre>autocompleteInput3.value: {{autocompleteInput3.value | json}}</pre>
+  <pre>autocompleteInput3.errors: {{autocompleteInput3.errors | json}}</pre>
+
+  <matx-autocomplete placeholder="Template Autocomplete Input 4"
+                     [options]="options0"
+                     name="autocompleteInput4"
+                     [(ngModel)]="form1Model.autocompleteInput4"
+                     #autocompleteInput4="ngModel"
+                     required
+                     minlength="2"
+                     multiple>
+    <matx-errors [field]="autocompleteInput3"
+                 [errorMessages]="{minlength: 'This field requires at least 2 items'}"></matx-errors>
+  </matx-autocomplete>
+  <pre>form1.valid: {{form1.valid | json}}</pre>
+  <pre>autocompleteInput4.valid: {{autocompleteInput4.valid | json}}</pre>
+  <pre>autocompleteInput4.value: {{autocompleteInput4.value | json}}</pre>
+  <pre>autocompleteInput4.errors: {{autocompleteInput4.errors | json}}</pre>
+
+  <matx-autocomplete placeholder="Template Autocomplete Input 5"
+                     [filterBy]="filterObjectObservables"
+                     displayField="name"
+                     name="autocompleteInput5"
+                     [(ngModel)]="form1Model.autocompleteInput5"
+                     #autocompleteInput5="ngModel"
+                     required
+                     minlength="2"
+                     multiple>
+    <matx-errors [field]="autocompleteInput5"
+                 [errorMessages]="{minlength: 'This field requires at least 2 items'}"></matx-errors>
+  </matx-autocomplete>
+  <pre>form1.valid: {{form1.valid | json}}</pre>
+  <pre>autocompleteInput5.valid: {{autocompleteInput5.valid | json}}</pre>
+  <pre>autocompleteInput5.value: {{autocompleteInput5.value | json}}</pre>
+  <pre>autocompleteInput5.errors: {{autocompleteInput5.errors | json}}</pre>
+
+  <br>
+  <button mat-raised-button color="primary">Check</button>
+  <br>
 </form>
 
 <h1>Model-Driven Form</h1>
-<form [formGroup]="form2">
+<form [formGroup]="form2" (ngSubmit)="checkForm2()">
   <matx-autocomplete placeholder="MD Autocomplete Input 1"
                      [filterBy]="filterStringObservables"
                      required
@@ -98,6 +139,7 @@
   <pre>autocompleteInput1.dirty: {{form2.get('autocompleteInput1').dirty}}</pre>
   <pre>autocompleteInput1.touched: {{form2.get('autocompleteInput1').touched}}</pre>
   <pre>autocompleteInput1.value: {{form2.get('autocompleteInput1').value | json}}</pre>
+
   <matx-autocomplete placeholder="MD Autocomplete Input 2"
                      [filterBy]="filterObjectObservables"
                      displayField="name"
@@ -110,4 +152,39 @@
   <pre>autocompleteInput2.dirty: {{form2.get('autocompleteInput2').dirty}}</pre>
   <pre>autocompleteInput2.touched: {{form2.get('autocompleteInput2').touched}}</pre>
   <pre>autocompleteInput2.value: {{form2.get('autocompleteInput2').value | json}}</pre>
+
+  <h2>Multiple</h2>
+  <matx-autocomplete placeholder="MD Autocomplete Input 3"
+                     [filterBy]="filterStringObservables"
+                     required
+                     multiple
+                     formControlName="autocompleteInput3">
+    <matx-errors [field]="form2.get('autocompleteInput3')"
+                 [errorMessages]="{minlength: 'This field requires at least 2 items'}"></matx-errors>
+  </matx-autocomplete>
+  <pre>form2.valid: {{form2.valid}}</pre>
+  <pre>autocompleteInput3.valid: {{form2.get('autocompleteInput3').valid}}</pre>
+  <pre>autocompleteInput3.dirty: {{form2.get('autocompleteInput3').dirty}}</pre>
+  <pre>autocompleteInput3.touched: {{form2.get('autocompleteInput3').touched}}</pre>
+  <pre>autocompleteInput3.value: {{form2.get('autocompleteInput3').value | json}}</pre>
+
+  <matx-autocomplete placeholder="MD Autocomplete Input 4"
+                     [filterBy]="filterObjectObservables"
+                     displayField="name"
+                     required
+                     multiple
+                     formControlName="autocompleteInput4">
+    <matx-errors [field]="form2.get('autocompleteInput4')"
+                 [errorMessages]="{minlength: 'This field requires at least 2 items'}">s</matx-errors>
+  </matx-autocomplete>
+  <pre>form4.valid: {{form2.valid}}</pre>
+  <pre>autocompleteInput4.valid: {{form2.get('autocompleteInput4').valid}}</pre>
+  <pre>autocompleteInput4.dirty: {{form2.get('autocompleteInput4').dirty}}</pre>
+  <pre>autocompleteInput4.touched: {{form2.get('autocompleteInput4').touched}}</pre>
+  <pre>autocompleteInput4.value: {{form2.get('autocompleteInput4').value | json}}</pre>
+
+  <br>
+  <button mat-raised-button color="primary">Check</button>
+  <br>
+  <br>
 </form>

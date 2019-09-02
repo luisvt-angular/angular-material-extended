@@ -1,4 +1,14 @@
-import { Component, ContentChild, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChild,
+  ElementRef,
+  forwardRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2
+} from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
@@ -8,7 +18,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
   styleUrls: ['./matx-select.component.scss'],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MatxSelectComponent), multi: true}]
 })
-export class MatxSelectComponent extends DefaultValueAccessor implements OnInit, OnDestroy {
+export class MatxSelectComponent extends DefaultValueAccessor implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() options: any[] | Observable<any[]>;
 
@@ -89,11 +99,6 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   ngOnInit() {
     this.subscription = this.formControl.valueChanges.subscribe(value => this.onChange(value));
-    if (this.ngControl && this.ngControl.statusChanges) {
-      this.subscription.add(this.ngControl.control.statusChanges.subscribe(() => {
-        this.formControl.setErrors(this.ngControl.errors);
-      }));
-    }
     if (this.options instanceof BehaviorSubject) {
       this.options$ = this.options;
     } else if (this.options instanceof Observable) {
@@ -103,12 +108,20 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
     }
   }
 
+  ngAfterViewInit(): void {
+    if (this.ngControl && this.ngControl.statusChanges) {
+      this.subscription.add(this.ngControl.control.statusChanges
+        .subscribe(status => this.formControl.setErrors(this.ngControl.errors)));
+      setTimeout(() => this.ngControl.control.setValue(this.formControl.value, {emitEvent: false}));
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscription && this.subscription.unsubscribe();
   }
 
   writeValue(value: any): void {
-    this.formControl.setValue(!this.multiple || value === null || value === undefined || Array.isArray(value) ? value : [value], {emitEvent: false});
+    this.formControl.setValue(value === null || value === undefined || Array.isArray(value) ? value : [value]);
   }
 
 }

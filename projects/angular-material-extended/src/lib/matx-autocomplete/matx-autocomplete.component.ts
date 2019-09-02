@@ -1,10 +1,22 @@
-import { Component, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component, ContentChild,
+  ElementRef,
+  forwardRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
+import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl, NgModel } from '@angular/forms';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { MatAutocompleteTrigger } from '@angular/material';
-import { debounceTime, delay, filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { debounceTime, delay, filter, map, skip, switchMap, take, tap } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipList } from "@angular/material/chips";
 
 @Component({
   selector: 'matx-autocomplete',
@@ -12,9 +24,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   styleUrls: ['./matx-autocomplete.component.scss'],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => MatxAutocompleteComponent), multi: true}]
 })
-export class MatxAutocompleteComponent extends DefaultValueAccessor implements OnInit, OnDestroy {
-
-  formControl = new FormControl();
+export class MatxAutocompleteComponent extends DefaultValueAccessor implements OnInit, AfterViewInit, OnDestroy {
 
   filteredOptions: any[] = [];
 
@@ -22,23 +32,25 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   @Input() required: boolean | '';
 
-  private _multiple: boolean | '';
+  private _multiple: boolean;
 
-  get multiple(): boolean | '' {
+  get multiple(): boolean {
     return this._multiple;
   }
 
-  @Input() set multiple(value: boolean | '') {
+  @Input() set multiple(value) {
+    // @ts-ignore
     this._multiple = value || value === '';
   }
 
-  private _repeatable: boolean | '';
+  private _repeatable: boolean;
 
-  get repeatable(): boolean | "" {
+  get repeatable(): boolean {
     return this._repeatable;
   }
 
-  @Input() set repeatable(value: boolean | "") {
+  @Input() set repeatable(value) {
+    // @ts-ignore
     this._repeatable = value || value === '';
   }
 
@@ -58,16 +70,20 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   @Input() autocomplete: string = 'off';
 
-  @Input() set disabledControl(disabled: string | boolean) {
+  private _filterChange$ = new BehaviorSubject<string>(null);
+
+  private _disabled: boolean;
+
+  get disabled(): boolean | '' {
+    return this._disabled;
+  }
+
+  @Input() set disabledControl(disabled: '' | boolean) {
     this.disabled = disabled;
   }
 
-  @Input() set disabled(disabled: string | boolean) {
-    if (disabled === '' || disabled === true) {
-      this.formControl.disable({emitEvent: false});
-    } else {
-      this.formControl.enable({emitEvent: false});
-    }
+  @Input() set disabled(disabled: '' | boolean) {
+    this._disabled = disabled === '' || disabled === true;
   }
 
   private _displayWith: Function;
@@ -86,15 +102,23 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   loading = false;
 
-  selectedValue;
+  _selectedValue;
 
-  selectedOptions = [];
+  _selectedOptions = [];
+
+  private _selectionFired = false;
 
   private subscription: Subscription;
 
-  @ViewChild('inputEl', {static: true}) inputEl;
+  @ViewChild('inputEl', {static: false}) inputEl;
 
   @ViewChild('autocompleteTrigger', {static: true}) autocompleteTrigger: MatAutocompleteTrigger;
+
+  @ViewChild('chipList', {static: false}) chipList: MatChipList;
+
+  @ViewChild('chipListModel', {static: false}) chipListModel: NgModel;
+
+  @ContentChild(NgControl,  {static: true}) ngControl: NgControl;
 
   constructor(_renderer: Renderer2,
               _elementRef: ElementRef) {
@@ -103,43 +127,33 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   ngOnInit() {
     if (this.options) {
-      this.subscription = this.formControl.valueChanges.pipe(
-        filter(value => value !== this.selectedValue),
-        map(value => this.displayWith(value)),
-        tap(() => {
-          this.onChange(undefined);
-          this.formControl.markAsTouched();
-          this.formControl.markAsDirty();
-          if (this.required || this.required === '') { this.formControl.setErrors({required: {value: undefined}}); }
-          this.filteredOptions = [];
-        })
-      ).subscribe(value => {
-        this.selectedValue = null;
+      this.subscription = this._filterChange$.pipe(skip(1)).subscribe(value => {
         this.filteredOptions = this.options.filter(option =>
           this.displayWith(option).toLowerCase()
-            .includes(this.displayWith(value).toLowerCase()));
+            .includes(value.toLowerCase()));
         this.autocompleteTrigger.openPanel();
       });
     } else {
-      this.subscription = this.formControl.valueChanges.pipe(
-        delay(100),
-        filter(value => value !== this.selectedValue),
-        map(value => this.displayWith(value)),
-        tap(() => {
-          this.onChange(undefined);
-          this.formControl.markAsTouched();
-          this.formControl.markAsDirty();
-          if (this.required || this.required === '') { this.formControl.setErrors({required: {value: undefined}}); }
-          this.loading = true;
-          this.filteredOptions = [];
-        }),
+      this.subscription = this._filterChange$.pipe(
+        skip(1),
+        tap(() => this.loading = true),
         debounceTime(500),
         switchMap(value => this.filterBy(value)),
       ).subscribe(values => {
-        this.selectedValue = null;
         this.loading = false;
         this.filteredOptions = values;
         this.autocompleteTrigger.openPanel();
+      });
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (this.ngControl && this.ngControl.statusChanges) {
+      this.ngControl.control.statusChanges.subscribe(status => {
+        this.chipListModel.control.setErrors(this.ngControl.errors);
+      });
+      setTimeout(() => {
+        this.chipListModel.control.setErrors(this.ngControl.errors);
       });
     }
   }
@@ -148,66 +162,62 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
     this.subscription.unsubscribe();
   }
 
+  _filterBy() {
+    this._filterChange$.next(this.inputEl.nativeElement.value);
+  }
+
   search(event: MouseEvent) {
     event.stopPropagation();
-    const value = this.inputEl.nativeElement.value;
-    if (this.options) {
-      this.filteredOptions = this.options.filter(option =>
-        this.displayWith(option).toLowerCase().includes(this.displayWith(value).toLowerCase()));
-      this.autocompleteTrigger.openPanel();
-    } else {
-      this.loading = true;
-      this.filterBy(this.displayWith(value)).pipe(take(1)).subscribe(values => {
-        this.loading = false;
-        this.filteredOptions = values;
-        this.autocompleteTrigger.openPanel();
-      });
-    }
+    this._filterBy();
   }
 
   clear(event: MouseEvent) {
     event.stopPropagation();
     if (this.multiple && !this.inputEl.nativeElement.value) {
-      this.selectedOptions = [];
+      this._selectedOptions = [];
     }
     this.inputEl.nativeElement.value = '';
-    this.formControl.setValue(undefined);
-    this.onChange(undefined);
-    this.formControl.markAsTouched();
-    this.formControl.markAsDirty();
+    this._filterChange$.next('');
+    this.onChange(null);
   }
 
   writeValue(value) {
     if (this.multiple) {
-      this.selectedOptions = value;
+      this._selectedValue = this._selectedOptions = value;
     } else {
-      this.selectedValue = value;
-      this.inputEl.nativeElement.value = this.displayWith(value);
+      this._selectedValue = value;
+      if (value) this._selectedOptions.push(value);
     }
   }
 
-  handleChange(event: MatAutocompleteSelectedEvent) {
-    this.selectedValue = event.option.value;
+  selectOption(event: MatAutocompleteSelectedEvent) {
     if (this._multiple) {
-      this.inputEl.nativeElement.value = '';
-      if (this.repeatable || !this.selectedOptions.some(o => event.option.viewValue === this.displayWith(o))) {
-        this.selectedOptions.push(event.option.value);
-        this.onChange(this.selectedOptions);
+      if (this.repeatable || !this._selectedOptions.some(o => event.option.viewValue === this.displayWith(o))) {
+        this._selectedOptions.push(event.option.value);
       }
     } else {
-      this.inputEl.nativeElement.value = event.option.viewValue;
-      this.onChange(event.option.value);
+      this._selectedValue = event.option.value;
+      this._selectedOptions[0] = this._selectedValue;
     }
+    this.inputEl.nativeElement.value = '';
+    setTimeout(() => this.chipList.writeValue(this._selectedValue));
+    // this.chipList._onChange(this._selectedValue);
+    this.onChange(this._selectedValue);
   }
 
   removeSelected(selectedIndex: number) {
-    this.selectedOptions.splice(selectedIndex, 1);
-    this.onChange(this.selectedOptions);
+    this._selectedOptions.splice(selectedIndex, 1);
+    if (!this.multiple) this._selectedValue = null;
+    this._filterChange$.next('');
+    this.chipList._onChange(this._selectedValue);
+    this.onChange(this._selectedValue);
+    setTimeout(() => this.inputEl.nativeElement.focus());
   }
 
   editSelected(selectedIndex: number) {
-    this.inputEl.nativeElement.value = this.displayWith(this.selectedOptions[selectedIndex]);
-    this.selectedValue = null;
+    this.inputEl.nativeElement.value = this.displayWith(this._selectedOptions[selectedIndex]);
     this.removeSelected(selectedIndex);
+    this._filterBy();
+    setTimeout(() => this.inputEl.nativeElement.focus());
   }
 }

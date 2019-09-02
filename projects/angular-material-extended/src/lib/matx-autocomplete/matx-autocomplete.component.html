@@ -1,34 +1,45 @@
 <mat-form-field style="width: 100%;" [hideRequiredMarker]="hideRequiredMarker" [floatLabel]="floatLabel">
   <mat-label>{{label || placeholder}}</mat-label>
-  <mat-chip-list #chipList>
-    <mat-chip *ngFor="let option of selectedOptions; index as selectedIndex"
+  <mat-chip-list #chipList [multiple]="multiple"
+                 #chipListModel="ngModel"
+                 [(ngModel)]="_selectedValue"
+                 [ngModelOptions]="{standalone: true}"
+                 [required]="required">
+    <mat-chip *ngFor="let option of _selectedOptions; index as selectedIndex"
+              [value]="option"
+              [selectable]="false"
               (removed)="removeSelected(selectedIndex)"
               (click)="editSelected(selectedIndex)"
               (keydown.enter)="editSelected(selectedIndex)">
       {{displayField ? option[displayField] : displayWith(option)}}
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
-    <input id="" [placeholder]="placeholder || label"
+    <input id="matx-autocomplete-input"
+           [placeholder]="_selectedOptions.length === 0 ? placeholder || label : ''"
+           [disabled]="!multiple && _selectedOptions.length > 0"
            #inputEl
-           [formControl]="formControl"
-           [required]="required"
+           (keyup)="_filterBy()"
            #autocompleteTrigger="matAutocompleteTrigger"
            [matAutocomplete]="myAutocomplete"
+           [matAutocompleteDisabled]="true"
            [autocomplete]="autocomplete"
            [matChipInputFor]="chipList"
            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
            [matChipInputAddOnBlur]="false">
   </mat-chip-list>
   <button type=button *ngIf="!loading" mat-icon-button matSuffix (click)="search($event)"
-          [disabled]="formControl.disabled">
+          [disabled]="disabled">
     <mat-icon>search</mat-icon>
   </button>
-  <button type=button *ngIf="(inputEl.value || selectedOptions.length > 0) && !loading" mat-icon-button matSuffix (click)="clear($event)"
-          [disabled]="formControl.disabled">
+  <button type=button *ngIf="(inputEl.value || multiple && _selectedOptions.length > 0) && !loading" mat-icon-button
+          matSuffix
+          (click)="clear($event)"
+          [disabled]="disabled">
     <mat-icon>close</mat-icon>
   </button>
   <mat-spinner matSuffix *ngIf="loading" [diameter]="24"></mat-spinner>
-  <mat-autocomplete #myAutocomplete="matAutocomplete" [displayWith]="displayWith" (optionSelected)="handleChange($event)">
+  <mat-autocomplete #myAutocomplete="matAutocomplete" [displayWith]="displayWith"
+                    (optionSelected)="selectOption($event)">
     <mat-option *ngFor="let option of filteredOptions" [value]="option">
       {{displayField ? option[displayField] : displayWith(option)}}
     </mat-option>
@@ -37,3 +48,6 @@
     <ng-content></ng-content>
   </mat-error>
 </mat-form-field>
+<!--<pre>chipListModel.value: {{chipListModel.value | json}}</pre>-->
+<!--<pre>chipListModel.errors: {{chipListModel.errors | json}}</pre>-->
+<!--<pre>selectedOptions: {{_selectedOptions | json}}</pre>-->
