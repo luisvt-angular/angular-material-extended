@@ -10,20 +10,9 @@ import { Validators } from '@angular/forms';
 })
 export class MatxPromptDemoComponent implements OnInit {
 
-  mainModuleCode = `
-@NgModule({
-  ...
-  entryComponents: [
-    ...
-    MatxPromptComponent
-    ...
-  ]
-})
-export class AppModule {}`;
-
   result: any = {};
 
-  constructor(private promptCtrl: MatxPromptController) { }
+  constructor(private promptCtrl: MatxPromptController) {}
 
   ngOnInit() {
   }
@@ -90,19 +79,16 @@ export class AppModule {}`;
         errorMessages: {minlength: 'This field requires at least 2 items'}
       }, {type: 'date', label: 'Date Input', name: 'dateInput'}
       ],
-      actions: [
-        'Close',
-        {
-          text: 'Save',
-          color: 'primary',
-          type: 'submit',
-          showLoading: true,
-          callback: (result) => {
-            this.result = result;
-            return new Promise(resolve => setTimeout(resolve, 2000))
-          }
+      actions: ['Close', {
+        text: 'Save',
+        color: 'primary',
+        type: 'submit',
+        showLoading: true,
+        callback: (result) => {
+          this.result = result;
+          return new Promise(resolve => setTimeout(resolve, 2000))
         }
-      ]
+      }]
     });
   }
 }

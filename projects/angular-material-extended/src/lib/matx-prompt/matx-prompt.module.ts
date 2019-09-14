@@ -37,6 +37,7 @@ import { MatxTextareaModule } from '../matx-textarea/matx-textarea.module';
     MatxTextareaModule
   ],
   declarations: [MatxPromptComponent],
+  entryComponents: [MatxPromptComponent],
   exports: [MatxPromptComponent]
 })
 export class MatxPromptModule {}

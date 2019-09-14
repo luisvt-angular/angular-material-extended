@@ -10,6 +10,7 @@ import { MatDialogModule, MatProgressSpinnerModule } from '@angular/material';
     MatProgressSpinnerModule
   ],
   declarations: [MatxLoadingComponent],
+  entryComponents: [MatxLoadingComponent],
   exports: [MatxLoadingComponent]
 })
 export class MatxLoadingModule { }

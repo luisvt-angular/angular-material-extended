@@ -1,3 +1,7 @@
+# 0.7.9
+
+- Add `MatxLoadingComponent` and `MatxPromptComponent` to `entryComponents`
+
 # 0.7.8
 
 - Fix `matx-select` write value when not multiple
