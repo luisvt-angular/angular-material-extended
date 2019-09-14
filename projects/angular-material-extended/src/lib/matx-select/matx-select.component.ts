@@ -121,7 +121,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   }
 
   writeValue(value: any): void {
-    this.formControl.setValue(value === null || value === undefined || Array.isArray(value) ? value : [value]);
+    this.formControl.setValue(!this.multiple || value === null || value === undefined || Array.isArray(value) ? value : [value]);
   }
 
 }

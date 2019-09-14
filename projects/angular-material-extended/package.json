@@ -1,6 +1,6 @@
 {
   "name": "angular-material-extended",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "description": "This project contains some useful components to extends [Angular Material](https://material.angular.io/)",
   "homepage": "https://github.com/luisvt-angular/angular-material-extended",
   "bugs": {

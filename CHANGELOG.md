@@ -1,3 +1,7 @@
+# 0.7.8
+
+- Fix `matx-select` write value when not multiple
+
 # 0.7.7
 
 - Fix `matx-autocomplete` to update errors when using forms
