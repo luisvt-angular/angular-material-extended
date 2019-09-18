@@ -24,3 +24,9 @@ export * from './lib/matx-datepicker/matx-datepicker.module';
 
 export * from './lib/matx-textarea/matx-textarea.module';
 export * from './lib/matx-textarea/matx-textarea.component';
+
+export * from './lib/matx-table/matx-table.component';
+export * from './lib/matx-table/matx-column.directive';
+export * from './lib/matx-table/matx-detail-row.directive';
+export * from './lib/matx-table/matx-cell.directive';
+export * from './lib/matx-table/matx-editor.directive';

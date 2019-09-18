@@ -3,7 +3,7 @@
   <mat-select [formControl]="formControl" [required]="required" [compareWith]="_compareWith" [multiple]="multiple">
     <mat-option *ngIf="noneText !== null && noneText !== undefined" [value]="null">{{noneText}}</mat-option>
     <mat-option *ngFor="let option of options$ | async; index as i"
-                [value]="indexValue === '' || indexValue === true ? i : valueField ? option[valueField] : option">
+                [value]="indexValue ? i : valueField ? option[valueField] : option">
       {{displayWith(option)}}
     </mat-option>
   </mat-select>

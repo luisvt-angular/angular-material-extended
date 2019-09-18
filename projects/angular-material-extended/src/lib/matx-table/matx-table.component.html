@@ -1,0 +1,78 @@
+<div class="matx-table-container mat-table" [ngStyle]="contentStyle">
+  <div class="mat-header-row" mat-header-row>
+    <div class="matx-table-frozen-left" *ngIf="selectable || detailRow || frozenLeftColumns.length" [ngStyle]="frozenLeftStyle">
+      <div class="mat-header-cell matx-cell-expander" *ngIf="detailRow"></div>
+      <div class="mat-header-cell matx-cell-select" *ngIf="selectable">
+        <mat-checkbox [checked]="allSelected || someSelected" [indeterminate]="someSelected" (change)="toggleSelectAll($event)"></mat-checkbox>
+      </div>
+      <div class="mat-header-cell" *ngFor="let column of frozenLeftColumns" [ngClass]="column.ngClass" [ngStyle]="column.ngStyle">
+        <ng-template [ngIf]="!column.headerTemplate">{{column.header}}</ng-template>
+        <ng-template [ngTemplateOutlet]="column.headerTemplate"></ng-template>
+      </div>
+    </div>
+    <div class="matx-scrollable-columns">
+      <div class="mat-header-cell" *ngFor="let column of scrollableColumns" [ngClass]="column.ngClass" [ngStyle]="column.ngStyle">
+        <ng-template [ngIf]="!column.headerTemplate">{{column.header}}</ng-template>
+        <ng-template [ngTemplateOutlet]="column.headerTemplate"></ng-template>
+      </div>
+    </div>
+    <div class="matx-table-frozen-right" *ngIf="frozenRightColumns.length" [ngStyle]="frozenRightStyle">
+      <div class="mat-header-cell" *ngFor="let column of frozenRightColumns" [ngClass]="column.ngClass" [ngStyle]="column.ngStyle">
+        <ng-template [ngIf]="!column.headerTemplate">{{column.header}}</ng-template>
+        <ng-template [ngTemplateOutlet]="column.headerTemplate"></ng-template>
+      </div>
+    </div>
+  </div>
+
+  <ng-template ngFor let-row [ngForOf]="rows">
+    <form #form="ngForm" class="mat-row" mat-row (dblclick)="startEditing(row, form)" (submit)="submitRow(row, form)"
+          (keyup.escape)="resetRow(row, form)">
+      <button type="submit" hidden></button>
+      <div class="matx-table-frozen-left" *ngIf="selectable || detailRow || frozenLeftColumns.length" [ngStyle]="frozenLeftStyle">
+        <div class="mat-cell matx-cell-expander" *ngIf="detailRow">
+          <button mat-icon-button type="button" (click)="row.expanded = !row.expanded">
+            <mat-icon *ngIf="!row.expanded">keyboard_arrow_right</mat-icon>
+            <mat-icon *ngIf="!!row.expanded">keyboard_arrow_down</mat-icon>
+          </button>
+        </div>
+        <div class="mat-cell matx-cell-select" *ngIf="selectable">
+          <mat-checkbox [checked]="isRowSelected(row)" (change)="toggleSelectRow(row, $event)"></mat-checkbox>
+        </div>
+        <div class="mat-cell" *ngFor="let column of frozenLeftColumns" [ngClass]="column.ngClass" [ngStyle]="column.ngStyle">
+          <ng-template [ngIf]="!editable || !column.editorTemplate || !row.editing" [ngIfElse]="columnEditor">
+            <ng-template [ngIf]="!column.cellTemplate">{{row.item[column.field]}}</ng-template>
+            <ng-template [ngTemplateOutlet]="column.cellTemplate" [ngTemplateOutletContext]="{$implicit: row.item, row: row, form: form}"></ng-template>
+          </ng-template>
+          <ng-template #columnEditor>
+            <ng-template [ngTemplateOutlet]="column.editorTemplate" [ngTemplateOutletContext]="{$implicit: row.item, row: row, form: form}"></ng-template>
+          </ng-template>
+        </div>
+      </div>
+      <div class="matx-scrollable-columns">
+        <div class="mat-cell" *ngFor="let column of scrollableColumns" [ngClass]="column.ngClass" [ngStyle]="column.ngStyle">
+          <ng-template [ngIf]="!editable || !column.editorTemplate || !row.editing" [ngIfElse]="columnEditor">
+            <ng-template [ngIf]="!column.cellTemplate">{{row.item[column.field]}}</ng-template>
+            <ng-template [ngTemplateOutlet]="column.cellTemplate" [ngTemplateOutletContext]="{$implicit: row.item, row: row, form: form}"></ng-template>
+          </ng-template>
+          <ng-template #columnEditor>
+            <ng-template [ngTemplateOutlet]="column.editorTemplate" [ngTemplateOutletContext]="{$implicit: row.item, row: row, form: form}"></ng-template>
+          </ng-template>
+        </div>
+      </div>
+      <div class="matx-table-frozen-right" *ngIf="frozenRightColumns.length" [ngStyle]="frozenRightStyle">
+        <div class="mat-cell" *ngFor="let column of frozenRightColumns" [ngClass]="column.ngClass" [ngStyle]="column.ngStyle">
+          <ng-template [ngIf]="!editable || !column.editorTemplate || !row.editing" [ngIfElse]="columnEditor">
+            <ng-template [ngIf]="!column.cellTemplate">{{row.item[column.field]}}</ng-template>
+            <ng-template [ngTemplateOutlet]="column.cellTemplate" [ngTemplateOutletContext]="{$implicit: row.item, row: row, form: form}"></ng-template>
+          </ng-template>
+          <ng-template #columnEditor>
+            <ng-template [ngTemplateOutlet]="column.editorTemplate" [ngTemplateOutletContext]="{$implicit: row.item, row: row, form: form}"></ng-template>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+    <div class="mat-detail-row" *ngIf="detailRow && row.expanded">
+      <ng-template [ngTemplateOutlet]="detailRow" [ngTemplateOutletContext]="{$implicit: row.item}"></ng-template>
+    </div>
+  </ng-template>
+</div>

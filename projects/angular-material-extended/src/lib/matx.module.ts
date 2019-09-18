@@ -18,6 +18,7 @@ import { MatxSelectModule } from './matx-select/matx-select.module';
 import { MatxDatepickerModule } from './matx-datepicker/matx-datepicker.module';
 import { MatxLoadingModule } from './matx-loading/matx-loading.module';
 import { MatxTextareaModule } from './matx-textarea/matx-textarea.module';
+import { MatxTableModule } from './matx-table/matx-table.module';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { MatxTextareaModule } from './matx-textarea/matx-textarea.module';
     MatxTextareaModule,
     MatDialogModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatxTableModule
   ],
   declarations: [
     MatxBackButtonComponent,

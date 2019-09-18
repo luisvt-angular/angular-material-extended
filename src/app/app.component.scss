@@ -20,8 +20,14 @@ section {
 mat-tab-group {
   height: calc(100% - 64px);
 
-  ::ng-deep .mat-tab-body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+  ::ng-deep {
+    .mat-tab-body-wrapper {
+      height: 100%;
+    }
+
+    .mat-tab-body-content {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
 }

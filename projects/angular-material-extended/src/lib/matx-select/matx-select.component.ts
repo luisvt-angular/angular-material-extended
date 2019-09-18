@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { isEmptyOrTrue } from 'angular-material-extended/lib/commons/is-empty-or-true';
 
 @Component({
   selector: 'matx-select',
@@ -36,20 +37,28 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() valueField: string;
 
-  @Input() indexValue: boolean | '' | null;
+  private _indexValue: boolean;
+
+  get indexValue(): boolean {
+    return this._indexValue;
+  }
+
+  @Input() set indexValue(value: boolean) {
+    this._indexValue = isEmptyOrTrue(value);
+  }
 
   @Input() noneText: string;
 
-  @Input() hideRequiredMarker: boolean | '';
+  @Input() hideRequiredMarker: boolean;
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
 
-  @Input() set disabledControl(disabled: string | boolean) {
+  @Input() set disabledControl(disabled: boolean) {
     this.disabled = disabled;
   }
 
-  @Input() set disabled(disabled: string | boolean) {
-    if (disabled === '' || disabled === true) {
+  @Input() set disabled(disabled: boolean) {
+    if (isEmptyOrTrue(disabled)) {
       this.formControl.disable({emitEvent: false});
     } else {
       this.formControl.enable({emitEvent: false});

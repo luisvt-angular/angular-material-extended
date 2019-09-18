@@ -17,6 +17,7 @@ import { debounceTime, delay, filter, map, skip, switchMap, take, tap } from 'rx
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipList } from "@angular/material/chips";
+import { isEmptyOrTrue } from 'angular-material-extended/lib/commons/is-empty-or-true';
 
 @Component({
   selector: 'matx-autocomplete',
@@ -38,9 +39,8 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
     return this._multiple;
   }
 
-  @Input() set multiple(value) {
-    // @ts-ignore
-    this._multiple = value || value === '';
+  @Input() set multiple(value: boolean) {
+    this._multiple = isEmptyOrTrue(value);
   }
 
   private _repeatable: boolean;
@@ -49,9 +49,8 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
     return this._repeatable;
   }
 
-  @Input() set repeatable(value) {
-    // @ts-ignore
-    this._repeatable = value || value === '';
+  @Input() set repeatable(value: boolean) {
+    this._repeatable = isEmptyOrTrue(value);
   }
 
   @Input() placeholder: string;

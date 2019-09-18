@@ -35,6 +35,8 @@ import { MatxMenuButtonDemoComponent } from './matx-menu-button-demo/matx-menu-b
 import { MatxPromptDemoComponent } from './matx-prompt-demo/matx-prompt-demo.component';
 import { MatxSelectDemoComponent } from './matx-select-demo/matx-select-demo.component';
 import { MatxDatepickerDemoComponent } from './matx-datepicker-demo/matx-datepicker-demo.component';
+import { MatxTableDemoComponent } from './matx-table-demo/matx-table-demo.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/matx-input'},
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
   {path: 'matx-menu-button', component: MatxMenuButtonDemoComponent},
   {path: 'matx-select', component: MatxSelectDemoComponent},
   {path: 'matx-prompt', component: MatxPromptDemoComponent},
+  {path: 'matx-table', component: MatxTableDemoComponent},
 ];
 
 export function hljsLanguages() {
@@ -65,7 +68,8 @@ export function hljsLanguages() {
     MatxMenuButtonDemoComponent,
     MatxPromptDemoComponent,
     MatxSelectDemoComponent,
-    MatxDatepickerDemoComponent
+    MatxDatepickerDemoComponent,
+    MatxTableDemoComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +97,8 @@ export function hljsLanguages() {
     AgmCoreModule.forRoot({
       apiKey: environment.gmap_key,
       libraries: ['places']
-    })
+    }),
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent],
