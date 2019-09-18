@@ -10,7 +10,11 @@ dependencies:
   '@angular/platform-browser': 10.2.1_402bb3b0beb20c895adaf7a464a15a96
   '@angular/platform-browser-dynamic': 10.2.1_29ebd27c6e729338911a4398860b6cbc
   '@angular/router': 10.2.1_42737d56cf5d6d4cc2680ba0fa2d180a
+  '@types/lodash': 4.14.165
+  delay: 4.4.0
+  dot-prop: 6.0.1
   highlightjs-line-numbers.js: 2.8.0
+  lodash: 4.17.20
   ngx-validators: 5.2.1_bc1f8615e3c15a841fadbdb16556ca35
   rxjs: 6.6.3
   tslib: 2.0.3
@@ -1563,6 +1567,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
+  /@types/lodash/4.14.165:
+    dev: false
+    resolution:
+      integrity: sha512-tjSSOTHhI5mCHTy/OOXYIhi2Wt1qcbHmuXD1Ha7q70CgI/I71afO4XtLb/cVexki1oVYchpul/TOuu3Arcdxrg==
   /@types/minimatch/3.0.3:
     dev: true
     resolution:
@@ -3507,6 +3515,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-QwGuEUouP2kVwQenAsOof5Fv8K9t3D8Ca8NxcXKrIpEHjTXK5J2nXLdP+ALI1cgv8wj7KuwBhTwBkOZSJKM5XQ==
+  /delay/4.4.0:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-txgOrJu3OdtOfTiEOT2e76dJVfG/1dz2NZ4F0Pyt4UGZJryssMRp5vdM5wQoLwSOBNdrJv3F9PAhp/heqd7vrA==
   /delayed-stream/1.0.0:
     dev: true
     engines:
@@ -3636,6 +3650,14 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==
+  /dot-prop/6.0.1:
+    dependencies:
+      is-obj: 2.0.0
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-tE7ztYzXHIeyvc7N+hR3oi7FIbf/NIjVP9hmAt3yMXzrQ072/fpjGLx2GxNxGxUl5V73MEqYzioOMoVhGMJ5cA==
   /duplexify/3.7.1:
     dependencies:
       end-of-stream: 1.4.4
@@ -5194,7 +5216,6 @@ packages:
     resolution:
       integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
   /is-obj/2.0.0:
-    dev: true
     engines:
       node: '>=8'
     resolution:
@@ -5809,7 +5830,6 @@ packages:
     resolution:
       integrity: sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
   /lodash/4.17.20:
-    dev: true
     resolution:
       integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
   /log-symbols/4.0.0:
@@ -9970,8 +9990,11 @@ specifiers:
   '@types/googlemaps': ^3.40.3
   '@types/jasmine': ^2.8.17
   '@types/jasminewd2': ^2.0.8
+  '@types/lodash': ^4.14.165
   '@types/node': ^12.19.3
   codelyzer: ^6.0.1
+  delay: ^4.4.0
+  dot-prop: ^6.0.1
   highlight.js: ^10.3.2
   highlightjs-line-numbers.js: ^2.8.0
   jasmine-core: ~3.6.0
@@ -9981,6 +10004,7 @@ specifiers:
   karma-coverage-istanbul-reporter: ~3.0.3
   karma-jasmine: ~4.0.0
   karma-jasmine-html-reporter: ^1.5.4
+  lodash: ^4.17.20
   ng-packagr: ^10.1.2
   ngx-highlightjs: ^4.1.2
   ngx-validators: ^5.2.1

@@ -14,7 +14,7 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
 
   @Input() placeholder: string;
 
-  @Input() required: boolean | '';
+  @Input() required: boolean;
 
   @Input() pattern: string;
 

@@ -72,7 +72,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
 
   @Input() noneText: string;
 
-  @Input() hideRequiredMarker: boolean | '';
+  @Input() hideRequiredMarker: boolean;
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
 

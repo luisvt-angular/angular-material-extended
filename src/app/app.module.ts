@@ -32,6 +32,10 @@ import { MatxPromptDemoComponent } from './matx-prompt-demo/matx-prompt-demo.com
 import { MatxSelectDemoComponent } from './matx-select-demo/matx-select-demo.component';
 import { MatxDatepickerDemoComponent } from './matx-datepicker-demo/matx-datepicker-demo.component';
 import { MatxNavTreeDemoComponent } from './matx-nav-tree-demo/matx-nav-tree-demo.component';
+import { MatxTableDemoComponent } from './matx-table-demo/matx-table-demo.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/matx-input'},
@@ -43,7 +47,8 @@ const appRoutes: Routes = [
   {path: 'matx-menu-button', component: MatxMenuButtonDemoComponent},
   {path: 'matx-select', component: MatxSelectDemoComponent},
   {path: 'matx-prompt', component: MatxPromptDemoComponent},
-  {path: 'matx-nav-tree', component: MatxNavTreeDemoComponent}
+  {path: 'matx-nav-tree', component: MatxNavTreeDemoComponent},
+  {path: 'matx-table', component: MatxTableDemoComponent},
 ];
 
 @NgModule({
@@ -57,13 +62,15 @@ const appRoutes: Routes = [
     MatxPromptDemoComponent,
     MatxSelectDemoComponent,
     MatxDatepickerDemoComponent,
-    MatxNavTreeDemoComponent
+    MatxNavTreeDemoComponent,
+    MatxTableDemoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes, {useHash: true}),
     HighlightModule,
     MatxModule,
@@ -80,10 +87,12 @@ const appRoutes: Routes = [
     MatIconModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatPaginatorModule,
     AgmCoreModule.forRoot({
       apiKey: environment.gmap_key,
       libraries: ['places']
-    })
+    }),
+    MatMenuModule
   ],
   bootstrap: [AppComponent],
   entryComponents: [MatxPromptComponent],

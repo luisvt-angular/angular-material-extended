@@ -13,6 +13,7 @@ import { MatxDatepickerModule } from './matx-datepicker/matx-datepicker.module';
 import { MatxLoadingModule } from './matx-loading/matx-loading.module';
 import { MatxTextareaModule } from './matx-textarea/matx-textarea.module';
 import { MatxNavTreeModule } from './matx-nav-tree/matx-nav-tree.module';
+import { MatxTableModule } from './matx-table/matx-table.module';
 
 @NgModule({
   exports: [
@@ -29,9 +30,9 @@ import { MatxNavTreeModule } from './matx-nav-tree/matx-nav-tree.module';
     MatDialogModule,
     MatInputModule,
     MatDatepickerModule,
-    MatxMenuButtonModule,
-    MatxNavTreeModule
-  ],
+    MatxNavTreeModule,
+    MatxTableModule
+  ]
 })
 export class MatxModule {
 }

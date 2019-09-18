@@ -1,0 +1,103 @@
+<h1>Table with Local Data</h1>
+
+<div>
+  <mat-checkbox [(ngModel)]="selectable">Selectable</mat-checkbox>
+  <br>
+  <mat-checkbox [(ngModel)]="editable">Editable</mat-checkbox>
+  <br>
+  <mat-checkbox [(ngModel)]="nameFrozenLeft">Name Frozen Left</mat-checkbox>
+  <matx-input label="Name Width" [(ngModel)]="nameWidth"></matx-input>
+  <mat-checkbox [(ngModel)]="nationalFrozenRight">National Frozen Left</mat-checkbox>
+  <matx-input label="Name Width" [(ngModel)]="nationalWidth"></matx-input>
+</div>
+
+<div>
+  <button mat-raised-button color="primary" (click)="table.print()">Print</button>
+</div>
+
+<matx-table #table [items]="players" style="height: 400px;" [contentStyle]="{'min-width': '800px'}"
+            [selectable]="selectable" [editable]="editable">
+  <matx-column [frozen]="nameFrozenLeft ? 'left' : null" [width]="nameWidth" sortBy="name">
+    <ng-template matxHeader><b>Name</b></ng-template>
+    <ng-template matxCell let-it>{{it.name}}</ng-template>
+    <ng-template matxEditor let-it>
+      <matx-input [(ngModel)]="it.name" name="name" #name="ngModel" required hideRequiredMarker>
+        <matx-errors [field]="name"></matx-errors>
+      </matx-input>
+    </ng-template>
+  </matx-column>
+  <matx-column field="age" header="Age" sortable>
+    <ng-template matxEditor let-it>
+      <matx-input type="number" [(ngModel)]="it.age" name="age" #age="ngModel" required hideRequiredMarker min="0"
+                  max="150"
+                  style="width: 40px">
+        <matx-errors [field]="age"></matx-errors>
+      </matx-input>
+    </ng-template>
+  </matx-column>
+  <matx-column field="club" header="Club" [sortBy]="sortByClub">
+    <ng-template matxEditor let-player>
+      <matx-select hideRequiredMarker [(ngModel)]="player.club"
+                   [options]="['Barcelona', 'Real Madrid', 'Liverpool']"></matx-select>
+    </ng-template>
+  </matx-column>
+  <matx-column field="national" header="National" [frozen]="nationalFrozenRight ? 'right' : null"
+               [width]="nationalWidth">
+    <ng-template matxEditor let-player>
+      <matx-select hideRequiredMarker [(ngModel)]="player.national"
+                   [options]="['Argentina', 'Portugal', 'England', 'Brazil', 'Germany', 'France', 'Holland']">
+      </matx-select>
+    </ng-template>
+  </matx-column>
+  <matx-column frozen="right" width="40px" [ngStyle]="{'padding-left': 0, 'padding-right': 0, 'min-width': '40px'}" noPrintable>
+    <ng-template matxCell let-row="row" let-form="form">
+      <button type="button" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <ng-template [ngIf]="!row.editing" [ngIfElse]="editing">
+          <button mat-menu-item (click)="table.startEditing(row, form)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+        </ng-template>
+        <ng-template #editing>
+          <button mat-menu-item (click)="table.submitRow(row, form)">
+            <mat-icon>save</mat-icon>
+            <span>Save</span>
+          </button>
+          <button mat-menu-item (click)="table.resetRow(row, form)">
+            <mat-icon>cancel</mat-icon>
+            <span>Cancel</span>
+          </button>
+        </ng-template>
+      </mat-menu>
+    </ng-template>
+  </matx-column>
+
+  <ng-template matxDetailRow let-it>
+    <div style="padding: 15px; background: lightgray">Name: {{it.name}}</div>
+  </ng-template>
+</matx-table>
+
+<h1>Table with Remote Data</h1>
+<matx-table [items]="posts$" style="height: 400px" [contentStyle]="{'min-width': '800px'}"
+            (sort)="remoteSortBy($event)">
+  <matx-column frozen="left" width="50px" field="id" header="Id" sortable></matx-column>
+  <matx-column header="Title / Body" sortBy="title">
+    <div *matxCell="let post">
+      <h2>{{post.title}}</h2>
+      <p>{{post.body}}</p>
+    </div>
+  </matx-column>
+  <matx-column header="User" width="300px" sortBy="user.name">
+    <div *matxCell="let post">
+      <h2>{{post.user.name}}</h2>
+      <h3>{{post.user.username}}</h3>
+      <p>{{post.user.email}}</p>
+    </div>
+  </matx-column>
+</matx-table>
+
+<mat-paginator [pageSizeOptions]="[10, 25, 50]" [pageSize]="page.size" [length]="page.total"
+               [pageIndex]="page.number - 1" (page)="requestPage($event)"></mat-paginator>

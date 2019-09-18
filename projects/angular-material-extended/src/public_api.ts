@@ -42,3 +42,9 @@ export * from './lib/matx-nav-tree/matx-nav-tree-item';
 
 export * from './lib/matx-back-button/matx-back-button.module';
 export * from './lib/matx-back-button/matx-back-button.component';
+
+export * from './lib/matx-table/matx-table.component';
+export * from './lib/matx-table/matx-column.directive';
+export * from './lib/matx-table/matx-detail-row.directive';
+export * from './lib/matx-table/matx-cell.directive';
+export * from './lib/matx-table/matx-editor.directive';
