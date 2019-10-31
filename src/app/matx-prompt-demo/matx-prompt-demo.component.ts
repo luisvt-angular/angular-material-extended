@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatxPromptController } from 'angular-material-extended';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -11,6 +11,8 @@ import { Validators } from '@angular/forms';
 export class MatxPromptDemoComponent implements OnInit {
 
   result: any = {};
+
+  @ViewChild('autocompleteInput2', {read: TemplateRef, static: true}) autocompletInput2: TemplateRef<any>;
 
   constructor(private promptCtrl: MatxPromptController) {}
 

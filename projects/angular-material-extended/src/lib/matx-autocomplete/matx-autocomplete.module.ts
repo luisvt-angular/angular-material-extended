@@ -10,6 +10,7 @@ import {
 import { MatxAutocompleteComponent } from './matx-autocomplete.component';
 import { FormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatxAutocompleteTemplateDirective } from './matx-autocomplete-template.directive';
 
 @NgModule({
   imports: [
@@ -22,7 +23,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatChipsModule,
     FormsModule,
   ],
-  declarations: [MatxAutocompleteComponent],
-  exports: [MatxAutocompleteComponent]
+  declarations: [MatxAutocompleteComponent, MatxAutocompleteTemplateDirective],
+  exports: [MatxAutocompleteComponent, MatxAutocompleteTemplateDirective]
 })
 export class MatxAutocompleteModule { }

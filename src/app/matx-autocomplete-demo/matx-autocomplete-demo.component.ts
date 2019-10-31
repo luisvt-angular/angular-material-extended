@@ -16,13 +16,13 @@ export class MatxAutocompleteDemoComponent implements OnInit {
   options0 = ['Alabama', 'Florida'];
 
   options1 = [
-    {name: 'Alabama'},
-    {name: 'Alabamas'},
-    {name: 'Florida'}
+    {id: 1, name: 'Alabama'},
+    {id: 2, name: 'Alabamas'},
+    {id: 3, name: 'Florida'}
   ];
 
   form1Model = {
-    autocompleteInput0: {name: 'Alabama'},
+    autocompleteInput0: {id: 1, name: 'Alabama'},
     autocompleteInput1: 'Florida',
     autocompleteInput2: {name: 'Alabama'},
     autocompleteInput3: [{name: 'Florida'}],

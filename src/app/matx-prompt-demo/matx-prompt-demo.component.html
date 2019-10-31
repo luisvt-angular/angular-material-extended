@@ -1,2 +1,6 @@
 <button mat-raised-button (click)="showPrompt()">Show Prompt</button>
 <pre>result: {{result | json}}</pre>
+
+<ng-template #autocompleteInput2 let-option>
+  <b>{{option.id}}</b> - <i>{{option.name}}</i>
+</ng-template>

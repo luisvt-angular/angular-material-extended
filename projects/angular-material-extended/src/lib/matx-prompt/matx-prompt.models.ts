@@ -2,7 +2,8 @@ import { DialogPosition, DialogRole } from '@angular/material';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import { Observable } from 'rxjs';
-import { Form, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, ValidatorFn } from '@angular/forms';
+import { TemplateRef } from '@angular/core';
 
 export interface MatxPromptConfig extends MatxPromptData {
   /** ID for the dialog. If omitted, a unique one will be generated. */
@@ -71,14 +72,14 @@ export interface MatxPromptInput {
   placeholder?: string;
   name: string;
   value?;
-  required?: boolean;
-  min?: string | number | Date;
-  max?: string | number | Date;
-  minLength?: string | number;
-  maxLength?: string | number;
+  required?: boolean | Function;
+  min?: string | number | Date | Function;
+  max?: string | number | Date | Function;
+  minLength?: string | number | Function;
+  maxLength?: string | number | Function;
   rows?: string | number;
   validators?: ValidatorFn | ValidatorFn[];
-  errorMessages?: {[name: string]: string | Function};
+  errorMessages?: { [name: string]: string | Function };
   options?: string[] | any[] | Observable<any[]>;
   noneText?: string;
   compareField?: string;
@@ -90,8 +91,10 @@ export interface MatxPromptInput {
   disabled?: (form?: FormGroup) => void;
   ngModelChange?: (value, form?: FormGroup) => void;
   autocomplete?: 'on' | 'off' | string;
-  iff?: (form?: FormGroup) => boolean,
-  multiple?: boolean
+  iff?: (form?: FormGroup) => boolean;
+  multiple?: boolean;
+  /** Template used to display options and selected value */
+  template?: TemplateRef<any>;
 }
 
 export interface MatxPromptAction {
@@ -101,4 +104,5 @@ export interface MatxPromptAction {
   color?: 'primary' | 'accent' | 'warn';
   showLoading?: boolean;
   _loading?: boolean;
+  iff?: (form?: FormGroup) => boolean;
 }

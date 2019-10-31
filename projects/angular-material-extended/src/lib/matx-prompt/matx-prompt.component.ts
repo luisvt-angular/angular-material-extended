@@ -42,4 +42,8 @@ export class MatxPromptComponent implements OnInit {
       this.dialogRef.close();
     }
   }
+
+  withForm(value, form: FormGroup) {
+    return typeof value === 'function' ? value(form) : value;
+  }
 }

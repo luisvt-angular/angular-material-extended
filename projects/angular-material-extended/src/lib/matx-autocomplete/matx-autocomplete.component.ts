@@ -1,22 +1,24 @@
 import {
-  AfterContentInit,
   AfterViewInit,
-  Component, ContentChild,
+  Component,
+  ContentChild,
   ElementRef,
   forwardRef,
   Input,
   OnDestroy,
   OnInit,
   Renderer2,
+  TemplateRef,
   ViewChild
 } from '@angular/core';
-import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl, NgModel } from '@angular/forms';
+import { DefaultValueAccessor, NG_VALUE_ACCESSOR, NgControl, NgModel } from '@angular/forms';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { MatAutocompleteTrigger } from '@angular/material';
-import { debounceTime, delay, filter, map, skip, switchMap, take, tap } from 'rxjs/operators';
+import { debounceTime, skip, switchMap, tap } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipList } from "@angular/material/chips";
+import { MatxAutocompleteTemplateDirective } from './matx-autocomplete-template.directive';
 
 @Component({
   selector: 'matx-autocomplete',
@@ -118,7 +120,15 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   @ViewChild('chipListModel', {static: false}) chipListModel: NgModel;
 
-  @ContentChild(NgControl,  {static: true}) ngControl: NgControl;
+  @ContentChild(NgControl, {static: true}) ngControl: NgControl;
+
+  @ContentChild(MatxAutocompleteTemplateDirective, {read: TemplateRef, static: true})
+  @Input()
+  template: TemplateRef<any>;
+
+  @Input() optionStyle: { [klass: string]: any; } | null;
+
+  @Input() chipStyle: { [klass: string]: any; } | null;
 
   constructor(_renderer: Renderer2,
               _elementRef: ElementRef) {
@@ -215,6 +225,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   }
 
   editSelected(selectedIndex: number) {
+    if (this.disabled) return;
     this.inputEl.nativeElement.value = this.displayWith(this._selectedOptions[selectedIndex]);
     this.removeSelected(selectedIndex);
     this._filterBy();

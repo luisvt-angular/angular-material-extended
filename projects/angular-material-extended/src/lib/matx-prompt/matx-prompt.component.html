@@ -10,9 +10,9 @@
                       [label]="input.label"
                       [placeholder]="input.placeholder"
                       [formControlName]="input.name"
-                      [required]="input.required"
-                      [min]="input.min"
-                      [max]="input.max"
+                      [required]="withForm(input.required, form)"
+                      [min]="withForm(input.min, form)"
+                      [max]="withForm(input.max, form)"
                       [minlength]="input.minLength"
                       [maxlength]="input.maxLength"
                       [disabledControl]="input.disabled && input.disabled(form)"
@@ -30,7 +30,7 @@
                        [indexValue]="input.indexValue"
                        [noneText]="input.noneText"
                        [formControlName]="input.name"
-                       [required]="input.required"
+                       [required]="withForm(input.required, form)"
                        [multiple]="input.multiple"
                        (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
                        [disabledControl]="input.disabled && input.disabled(form)">
@@ -44,10 +44,11 @@
                              [displayField]="input.displayField"
                              [displayWith]="input.displayWith"
                              [formControlName]="input.name"
-                             [required]="input.required"
+                             [required]="withForm(input.required, form)"
                              [disabledControl]="input.disabled && input.disabled(form)"
                              (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
                              [multiple]="input.multiple"
+                             [template]="input.template"
                              [autocomplete]="input.autocomplete">
             <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
           </matx-autocomplete>
@@ -55,23 +56,23 @@
                            [label]="input.label || input.placeholder"
                            [placeholder]="input.placeholder || input.label"
                            [formControlName]="input.name"
-                           [required]="input.required"
+                           [required]="withForm(input.required, form)"
                            [disabledControl]="input.disabled && input.disabled(form)"
                            (ngModelChange)="input.ngModelChange && input.ngModelChange($event, form)"
-                           [min]="input.min"
-                           [max]="input.max"
+                           [min]="withForm(input.min, form)"
+                           [max]="withForm(input.max, form)"
                            [autocomplete]="input.autocomplete">
             <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
           </matx-datepicker>
           <matx-textarea *ngIf="input.type === 'textarea'"
-                      [label]="input.label"
-                      [placeholder]="input.placeholder"
-                      [formControlName]="input.name"
-                      [required]="input.required"
-                      [minlength]="input.minLength"
-                      [maxlength]="input.maxLength"
-                      [disabledControl]="input.disabled && input.disabled(form)"
-                      [rows]="input.rows">
+                         [label]="input.label"
+                         [placeholder]="input.placeholder"
+                         [formControlName]="input.name"
+                         [required]="withForm(input.required, form)"
+                         [minlength]="withForm(input.minLength, form)"
+                         [maxlength]="withForm(input.maxLength, form)"
+                         [disabledControl]="input.disabled && input.disabled(form)"
+                         [rows]="input.rows">
             <matx-errors [field]="form.get(input.name)" [errorMessages]="input.errorMessages"></matx-errors>
           </matx-textarea>
         </ng-template>
@@ -81,7 +82,9 @@
   <mat-dialog-actions *ngIf="data.actions">
     <ng-template ngFor let-action [ngForOf]="data.actions">
       <!-- action as MatxPromptAction -->
-      <button mat-raised-button [attr.type]="action.type || 'button'"
+      <button mat-raised-button
+              *ngIf="!action.iff || action.iff && action.iff(form)"
+              [attr.type]="action.type || 'button'"
               (click)="execActionCb(action)"
               [color]="action.color"
               [disabled]="action._loading">

@@ -7,16 +7,19 @@
                  [required]="required">
     <mat-chip *ngFor="let option of _selectedOptions; index as selectedIndex"
               [value]="option"
+              [disabled]="disabled"
               [selectable]="false"
+              [ngStyle]="chipStyle"
               (removed)="removeSelected(selectedIndex)"
               (click)="editSelected(selectedIndex)"
               (keydown.enter)="editSelected(selectedIndex)">
-      {{displayField ? option[displayField] : displayWith(option)}}
+      <ng-template [ngIf]="!template">{{displayField ? option[displayField] : displayWith(option)}}</ng-template>
+      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{$implicit: option}"></ng-template>
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
     <input id="matx-autocomplete-input"
            [placeholder]="_selectedOptions.length === 0 ? placeholder || label : ''"
-           [disabled]="!multiple && _selectedOptions.length > 0"
+           [disabled]="!multiple && _selectedOptions.length > 0 || disabled"
            #inputEl
            (keyup)="_filterBy()"
            #autocompleteTrigger="matAutocompleteTrigger"
@@ -40,8 +43,9 @@
   <mat-spinner matSuffix *ngIf="loading" [diameter]="24"></mat-spinner>
   <mat-autocomplete #myAutocomplete="matAutocomplete" [displayWith]="displayWith"
                     (optionSelected)="selectOption($event)">
-    <mat-option *ngFor="let option of filteredOptions" [value]="option">
-      {{displayField ? option[displayField] : displayWith(option)}}
+    <mat-option *ngFor="let option of filteredOptions" [value]="option" [ngStyle]="optionStyle">
+      <ng-template [ngIf]="!template">{{displayField ? option[displayField] : displayWith(option)}}</ng-template>
+      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{$implicit: option}"></ng-template>
     </mat-option>
   </mat-autocomplete>
   <mat-error>

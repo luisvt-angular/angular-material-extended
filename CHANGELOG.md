@@ -1,3 +1,11 @@
+# 0.8.0
+
+- Add template to `matx-autocomplete`
+- Fix `matx-autocomplete` disabled
+- Add `iff` attribute to `MatxPromptAction`
+- Add `Function` type to `required`, `min`, `max`, `minLength`, and `maxLength` attributes of `MatxPromptInput`
+- Add `template` attribute to `MatxPromptInput`.
+
 # 0.7.9
 
 - Add `MatxLoadingComponent` and `MatxPromptComponent` to `entryComponents`
