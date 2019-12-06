@@ -1,3 +1,7 @@
+# 0.9.0
+  
+- Add matx-nav-tree component
+
 # 0.8.0
 
 - Add template to `matx-autocomplete`

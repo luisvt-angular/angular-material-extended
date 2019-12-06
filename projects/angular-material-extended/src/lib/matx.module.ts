@@ -18,6 +18,8 @@ import { MatxSelectModule } from './matx-select/matx-select.module';
 import { MatxDatepickerModule } from './matx-datepicker/matx-datepicker.module';
 import { MatxLoadingModule } from './matx-loading/matx-loading.module';
 import { MatxTextareaModule } from './matx-textarea/matx-textarea.module';
+import { MatxNavTreeComponent } from './matx-nav-tree/matx-nav-tree.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -32,7 +34,8 @@ import { MatxTextareaModule } from './matx-textarea/matx-textarea.module';
     MatxPromptModule,
     MatxLoadingModule,
     MatxDatepickerModule,
-    MatxTextareaModule
+    MatxTextareaModule,
+    MatListModule
   ],
   exports: [
     MatxInputModule,
@@ -47,11 +50,13 @@ import { MatxTextareaModule } from './matx-textarea/matx-textarea.module';
     MatxTextareaModule,
     MatDialogModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatxNavTreeComponent
   ],
   declarations: [
     MatxBackButtonComponent,
-    MatxMenuButtonComponent
+    MatxMenuButtonComponent,
+    MatxNavTreeComponent
   ],
 })
 export class MatxModule {

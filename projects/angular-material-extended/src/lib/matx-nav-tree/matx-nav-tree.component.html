@@ -1,0 +1,18 @@
+<mat-nav-list [ngStyle]="{'padding-left': (depth * 12) + 'px'}">
+  <ng-template ngFor let-item [ngForOf]="items" let-i="index">
+    <mat-list-item (click)="onItemSelected(item, i)">
+      <mat-icon mat-list-icon>{{item.iconName}}</mat-icon>
+      <a matLine
+         [ngClass]="{active: item.route ? router.isActive(item.route, true): false, expanded: expanded}"
+         class="menu-list-item">
+        {{item.displayName}}
+      </a>
+      <mat-icon *ngIf="item.children?.length"
+                [@indicatorRotate]="expanded[i] ? 'expanded': 'collapsed'">
+        expand_more
+      </mat-icon>
+    </mat-list-item>
+
+    <matx-nav-tree *ngIf="expanded[i]" [items]="item.children" [depth]="depth + 1"></matx-nav-tree>
+  </ng-template>
+</mat-nav-list>

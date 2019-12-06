@@ -34,3 +34,6 @@ export * from './lib/matx-datepicker/matx-datepicker.module';
 
 export * from './lib/matx-textarea/matx-textarea.module';
 export * from './lib/matx-textarea/matx-textarea.component';
+
+export * from './lib/matx-nav-tree/matx-nav-tree.component';
+export * from './lib/matx-nav-tree/nav-tree-item';

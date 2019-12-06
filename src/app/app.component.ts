@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     {name: 'Menu-Button', url: '/matx-menu-button'},
     {name: 'Select', url: '/matx-select'},
     {name: 'Prompt', url: '/matx-prompt'},
+    {name: 'Nav Tree', url: '/matx-nav-tree'}
   ];
 
   sources = {
@@ -55,6 +56,10 @@ export class AppComponent implements OnInit {
     '/matx-prompt': {
       html: require('!raw-loader!./matx-prompt-demo/matx-prompt-demo.component.html'),
       ts: require('!raw-loader!./matx-prompt-demo/matx-prompt-demo.component.ts')
+    },
+    '/matx-nav-tree': {
+      html: require('!raw-loader!./matx-nav-tree-demo/matx-nav-tree-demo.component.html'),
+      ts: require('!raw-loader!./matx-nav-tree-demo/matx-nav-tree-demo.component.ts')
     },
   };
 

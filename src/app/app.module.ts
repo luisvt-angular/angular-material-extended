@@ -35,6 +35,7 @@ import { MatxMenuButtonDemoComponent } from './matx-menu-button-demo/matx-menu-b
 import { MatxPromptDemoComponent } from './matx-prompt-demo/matx-prompt-demo.component';
 import { MatxSelectDemoComponent } from './matx-select-demo/matx-select-demo.component';
 import { MatxDatepickerDemoComponent } from './matx-datepicker-demo/matx-datepicker-demo.component';
+import { MatxNavTreeDemoComponent } from './matx-nav-tree-demo/matx-nav-tree-demo.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/matx-input'},
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
   {path: 'matx-menu-button', component: MatxMenuButtonDemoComponent},
   {path: 'matx-select', component: MatxSelectDemoComponent},
   {path: 'matx-prompt', component: MatxPromptDemoComponent},
+  {path: 'matx-nav-tree', component: MatxNavTreeDemoComponent}
 ];
 
 export function hljsLanguages() {
@@ -65,7 +67,8 @@ export function hljsLanguages() {
     MatxMenuButtonDemoComponent,
     MatxPromptDemoComponent,
     MatxSelectDemoComponent,
-    MatxDatepickerDemoComponent
+    MatxDatepickerDemoComponent,
+    MatxNavTreeDemoComponent
   ],
   imports: [
     BrowserModule,
