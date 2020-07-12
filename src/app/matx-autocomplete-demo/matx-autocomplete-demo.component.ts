@@ -30,12 +30,18 @@ export class MatxAutocompleteDemoComponent implements OnInit {
     autocompleteInput5: [{name: 'Alabama'}]
   };
 
-  form2: FormGroup;
+  form2Model = {
+    autocompleteInput3: [{name: 'Florida'}],
+    autocompleteInput4: ['Alabama'],
+    autocompleteInput5: [{name: 'Alabama'}]
+  }
+
+  form3: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.form2 = this.fb.group({
+    this.form3 = this.fb.group({
       autocompleteInput1: 'Alabama',
       autocompleteInput2: {name: 'Florida'},
       autocompleteInput3: [['Florida'], Validators.minLength(2)],
@@ -60,8 +66,14 @@ export class MatxAutocompleteDemoComponent implements OnInit {
     console.log('form.invalid: ', form.invalid);
   }
 
-  checkForm2() {
+  checkForm2(form: NgForm) {
     console.log('checking...');
-    console.log('this.form2.invalid: ', this.form2.invalid);
+    console.log('form.invalid: ', form.invalid);
+    console.log('errors: ', Object.values(form.controls).map(c => c.errors));
+  }
+
+  checkForm3() {
+    console.log('checking...');
+    console.log('this.form3.invalid: ', this.form3.invalid);
   }
 }

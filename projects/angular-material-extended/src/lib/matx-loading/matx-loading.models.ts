@@ -1,4 +1,4 @@
-import { DialogPosition, DialogRole } from '@angular/material';
+import { DialogPosition, DialogRole } from '@angular/material/dialog';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 

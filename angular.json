@@ -10,18 +10,20 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/angular-material-extended-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
+            "preserveSymlinks": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -33,6 +35,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -75,6 +83,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
+            "preserveSymlinks": true,
             "styles": [
               "src/styles.scss"
             ],
@@ -140,7 +149,8 @@
           },
           "configurations": {
             "production": {
-              "project": "projects/angular-material-extended/ng-package.prod.json"
+              "project": "projects/angular-material-extended/ng-package.prod.json",
+              "tsConfig": "projects/angular-material-extended/tsconfig.lib.prod.json"
             }
           }
         },
@@ -177,6 +187,11 @@
           "options": {
             "tsConfig": "projects/matx-gmap/tsconfig.lib.json",
             "project": "projects/matx-gmap/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/matx-gmap/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {

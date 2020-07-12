@@ -13,12 +13,13 @@ import {
 } from '@angular/core';
 import { DefaultValueAccessor, NG_VALUE_ACCESSOR, NgControl, NgModel } from '@angular/forms';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { MatAutocompleteTrigger } from '@angular/material';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { debounceTime, skip, switchMap, tap } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipList } from "@angular/material/chips";
 import { MatxAutocompleteTemplateDirective } from './matx-autocomplete-template.directive';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'matx-autocomplete',
@@ -41,8 +42,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   }
 
   @Input() set multiple(value) {
-    // @ts-ignore
-    this._multiple = value || value === '';
+    this._multiple = coerceBooleanProperty(value);
   }
 
   private _repeatable: boolean;
@@ -52,8 +52,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   }
 
   @Input() set repeatable(value) {
-    // @ts-ignore
-    this._repeatable = value || value === '';
+    this._repeatable = coerceBooleanProperty(value);
   }
 
   @Input() placeholder: string;
@@ -76,16 +75,16 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   private _disabled: boolean;
 
-  get disabled(): boolean | '' {
+  get disabled(): boolean {
     return this._disabled;
   }
 
-  @Input() set disabledControl(disabled: '' | boolean) {
+  @Input() set disabledControl(disabled: boolean) {
     this.disabled = disabled;
   }
 
-  @Input() set disabled(disabled: '' | boolean) {
-    this._disabled = disabled === '' || disabled === true;
+  @Input() set disabled(disabled: boolean) {
+    this._disabled = coerceBooleanProperty(disabled);
   }
 
   private _displayWith: Function;
@@ -108,22 +107,19 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   _selectedOptions = [];
 
-  private _selectionFired = false;
-
   private subscription: Subscription;
 
-  @ViewChild('inputEl', {static: false}) inputEl;
+  @ViewChild('inputEl') inputEl;
 
   @ViewChild('autocompleteTrigger', {static: true}) autocompleteTrigger: MatAutocompleteTrigger;
 
-  @ViewChild('chipList', {static: false}) chipList: MatChipList;
+  @ViewChild('chipList') chipList: MatChipList;
 
-  @ViewChild('chipListModel', {static: false}) chipListModel: NgModel;
+  @ViewChild('chipListModel') chipListModel: NgModel;
 
   @ContentChild(NgControl, {static: true}) ngControl: NgControl;
 
   @ContentChild(MatxAutocompleteTemplateDirective, {read: TemplateRef, static: true})
-  @Input()
   template: TemplateRef<any>;
 
   @Input() optionStyle: { [klass: string]: any; } | null;
@@ -131,7 +127,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   @Input() chipStyle: { [klass: string]: any; } | null;
 
   constructor(_renderer: Renderer2,
-              _elementRef: ElementRef) {
+              _elementRef: ElementRef<HTMLElement>) {
     super(_renderer, _elementRef, false);
   }
 

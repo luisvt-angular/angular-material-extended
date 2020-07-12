@@ -1,10 +1,10 @@
-import { Component, ElementRef, forwardRef, Input, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, Input, NgZone, OnInit, Renderer2 } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatxGmapAddress } from '../models/matx-gmap-address';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { MatxGmapSearchDialogComponent } from '../matx-gmap-search-dialog/matx-gmap-search-dialog.component';
 
 declare var google: any;

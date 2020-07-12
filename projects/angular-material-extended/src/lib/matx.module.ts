@@ -4,13 +4,11 @@ import { MatxErrorsModule } from './matx-errors/matx-errors.module';
 import { MatxAutocompleteModule } from './matx-autocomplete/matx-autocomplete.module';
 import { MatxBackButtonComponent } from './matx-back-button/matx-back-button.component';
 import { MatxMenuButtonComponent } from './matx-menu-button/matx-menu-button.component';
-import {
-  MatButtonModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatIconModule,
-  MatInputModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatxPromptModule } from './matx-prompt/matx-prompt.module';

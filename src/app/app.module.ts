@@ -8,19 +8,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment';
 import { ValidatorsModule } from 'ngx-validators';
-import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatNativeDateModule,
-  MatRadioModule,
-  MatSidenavModule,
-  MatTabsModule,
-  MatToolbarModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatxModule, MatxPromptComponent } from 'angular-material-extended';
 import { MatxGmapModule } from "angular-material-extended/matx-gmap";
 import { MatxAutocompleteDemoComponent } from './matx-autocomplete-demo/matx-autocomplete-demo.component';
@@ -28,8 +26,6 @@ import { MatxInputDemoComponent } from './matx-input-demo/matx-input-demo.compon
 import { MatxGmapAutocompleteDemoComponent } from './matx-gmap-autocomplete-demo/matx-gmap-autocomplete-demo.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HighlightModule } from 'ngx-highlightjs';
-import typescript from 'highlight.js/lib/languages/typescript';
-import xml from 'highlight.js/lib/languages/xml';
 import { MatxBackButtonDemoComponent } from './matx-back-button-demo/matx-back-button-demo.component';
 import { MatxMenuButtonDemoComponent } from './matx-menu-button-demo/matx-menu-button-demo.component';
 import { MatxPromptDemoComponent } from './matx-prompt-demo/matx-prompt-demo.component';
@@ -50,13 +46,6 @@ const appRoutes: Routes = [
   {path: 'matx-nav-tree', component: MatxNavTreeDemoComponent}
 ];
 
-export function hljsLanguages() {
-  return [
-    {name: 'typescript', func: typescript},
-    {name: 'xml', func: xml}
-  ];
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,9 +65,7 @@ export function hljsLanguages() {
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes, {useHash: true}),
-    HighlightModule.forRoot({
-      languages: hljsLanguages
-    }),
+    HighlightModule,
     MatxModule,
     MatxGmapModule,
     ValidatorsModule,
@@ -98,7 +85,6 @@ export function hljsLanguages() {
       libraries: ['places']
     })
   ],
-  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [MatxPromptComponent]
 })

@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     {name: 'Nav Tree', url: '/matx-nav-tree'}
   ];
 
-  sources = {
+  sources: {[url: string]: {html: { default: string }, ts: { default: string }}} = {
     '/matx-input': {
       html: require('!raw-loader!./matx-input-demo/matx-input-demo.component.html'),
       ts: require('!raw-loader!./matx-input-demo/matx-input-demo.component.ts')
@@ -65,21 +65,8 @@ export class AppComponent implements OnInit {
 
   currentUrl: string;
 
-  private readonly _mobileQuery: MediaQueryList;
-  private readonly _mobileQueryListener: () => void;
-
   constructor(router: Router,
-              public sidenavMenuCtrl: MatxSidenavMenuController,
-              changeDetectorRef: ChangeDetectorRef,
-              media: MediaMatcher) {
-    this._mobileQuery = media.matchMedia('(max-width: 992px)');
-    sidenavMenuCtrl.isMobile = this._mobileQuery.matches;
-    this._mobileQueryListener = () => {
-      sidenavMenuCtrl.isMobile = this._mobileQuery.matches;
-      sidenavMenuCtrl.opened = !sidenavMenuCtrl.isMobile;
-      changeDetectorRef.detectChanges();
-    };
-    this._mobileQuery.addListener(this._mobileQueryListener);
+              public sidenavMenuCtrl: MatxSidenavMenuController) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = router.url;

@@ -9,6 +9,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
+import { isEmptyOrTrue } from '../utils/is-empty-or-true';
 
 @Component({
   selector: 'matx-datepicker, matx-datepicker[ngModel], matx-datepicker[formControl], matx-datepicker[formControlName], matx-datepicker[ngDefaultControl]',
@@ -39,7 +40,7 @@ export class MatxDatepickerComponent extends DefaultValueAccessor implements Aft
   }
 
   @Input() set disabled(disabled: string | boolean) {
-    if (disabled === '' || disabled === true) {
+    if (isEmptyOrTrue(disabled)) {
       this.formControl.disable({emitEvent: false});
     } else {
       this.formControl.enable({emitEvent: false});

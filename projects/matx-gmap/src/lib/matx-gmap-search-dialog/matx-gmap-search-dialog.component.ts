@@ -1,5 +1,5 @@
 import { Component, ElementRef, Inject, NgZone, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MapsAPILoader } from '@agm/core';
 import { MatxGmapAddress } from '../models/matx-gmap-address';
 

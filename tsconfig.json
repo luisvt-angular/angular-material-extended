@@ -1,36 +1,32 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "downlevelIteration": true,
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
-    "paths": {
-      "angular-material-extended/matx-gmap": [
-        "projects/matx-gmap/src/public_api"
-      ],
-      "angular-material-extended/matx-gmap/*": [
-        "prjects/matx-gmap/src/lib/*"
-      ],
-      "angular-material-extended": [
-        "projects/angular-material-extended/src/public_api"
-      ],
-      "angular-material-extended/lib/*": [
-        "projects/angular-material-extended/src/lib/*"
-      ]
+  "files": [],
+  "references": [
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    },
+    {
+      "path": "./e2e/tsconfig.e2e.json"
+    },
+    {
+      "path": "./projects/angular-material-extended/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/angular-material-extended/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/matx-gmap/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/matx-gmap/tsconfig.spec.json"
     }
-  }
+  ]
 }

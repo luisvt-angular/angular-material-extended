@@ -1,3 +1,7 @@
+# 0.10.0
+
+- upgrade to angular10 and angular-material10
+
 # 0.9.0
   
 - Add matx-nav-tree component

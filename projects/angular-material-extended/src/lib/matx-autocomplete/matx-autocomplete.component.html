@@ -17,7 +17,7 @@
       <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{$implicit: option}"></ng-template>
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
-    <input id="matx-autocomplete-input"
+    <input
            [placeholder]="_selectedOptions.length === 0 ? placeholder || label : ''"
            [disabled]="!multiple && _selectedOptions.length > 0 || disabled"
            #inputEl

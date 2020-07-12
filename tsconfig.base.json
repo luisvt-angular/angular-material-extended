@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "angular-material-extended/matx-gmap": [
+        "projects/matx-gmap/src/public_api"
+      ],
+      "angular-material-extended/matx-gmap/*": [
+        "projects/matx-gmap/src/lib/*"
+      ],
+      "angular-material-extended": [
+        "projects/angular-material-extended/src/public_api"
+      ],
+      "angular-material-extended/lib/*": [
+        "projects/angular-material-extended/src/lib/*"
+      ]
+    }
+  }
+}
