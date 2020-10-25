@@ -13,8 +13,8 @@
               (removed)="removeSelected(selectedIndex)"
               (click)="editSelected(selectedIndex)"
               (keydown.enter)="editSelected(selectedIndex)">
-      <ng-template [ngIf]="!template">{{displayField ? option[displayField] : displayWith(option)}}</ng-template>
-      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{$implicit: option}"></ng-template>
+      <ng-template [ngIf]="!_template">{{displayField ? option[displayField] : displayWith(option)}}</ng-template>
+      <ng-template [ngTemplateOutlet]="_template" [ngTemplateOutletContext]="{$implicit: option}"></ng-template>
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
     <input
@@ -44,8 +44,8 @@
   <mat-autocomplete #myAutocomplete="matAutocomplete" [displayWith]="displayWith"
                     (optionSelected)="selectOption($event)">
     <mat-option *ngFor="let option of filteredOptions" [value]="option" [ngStyle]="optionStyle">
-      <ng-template [ngIf]="!template">{{displayField ? option[displayField] : displayWith(option)}}</ng-template>
-      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{$implicit: option}"></ng-template>
+      <ng-template [ngIf]="!_template">{{displayField ? option[displayField] : displayWith(option)}}</ng-template>
+      <ng-template [ngTemplateOutlet]="_template" [ngTemplateOutletContext]="{$implicit: option}"></ng-template>
     </mat-option>
   </mat-autocomplete>
   <mat-error>

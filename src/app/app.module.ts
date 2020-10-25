@@ -20,12 +20,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatxModule, MatxPromptComponent } from 'angular-material-extended';
-import { MatxGmapModule } from "angular-material-extended/matx-gmap";
+import { MatxGmapModule } from 'angular-material-extended/matx-gmap';
 import { MatxAutocompleteDemoComponent } from './matx-autocomplete-demo/matx-autocomplete-demo.component';
 import { MatxInputDemoComponent } from './matx-input-demo/matx-input-demo.component';
 import { MatxGmapAutocompleteDemoComponent } from './matx-gmap-autocomplete-demo/matx-gmap-autocomplete-demo.component';
 import { RouterModule, Routes } from '@angular/router';
-import { HighlightModule } from 'ngx-highlightjs';
+import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 import { MatxBackButtonDemoComponent } from './matx-back-button-demo/matx-back-button-demo.component';
 import { MatxMenuButtonDemoComponent } from './matx-menu-button-demo/matx-menu-button-demo.component';
 import { MatxPromptDemoComponent } from './matx-prompt-demo/matx-prompt-demo.component';
@@ -86,6 +86,18 @@ const appRoutes: Routes = [
     })
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MatxPromptComponent]
+  entryComponents: [MatxPromptComponent],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS, useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        lineNumbersLoader: () => import('highlightjs-line-numbers.js'), // Optional, only if you want the line numbers
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          css: () => import('highlight.js/lib/languages/css'),
+          html: () => import('highlight.js/lib/languages/xml')}
+      }
+    }
+  ]
 })
 export class AppModule {}

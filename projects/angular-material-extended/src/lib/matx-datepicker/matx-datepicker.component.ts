@@ -9,7 +9,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
-import { isEmptyOrTrue } from '../utils/is-empty-or-true';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'matx-datepicker, matx-datepicker[ngModel], matx-datepicker[formControl], matx-datepicker[formControlName], matx-datepicker[ngDefaultControl]',
@@ -33,14 +33,14 @@ export class MatxDatepickerComponent extends DefaultValueAccessor implements Aft
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
 
-  @Input() autocomplete: string = 'off';
+  @Input() autocomplete = 'off';
 
   @Input() set disabledControl(disabled: string | boolean) {
     this.disabled = disabled;
   }
 
   @Input() set disabled(disabled: string | boolean) {
-    if (isEmptyOrTrue(disabled)) {
+    if (coerceBooleanProperty(disabled)) {
       this.formControl.disable({emitEvent: false});
     } else {
       this.formControl.enable({emitEvent: false});

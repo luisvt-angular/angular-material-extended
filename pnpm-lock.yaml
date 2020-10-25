@@ -10,6 +10,7 @@ dependencies:
   '@angular/platform-browser': 10.0.3_e1fb0e08e4b5572a910a1ecefa1bcfe8
   '@angular/platform-browser-dynamic': 10.0.3_3b53b5cc08c1e6b0c84f11a5d82a94fa
   '@angular/router': 10.0.3_65f0fac2a51569c5c640742e462127ae
+  highlightjs-line-numbers.js: 2.8.0
   ngx-validators: 5.2.1_ea1f9c6fe65126322d1b5fad6e01a6bb
   rxjs: 6.5.5
   tslib: 2.0.0
@@ -25,7 +26,7 @@ devDependencies:
   '@types/jasminewd2': 2.0.8
   '@types/node': 12.12.37
   codelyzer: 6.0.0_tslint@6.1.2
-  highlight.js: 9.18.1
+  highlight.js: 10.3.1
   jasmine-core: 3.5.0
   jasmine-spec-reporter: 5.0.2
   karma: 5.0.9
@@ -33,13 +34,13 @@ devDependencies:
   karma-coverage-istanbul-reporter: 3.0.3
   karma-jasmine: 3.3.1_karma@5.0.9
   karma-jasmine-html-reporter: 1.5.4_680a8d7fb781f0b81ffc1d917d2ae1f0
-  ng-packagr: 10.0.1_280dd1a95b4834a79586dc0c3c6ae619
-  ngx-highlightjs: 4.1.0-beta_85cf90163093d2d7f10faaeb2255fdf0
+  ng-packagr: 10.0.1_9d37b3b7d682e62fa3944721198476a0
+  ngx-highlightjs: 4.1.2_746d61a559475490536f3f567875ab2f
   protractor: 7.0.0
   ts-node: 5.0.1
   tslint: 6.1.2_typescript@3.9.6
   typescript: 3.9.6
-lockfileVersion: 5.1
+lockfileVersion: 5.2
 packages:
   /@agm/core/1.1.0_bf93777b0b30f2227fedea938318910c:
     dependencies:
@@ -125,7 +126,7 @@ packages:
       terser-webpack-plugin: 3.0.1_webpack@4.43.0
       tree-kill: 1.2.2
       typescript: 3.9.6
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-dev-middleware: 3.7.2_webpack@4.43.0
       webpack-dev-server: 3.11.0_webpack@4.43.0
       webpack-merge: 4.2.2
@@ -149,7 +150,7 @@ packages:
   /@angular-devkit/build-ng-packagr/0.1000.2_ng-packagr@10.0.1:
     dependencies:
       '@angular-devkit/architect': 0.1000.2
-      ng-packagr: 10.0.1_280dd1a95b4834a79586dc0c3c6ae619
+      ng-packagr: 10.0.1_9d37b3b7d682e62fa3944721198476a0
       rxjs: 6.5.5
     dev: true
     engines:
@@ -183,7 +184,7 @@ packages:
       '@angular-devkit/architect': 0.1000.2
       '@angular-devkit/core': 10.0.2
       rxjs: 6.5.5
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-dev-server: 3.11.0_webpack@4.43.0
     dev: true
     engines:
@@ -279,6 +280,7 @@ packages:
       '@angular/core': 10.0.3_rxjs@6.5.5+zone.js@0.10.3
       rxjs: 6.5.5
       tslib: 2.0.0
+    dev: false
     peerDependencies:
       '@angular/core': 10.0.3
       rxjs: ^6.5.3
@@ -313,6 +315,7 @@ packages:
   /@angular/compiler/10.0.3:
     dependencies:
       tslib: 2.0.0
+    dev: false
     resolution:
       integrity: sha512-SmzMYxBprs8bVS9WctiCDj6KVp3jZFEaxGTbC/FwtdvesMIdOktpHggUeJW+OzUTwTnYVmKrm6d8rdg3QSaXFQ==
   /@angular/compiler/9.0.0_tslib@1.11.1:
@@ -328,6 +331,7 @@ packages:
       rxjs: 6.5.5
       tslib: 2.0.0
       zone.js: 0.10.3
+    dev: false
     peerDependencies:
       rxjs: ^6.5.3
       zone.js: ~0.10.3
@@ -1286,7 +1290,7 @@ packages:
       enhanced-resolve: 4.1.1
       rxjs: 6.5.5
       typescript: 3.9.6
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-sources: 1.4.3
     dev: true
     engines:
@@ -2053,7 +2057,7 @@ packages:
       mkdirp: 0.5.5
       pify: 4.0.1
       schema-utils: 2.6.6
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>= 6.9'
@@ -2641,7 +2645,7 @@ packages:
       integrity: sha512-Kkht5ye6ZGmwv40uUDZztayT2ThLQGfnj/T71N/XzeZeo3nf8foyW7zGTsPYkEya3m5f3cAypH+qe7YOrM1U2Q==
   /circular-dependency-plugin/5.2.0_webpack@4.43.0:
     dependencies:
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>=6.0.0'
@@ -3005,7 +3009,7 @@ packages:
       p-limit: 3.0.2
       schema-utils: 2.7.0
       serialize-javascript: 4.0.0
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-sources: 1.4.3
     dev: true
     engines:
@@ -3131,7 +3135,7 @@ packages:
       postcss-value-parser: 4.1.0
       schema-utils: 2.6.6
       semver: 6.3.0
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>= 8.9.0'
@@ -4129,7 +4133,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 2.6.6
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>= 10.13.0'
@@ -4647,14 +4651,18 @@ packages:
     dev: true
     resolution:
       integrity: sha512-l1HB5S9nmBuvurFIOPbpeJv4psKh2MyKCTOYRK/E6dwRXkbG96PLH7amP/xpGNyZOK8OWqv45DxLS/ZAIb3n9w==
-  /highlight.js/9.18.1:
+  /highlight.js/10.3.1:
     dev: true
     resolution:
-      integrity: sha512-OrVKYz70LHsnCgmbXctv/bfuvntIKDz177h0Co37DQ5jamGZLVmoCVMtjMtNZY3X9DrCcKfklHPNeA0uPZhSJg==
+      integrity: sha512-jeW8rdPdhshYKObedYg5XGbpVgb1/DT4AHvDFXhkU7UnGSIjy9kkJ7zHG7qplhFHMitTSzh5/iClKQk3Kb2RFQ==
   /highlightjs-line-numbers.js/2.7.0:
     dev: true
     resolution:
       integrity: sha512-2kgZkfGy3TB6rF1o1XJtUThDyraLAFd6iiAIE1MEH89om8VwyHsal6BBnIOP2yOuq2TCuuGd0YD6aGHa6iq3/g==
+  /highlightjs-line-numbers.js/2.8.0:
+    dev: false
+    resolution:
+      integrity: sha512-TEf1gw0c8mb8nan0QwliqS7obT4cpUd9hzsGzsZLweteNnWea/VIqy5/aQqsa5wnz9lnvmtAkS1ZtDTjB/goYQ==
   /hmac-drbg/1.0.1:
     dependencies:
       hash.js: 1.1.7
@@ -5747,7 +5755,7 @@ packages:
       less: 3.11.1
       loader-utils: 2.0.0
       schema-utils: 2.6.6
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>= 10.13.0'
@@ -6149,7 +6157,7 @@ packages:
       loader-utils: 1.4.0
       normalize-url: 1.9.1
       schema-utils: 1.0.0
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-sources: 1.4.3
     dev: true
     engines:
@@ -6354,7 +6362,7 @@ packages:
     dev: true
     resolution:
       integrity: sha1-yobR/ogoFpsBICCOPchCS524NCw=
-  /ng-packagr/10.0.1_280dd1a95b4834a79586dc0c3c6ae619:
+  /ng-packagr/10.0.1_9d37b3b7d682e62fa3944721198476a0:
     dependencies:
       '@angular/compiler': 10.0.3
       '@angular/compiler-cli': 10.0.3_28e8ee43fea9017a0f40213984d10a67
@@ -6378,7 +6386,7 @@ packages:
       read-pkg-up: 5.0.0
       rimraf: 3.0.2
       rollup: 2.10.9
-      rollup-plugin-sourcemaps: 0.6.2_rollup@2.10.9
+      rollup-plugin-sourcemaps: 0.6.2_a01739424c344a951855bea68c6b9ba4
       rxjs: 6.5.5
       sass: 1.26.5
       stylus: 0.54.7
@@ -6391,11 +6399,12 @@ packages:
     peerDependencies:
       '@angular/compiler': ^10.0.0-rc.3
       '@angular/compiler-cli': ^10.0.0-rc.3
+      '@types/node': '*'
       tslib: ^2.0.0
       typescript: '>=3.9 < 3.10'
     resolution:
       integrity: sha512-jTG79Dg/FuSuDIcCzbd/MOyJDrb+DUBXNT2NZbHxQ7y5Tm0tlqJs/9ffr0q0879A8TYuV8GH3+4uP3Oup6LBFw==
-  /ngx-highlightjs/4.1.0-beta_85cf90163093d2d7f10faaeb2255fdf0:
+  /ngx-highlightjs/4.1.2_746d61a559475490536f3f567875ab2f:
     dependencies:
       '@angular/common': 10.0.3_@angular+core@10.0.3+rxjs@6.5.5
       '@angular/core': 10.0.3_rxjs@6.5.5+zone.js@0.10.3
@@ -6408,9 +6417,8 @@ packages:
       '@angular/common': '>=8.0.0'
       '@angular/core': '>=8.0.0'
       rxjs: '>=6.0.0'
-      tslib: ^1.10.0
     resolution:
-      integrity: sha512-1eyiHjaFadFZpA9kGFRATccdQiB1ERgkOxmAIMFPZzN398FuCN0nrpPezECvdR7Gqlbd9OeSJHzehS20DLVy7A==
+      integrity: sha512-+oJKGSaN56x0U92/IlvVgn7Zbnj7MRNfgqGCkCUBMLMxnw1grLmgySZS8eauxfruGVGKk6eVmQwDdY1/FkrIPA==
   /ngx-validators/5.2.1_ea1f9c6fe65126322d1b5fad6e01a6bb:
     dependencies:
       '@angular/common': 10.0.3_@angular+core@10.0.3+rxjs@6.5.5
@@ -7809,7 +7817,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 2.6.6
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>= 10.13.0'
@@ -8192,9 +8200,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==
-  /rollup-plugin-sourcemaps/0.6.2_rollup@2.10.9:
+  /rollup-plugin-sourcemaps/0.6.2_a01739424c344a951855bea68c6b9ba4:
     dependencies:
       '@rollup/pluginutils': 3.0.9_rollup@2.10.9
+      '@types/node': 12.12.37
       rollup: 2.10.9
       source-map-resolve: 0.6.0
     dev: true
@@ -8263,7 +8272,7 @@ packages:
       sass: 1.26.5
       schema-utils: 2.6.6
       semver: 6.3.0
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>= 8.9.0'
@@ -8679,7 +8688,7 @@ packages:
       loader-utils: 2.0.0
       schema-utils: 2.6.6
       source-map: 0.6.1
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>= 10.13.0'
@@ -8791,7 +8800,7 @@ packages:
   /speed-measure-webpack-plugin/1.3.3_webpack@4.43.0:
     dependencies:
       chalk: 2.4.2
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>=6.0.0'
@@ -9015,7 +9024,7 @@ packages:
     dependencies:
       loader-utils: 2.0.0
       schema-utils: 2.6.6
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     engines:
       node: '>= 8.9.0'
@@ -9163,7 +9172,7 @@ packages:
       serialize-javascript: 2.1.2
       source-map: 0.6.1
       terser: 4.7.0
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-sources: 1.4.3
       worker-farm: 1.7.0
     dev: true
@@ -9183,7 +9192,7 @@ packages:
       serialize-javascript: 3.1.0
       source-map: 0.6.1
       terser: 4.7.0
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-sources: 1.4.3
     dev: true
     engines:
@@ -9808,7 +9817,7 @@ packages:
       mime: 2.4.6
       mkdirp: 0.5.5
       range-parser: 1.2.1
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-log: 2.0.0
     dev: true
     engines:
@@ -9848,7 +9857,7 @@ packages:
       strip-ansi: 3.0.1
       supports-color: 6.1.0
       url: 0.11.0
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-dev-middleware: 3.7.2_webpack@4.43.0
       webpack-log: 2.0.0
       ws: 6.2.1
@@ -9889,7 +9898,7 @@ packages:
       integrity: sha512-lgTS3Xhv1lCOKo7SA5TjKXMjpSM4sBjNV5+q2bqesbSPs5FjGmU6jjtBSkX9b4qW87vDIsCIlUPOEhbZrMdjeQ==
   /webpack-subresource-integrity/1.4.1_webpack@4.43.0:
     dependencies:
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
       webpack-sources: 1.4.3
     dev: true
     engines:
@@ -9902,7 +9911,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-XMLFInbGbB1HV7K4vHWANzc1CN0t/c4bBvnlvGxGwV45yE/S/feAXIm8dJsCkzqWtSKnmaEgTp/meyeThxG4Iw==
-  /webpack/4.43.0_webpack@4.43.0:
+  /webpack/4.43.0:
     dependencies:
       '@webassemblyjs/ast': 1.9.0
       '@webassemblyjs/helper-module-context': 1.9.0
@@ -9931,8 +9940,6 @@ packages:
     engines:
       node: '>=6.11.5'
     hasBin: true
-    peerDependencies:
-      webpack: '*'
     resolution:
       integrity: sha512-GW1LjnPipFW2Y78OOab8NJlCflB7EFskMih2AHdvjbpKMeDJqEgSx24cXXXiPS65+WSwVyxtDsJH6jGX2czy+g==
   /websocket-driver/0.6.5:
@@ -10005,7 +10012,7 @@ packages:
   /worker-plugin/4.0.3_webpack@4.43.0:
     dependencies:
       loader-utils: 1.4.0
-      webpack: 4.43.0_webpack@4.43.0
+      webpack: 4.43.0
     dev: true
     peerDependencies:
       webpack: '>= 4'
@@ -10223,7 +10230,8 @@ specifiers:
   '@types/jasminewd2': ^2.0.6
   '@types/node': ^12.11.1
   codelyzer: ^6.0.0
-  highlight.js: ^9.18.1
+  highlight.js: ^10.3.1
+  highlightjs-line-numbers.js: ^2.8.0
   jasmine-core: ~3.5.0
   jasmine-spec-reporter: ~5.0.0
   karma: ~5.0.0
@@ -10232,7 +10240,7 @@ specifiers:
   karma-jasmine: ~3.3.0
   karma-jasmine-html-reporter: ^1.5.0
   ng-packagr: ^10.0.0
-  ngx-highlightjs: ^4.1.0-beta
+  ngx-highlightjs: ^4.1.0
   ngx-validators: ^5.2.1
   protractor: ~7.0.0
   rxjs: ^6.5.2

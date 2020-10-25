@@ -11,7 +11,7 @@ export class MatxSidenavMenuController {
     ]).subscribe(result => {
       this.isMobile = result.matches;
       this.opened = !this.isMobile;
-    })
+    });
   }
 
   opened = false;

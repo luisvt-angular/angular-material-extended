@@ -34,7 +34,7 @@ export class MatxLoadingController {
         title: config.title,
         message: config.message,
       }
-    })
+    });
   }
 
   closeAll() {

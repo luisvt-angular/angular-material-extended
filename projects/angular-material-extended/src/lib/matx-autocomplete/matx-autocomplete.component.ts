@@ -17,9 +17,9 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { debounceTime, skip, switchMap, tap } from 'rxjs/operators';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipList } from "@angular/material/chips";
 import { MatxAutocompleteTemplateDirective } from './matx-autocomplete-template.directive';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { MatChipList } from '@angular/material/chips';
 
 @Component({
   selector: 'matx-autocomplete',
@@ -69,7 +69,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
 
-  @Input() autocomplete: string = 'off';
+  @Input() autocomplete = 'off';
 
   private _filterChange$ = new BehaviorSubject<string>(null);
 
@@ -119,8 +119,10 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   @ContentChild(NgControl, {static: true}) ngControl: NgControl;
 
+  @Input() set template(template: TemplateRef<any>) { this._template = template; }
+
   @ContentChild(MatxAutocompleteTemplateDirective, {read: TemplateRef, static: true})
-  template: TemplateRef<any>;
+  _template: TemplateRef<any>;
 
   @Input() optionStyle: { [klass: string]: any; } | null;
 
@@ -192,7 +194,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
       this._selectedValue = this._selectedOptions = value;
     } else {
       this._selectedValue = value;
-      if (value) this._selectedOptions.push(value);
+      if (value) { this._selectedOptions.push(value); }
     }
   }
 
@@ -213,7 +215,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   removeSelected(selectedIndex: number) {
     this._selectedOptions.splice(selectedIndex, 1);
-    if (!this.multiple) this._selectedValue = null;
+    if (!this.multiple) { this._selectedValue = null; }
     this._filterChange$.next('');
     this.chipList._onChange(this._selectedValue);
     this.onChange(this._selectedValue);
@@ -221,7 +223,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   }
 
   editSelected(selectedIndex: number) {
-    if (this.disabled) return;
+    if (this.disabled) { return; }
     this.inputEl.nativeElement.value = this.displayWith(this._selectedOptions[selectedIndex]);
     this.removeSelected(selectedIndex);
     this._filterBy();

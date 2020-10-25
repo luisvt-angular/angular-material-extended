@@ -34,7 +34,7 @@ export class MatxAutocompleteDemoComponent implements OnInit {
     autocompleteInput3: [{name: 'Florida'}],
     autocompleteInput4: ['Alabama'],
     autocompleteInput5: [{name: 'Alabama'}]
-  }
+  };
 
   form3: FormGroup;
 

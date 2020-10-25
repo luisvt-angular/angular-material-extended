@@ -1,3 +1,8 @@
+# 0.10.1
+
+- fix lint errors
+- update `ngx-highlightjs`
+
 # 0.10.0
 
 - upgrade to angular10 and angular-material10

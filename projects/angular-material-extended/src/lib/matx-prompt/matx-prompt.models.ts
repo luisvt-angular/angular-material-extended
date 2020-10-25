@@ -88,7 +88,7 @@ export interface MatxPromptInput {
   indexValue?: boolean;
   displayWith?: (option) => string;
   filterBy?: (form?: FormGroup) => (value: string) => Observable<any[]>;
-  disabled?: (form?: FormGroup) => void;
+  disabled?: (form?: FormGroup) => boolean;
   ngModelChange?: (value, form?: FormGroup) => void;
   autocomplete?: 'on' | 'off' | string;
   iff?: (form?: FormGroup) => boolean;

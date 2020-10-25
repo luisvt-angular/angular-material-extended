@@ -37,6 +37,6 @@ export class MatxPromptController {
         inputs: config.inputs,
         actions: config.actions
       }
-    })
+    });
   }
 }

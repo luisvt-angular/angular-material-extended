@@ -1,6 +1,6 @@
 import { AfterContentInit, Component, ContentChild, ElementRef, forwardRef, Input, Renderer2 } from '@angular/core';
 import { DefaultValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
-import { isEmptyOrTrue } from '../utils/is-empty-or-true';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'matx-input, matx-input[ngModel], matx-input[formControl], matx-input[formControlName], matx-input[ngDefaultControl]',
@@ -34,14 +34,14 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
 
-  @Input() autocomplete: string = 'off';
+  @Input() autocomplete = 'off';
 
   @Input() set disabledControl(disabled: string | boolean) {
     this.disabled = disabled;
   }
 
   @Input() set disabled(disabled: string | boolean) {
-    if (isEmptyOrTrue(disabled)) {
+    if (coerceBooleanProperty(disabled)) {
       this.formControl.disable({emitEvent: false});
     } else {
       this.formControl.enable({emitEvent: false});
@@ -59,7 +59,7 @@ export class MatxInputComponent extends DefaultValueAccessor implements AfterCon
   ngAfterContentInit() {
     this.formControl.valueChanges.subscribe(value => {
       if (this.type === 'number') {
-        this.onChange(Number(value))
+        this.onChange(Number(value));
       } else {
         this.onChange(value);
       }

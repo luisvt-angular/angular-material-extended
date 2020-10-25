@@ -88,7 +88,7 @@ export class MatxPromptDemoComponent implements OnInit {
         showLoading: true,
         callback: (result) => {
           this.result = result;
-          return new Promise(resolve => setTimeout(resolve, 2000))
+          return new Promise(resolve => setTimeout(resolve, 2000));
         }
       }]
     });

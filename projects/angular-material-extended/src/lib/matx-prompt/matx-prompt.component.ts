@@ -30,12 +30,12 @@ export class MatxPromptComponent implements OnInit {
     if (action.callback) {
       try {
         if (this.form.invalid) { return; }
-        if (action.showLoading) action._loading = true;
+        if (action.showLoading) { action._loading = true; }
         await action.callback(this.form.value);
         this.dialogRef.close();
-        if (action.showLoading) action._loading = false;
+        if (action.showLoading) { action._loading = false; }
       } catch (e) {
-        if (action.showLoading) action._loading = false;
+        if (action.showLoading) { action._loading = false; }
         throw e;
       }
     } else {

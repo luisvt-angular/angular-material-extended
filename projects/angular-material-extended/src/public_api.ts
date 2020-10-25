@@ -12,6 +12,7 @@ export * from './lib/matx-errors/matx-errors.component';
 
 export * from './lib/matx-autocomplete/matx-autocomplete.module';
 export * from './lib/matx-autocomplete/matx-autocomplete.component';
+export * from './lib/matx-autocomplete/matx-autocomplete-template.directive';
 
 export * from './lib/matx-menu-button/matx-menu-button.component';
 
@@ -37,3 +38,5 @@ export * from './lib/matx-textarea/matx-textarea.component';
 
 export * from './lib/matx-nav-tree/matx-nav-tree.component';
 export * from './lib/matx-nav-tree/nav-tree-item';
+
+export * from './lib/matx-back-button/matx-back-button.component';
