@@ -1,3 +1,8 @@
+# 0.11.0
+
+- Upgrade dependencies
+- Add `matx-menu-button`, `matx-back-button`, and `matx-nav-tree` modules
+
 # 0.10.1
 
 - fix lint errors

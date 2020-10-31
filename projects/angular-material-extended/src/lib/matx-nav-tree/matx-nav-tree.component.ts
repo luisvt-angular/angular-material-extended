@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { NavTreeItem } from './nav-tree-item';
+import { MatxNavTreeItem } from './matx-nav-tree-item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
@@ -20,7 +20,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class MatxNavTreeComponent implements OnInit {
   expanded: boolean[];
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
-  @Input() items: NavTreeItem[];
+  @Input() items: MatxNavTreeItem[];
   @Input() depth = 0;
 
   constructor(private route: ActivatedRoute,
@@ -31,7 +31,7 @@ export class MatxNavTreeComponent implements OnInit {
   }
 
 
-  onItemSelected(item: NavTreeItem, index: number) {
+  onItemSelected(item: MatxNavTreeItem, index: number) {
     if (item.children && item.children.length) {
       this.expanded[index] = !this.expanded[index];
     } else {

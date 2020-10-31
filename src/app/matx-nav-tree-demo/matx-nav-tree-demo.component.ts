@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavTreeItem } from 'angular-material-extended';
+import { MatxNavTreeItem } from 'angular-material-extended';
 
 @Component({
   selector: 'app-matx-nav-tree-demo',
@@ -8,7 +8,7 @@ import { NavTreeItem } from 'angular-material-extended';
 })
 export class MatxNavTreeDemoComponent {
 
-  navItems: NavTreeItem[] = [
+  navItems: MatxNavTreeItem[] = [
     {
       displayName: 'DevFestFL',
       iconName: 'recent_actors',

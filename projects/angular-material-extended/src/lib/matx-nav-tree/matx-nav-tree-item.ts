@@ -1,7 +1,7 @@
-export interface NavTreeItem {
+export interface MatxNavTreeItem {
   displayName: string;
   disabled?: boolean;
   iconName: string;
   route?: string;
-  children?: NavTreeItem[];
+  children?: MatxNavTreeItem[];
 }
