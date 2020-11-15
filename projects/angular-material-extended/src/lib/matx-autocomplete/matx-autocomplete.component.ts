@@ -78,18 +78,18 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
   get disabled(): boolean {
     return this._disabled;
   }
+  @Input() set disabled(disabled: boolean) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
+
 
   @Input() set disabledControl(disabled: boolean) {
     this.disabled = disabled;
   }
 
-  @Input() set disabled(disabled: boolean) {
-    this._disabled = coerceBooleanProperty(disabled);
-  }
+  private _displayWith: (option?: any) => string;
 
-  private _displayWith: Function;
-
-  get displayWith(): Function {
+  get displayWith(): (option?: any) => string {
     return option =>
       !option ? '' : typeof option === 'string' ? option
         : this._displayWith
@@ -97,7 +97,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
           : option[this.displayField];
   }
 
-  @Input() set displayWith(_displayWith: Function) {
+  @Input() set displayWith(_displayWith: (option?: any) => string) {
     this._displayWith = _displayWith;
   }
 
@@ -157,7 +157,7 @@ export class MatxAutocompleteComponent extends DefaultValueAccessor implements O
 
   ngAfterViewInit(): void {
     if (this.ngControl && this.ngControl.statusChanges) {
-      this.ngControl.control.statusChanges.subscribe(status => {
+      this.ngControl.control.statusChanges.subscribe(() => {
         this.chipListModel.control.setErrors(this.ngControl.errors);
       });
       setTimeout(() => {

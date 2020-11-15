@@ -2,7 +2,7 @@ import { DialogPosition, DialogRole } from '@angular/material/dialog';
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import { Observable } from 'rxjs';
-import { FormGroup, ValidatorFn } from '@angular/forms';
+import { FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { TemplateRef } from '@angular/core';
 
 export interface MatxPromptConfig extends MatxPromptData {
@@ -72,14 +72,14 @@ export interface MatxPromptInput {
   placeholder?: string;
   name: string;
   value?;
-  required?: boolean | Function;
-  min?: string | number | Date | Function;
-  max?: string | number | Date | Function;
-  minLength?: string | number | Function;
-  maxLength?: string | number | Function;
+  required?: boolean | ((errors?: ValidationErrors) => string);
+  min?: string | number | Date | ((errors?: ValidationErrors) => string);
+  max?: string | number | Date | ((errors?: ValidationErrors) => string);
+  minLength?: string | number | ((errors?: ValidationErrors) => string);
+  maxLength?: string | number | ((errors?: ValidationErrors) => string);
   rows?: string | number;
   validators?: ValidatorFn | ValidatorFn[];
-  errorMessages?: { [name: string]: string | Function };
+  errorMessages?: { [name: string]: string | (() => boolean) };
   options?: string[] | any[] | Observable<any[]>;
   noneText?: string;
   compareField?: string;

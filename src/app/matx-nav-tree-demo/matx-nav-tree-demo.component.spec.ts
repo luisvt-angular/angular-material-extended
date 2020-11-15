@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatxNavTreeDemoComponent } from './matx-nav-tree-demo.component';
 
@@ -6,7 +6,7 @@ describe('MatxNavTreeDemoComponent', () => {
   let component: MatxNavTreeDemoComponent;
   let fixture: ComponentFixture<MatxNavTreeDemoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MatxNavTreeDemoComponent ]
     })

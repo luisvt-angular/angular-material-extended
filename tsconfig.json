@@ -1,32 +1,30 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./src/tsconfig.app.json"
-    },
-    {
-      "path": "./src/tsconfig.spec.json"
-    },
-    {
-      "path": "./e2e/tsconfig.e2e.json"
-    },
-    {
-      "path": "./projects/angular-material-extended/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/angular-material-extended/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/matx-gmap/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/matx-gmap/tsconfig.spec.json"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "angular-material-extended": [
+        "./projects/angular-material-extended/src/public_api",
+        "./projects/angular-material-extended/src"
+      ],
+      "angular-material-extended/matx-gmap": [
+        "./projects/matx-gmap/src/public_api",
+        "./projects/matx-gmap/src"
+      ]
     }
-  ]
+  }
 }

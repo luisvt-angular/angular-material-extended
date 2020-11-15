@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatxLoadingComponent } from './matx-loading.component';
 
@@ -6,7 +6,7 @@ describe('MatxLoadingComponent', () => {
   let component: MatxLoadingComponent;
   let fixture: ComponentFixture<MatxLoadingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MatxLoadingComponent ]
     })

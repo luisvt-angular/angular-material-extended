@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatxTextareaComponent } from './matx-textarea.component';
 
@@ -6,7 +6,7 @@ describe('MatxTextareaComponent', () => {
   let component: MatxTextareaComponent;
   let fixture: ComponentFixture<MatxTextareaComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MatxTextareaComponent ]
     })

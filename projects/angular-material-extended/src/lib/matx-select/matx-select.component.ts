@@ -33,7 +33,9 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
     }
   }
 
-  get displayWith(): Function {
+  _displayWith: (option?: any) => void;
+
+  get displayWith(): (option?: any) => void {
     return option =>
       !option ? ''
         : this._displayWith ? this._displayWith(option)
@@ -42,7 +44,7 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   }
 
   @Input()
-  set displayWith(displayWith: Function) {
+  set displayWith(displayWith: (option?: any) => void) {
     this._displayWith = displayWith;
   }
 
@@ -73,8 +75,6 @@ export class MatxSelectComponent extends DefaultValueAccessor implements OnInit,
   @Input() hideRequiredMarker: boolean | '';
 
   @Input() floatLabel: 'auto' | 'always' | 'never';
-
-  _displayWith: Function;
 
   @Input() compareWith;
 

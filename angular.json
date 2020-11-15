@@ -22,7 +22,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
             "preserveSymlinks": true,
             "assets": [
               "src/favicon.ico",
@@ -98,20 +98,15 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "angular-material-extended-app-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -122,15 +117,6 @@
             "production": {
               "devServerTarget": "angular-material-extended-app:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
@@ -149,7 +135,6 @@
           },
           "configurations": {
             "production": {
-              "project": "projects/angular-material-extended/ng-package.prod.json",
               "tsConfig": "projects/angular-material-extended/tsconfig.lib.prod.json"
             }
           }
@@ -217,5 +202,8 @@
       }
     }
   },
-  "defaultProject": "angular-material-extended-app"
+  "defaultProject": "angular-material-extended-app",
+  "cli": {
+    "analytics": "cc801aa4-044a-4349-9cfb-70decb7e5d98"
+  }
 }

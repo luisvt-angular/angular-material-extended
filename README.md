@@ -9,13 +9,23 @@ This project contains some useful components to extends [Angular Material](https
 
 - [matx-input](https://luisvt-angular.github.io/angular-material-extended/#/matx-input)
 - [matx-autocomplete](https://luisvt-angular.github.io/angular-material-extended/#/matx-autocomplete)
+- [matx-datepicker](https://luisvt-angular.github.io/angular-material-extended/#/matx-datepicker)
 - [matx-gmap-autocomplete](https://luisvt-angular.github.io/angular-material-extended/#/matx-gmap-autocomplete)
 - [matx-back-button](https://luisvt-angular.github.io/angular-material-extended/#/matx-back-button)
 - [matx-menu-button](https://luisvt-angular.github.io/angular-material-extended/#/matx-menu-button)
 - [matx-select](https://luisvt-angular.github.io/angular-material-extended/#/matx-select)
 - [matx-prompt](https://luisvt-angular.github.io/angular-material-extended/#/matx-prompt)
+- [matx-nav-tree](https://luisvt-angular.github.io/angular-material-extended/#/matx-nav-tree)
 
 # Contributing
+
+## Install dependencies
+
+To install dependencies it will be used [pnpm](https://pnpm.js.org/) as package manager, so run: 
+
+```shell script
+pnpm i
+```
 
 ## Development server
 
@@ -30,12 +40,16 @@ Run `ng generate component component-name --project=angular-material-extended` t
 run:
 
 ```
-yarn run build_lib
+pnpm run build_demo
 ```
 
 ## Build Library
 
-Run `ng build --prod angular-material-extended` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+run:
+
+```
+pnpm run prepublish_lib
+```
 
 ## Running unit tests
 

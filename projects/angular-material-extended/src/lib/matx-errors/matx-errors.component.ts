@@ -14,17 +14,17 @@ export class MatxErrorsComponent {
   }
 
   private _errorMessages = {
-    'required': 'This field is required',
-    'email': 'This field should have email format (user@service.com)',
-    'min': (errors: ValidationErrors) => `This field should be equal or greater than ${errors.min.required}`,
-    'max': (errors: ValidationErrors) => `This field should be equal or lower than ${errors.max.required}`,
-    'minlength': (errors: ValidationErrors) => `This field should have at least ${errors.minlength.requiredLength} characters`,
-    'maxlength': (errors: ValidationErrors) => `This field cannot have more than ${errors.maxlength.requiredLength} characters`,
-    'pattern': (errors: ValidationErrors) => `This field does not match the pattern ${errors.pattern.requiredPattern}`
+    required: 'This field is required',
+    email: 'This field should have email format (user@service.com)',
+    min: (errors: ValidationErrors) => `This field should be equal or greater than ${errors.min.required}`,
+    max: (errors: ValidationErrors) => `This field should be equal or lower than ${errors.max.required}`,
+    minlength: (errors: ValidationErrors) => `This field should have at least ${errors.minlength.requiredLength} characters`,
+    maxlength: (errors: ValidationErrors) => `This field cannot have more than ${errors.maxlength.requiredLength} characters`,
+    pattern: (errors: ValidationErrors) => `This field does not match the pattern ${errors.pattern.requiredPattern}`
   };
 
   @Input()
-  set errorMessages(value: {[key: string]: string | Function}) {
+  set errorMessages(value: {[key: string]: string | ((errors?: ValidationErrors) => string)}) {
     this._errorMessages = Object.assign(this._errorMessages, value);
   }
 

@@ -18,18 +18,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ]
 })
 export class MatxNavTreeComponent implements OnInit {
-  expanded: boolean[];
-  @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
+  @HostBinding('attr.aria-expanded') expanded: boolean[];
   @Input() items: MatxNavTreeItem[];
   @Input() depth = 0;
 
-  constructor(private route: ActivatedRoute,
-              public router: Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
     this.expanded = new Array(this.items.length);
   }
-
 
   onItemSelected(item: MatxNavTreeItem, index: number) {
     if (item.children && item.children.length) {

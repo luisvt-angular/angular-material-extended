@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatxAutocompleteComponent } from './matx-autocomplete.component';
 
@@ -6,7 +6,7 @@ describe('MatxAutocompleteComponent', () => {
   let component: MatxAutocompleteComponent;
   let fixture: ComponentFixture<MatxAutocompleteComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MatxAutocompleteComponent ]
     })

@@ -1,3 +1,7 @@
+# 0.11.1
+
+- Upgrade dependencies and `tsconfig` files
+
 # 0.11.0
 
 - Upgrade dependencies

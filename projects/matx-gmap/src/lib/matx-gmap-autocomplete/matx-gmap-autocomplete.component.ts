@@ -68,7 +68,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
         if (value.hasOwnProperty('id')) {
           this.geocoder.geocode({placeId: value.id}, results => {
             this.ngZone.run(() => {
-              this.formControl.setValue(<MatxGmapAddress>{
+              this.formControl.setValue(<MatxGmapAddress> {
                 address: results[0].formatted_address,
                 coordinates: {latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng()}
               });
@@ -82,7 +82,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
 
         if (typeof value === 'string') {
           this.onChange(undefined);
-          this.formControl.setErrors({'required': {value: undefined}});
+          this.formControl.setErrors({required: {value: undefined}});
         }
 
         if (typeof value !== 'string') {
@@ -99,7 +99,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
             } else {
               this.geocoder.geocode({address: value}, geocodeResults =>
                 this.ngZone.run(() => {
-                  this.options = geocodeResults && geocodeResults.map(result => (<MatxGmapAddress>{
+                  this.options = geocodeResults && geocodeResults.map(result => (<MatxGmapAddress> {
                     address: result.formatted_address || `${result.geometry.location.lat()}, ${result.geometry.location.lng()}`,
                     coordinates: {latitude: result.geometry.location.lat(), longitude: result.geometry.location.lng()}
                   }));
@@ -151,7 +151,7 @@ export class MatxGmapAutocompleteComponent extends DefaultValueAccessor implemen
           maxWidth: '800px',
           width: '90%',
           height: '90%',
-          data: <MatxGmapAddress>{
+          data: <MatxGmapAddress> {
             showSuggestions: !!(address && address.address),
             address: address && address.address || `${result.coords.latitude}, ${result.coords.longitude}`,
             coordinates: {

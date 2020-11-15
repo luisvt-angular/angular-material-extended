@@ -5,7 +5,7 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  sideNavTitleText() {
+    return element(by.css('app-root > mat-sidenav-container > mat-sidenav > div > mat-toolbar')).getText();
   }
 }
