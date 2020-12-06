@@ -1,3 +1,7 @@
+# 1.0.0
+
+- Upgrade angular dependencies
+
 # 0.11.1
 
 - Upgrade dependencies and `tsconfig` files
