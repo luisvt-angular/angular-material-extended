@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build_demo": "ng build --prod --aot --base-href=/angular-material-extended/ --output-path=docs",
-    "prepublish_lib": "ng build --prod angular-material-extended && ng build --prod matx-gmap && cp README.md dist/angular-material-extended",
+    "build_demo": "ng build --aot --base-href=/angular-material-extended/ --output-path=docs",
+    "prepublish_lib": "ng build angular-material-extended && ng build --prod matx-gmap && cp README.md dist/angular-material-extended",
     "publish_lib": "cd dist/angular-material-extended && pnpm publish",
     "test": "ng test",
     "lint": "ng lint",
