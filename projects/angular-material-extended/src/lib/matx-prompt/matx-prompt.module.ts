@@ -17,25 +17,24 @@ import { MatxDatepickerModule } from '../matx-datepicker/matx-datepicker.module'
 import { MatxTextareaModule } from '../matx-textarea/matx-textarea.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatxErrorsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatDatepickerModule,
-    MatxAutocompleteModule,
-    MatButtonModule,
-    MatxSelectModule,
-    MatxInputModule,
-    MatxDatepickerModule,
-    MatProgressSpinnerModule,
-    MatxTextareaModule
-  ],
-  declarations: [MatxPromptComponent],
-  entryComponents: [MatxPromptComponent],
-  exports: [MatxPromptComponent]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatxErrorsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatDatepickerModule,
+        MatxAutocompleteModule,
+        MatButtonModule,
+        MatxSelectModule,
+        MatxInputModule,
+        MatxDatepickerModule,
+        MatProgressSpinnerModule,
+        MatxTextareaModule
+    ],
+    declarations: [MatxPromptComponent],
+    exports: [MatxPromptComponent]
 })
 export class MatxPromptModule {}

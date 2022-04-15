@@ -47,57 +47,57 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MatxAutocompleteDemoComponent,
-    MatxInputDemoComponent,
-    MatxGmapAutocompleteDemoComponent,
-    MatxBackButtonDemoComponent,
-    MatxMenuButtonDemoComponent,
-    MatxPromptDemoComponent,
-    MatxSelectDemoComponent,
-    MatxDatepickerDemoComponent,
-    MatxNavTreeDemoComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
-    HighlightModule,
-    MatxModule,
-    MatxGmapModule,
-    ValidatorsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    AgmCoreModule.forRoot({
-      apiKey: environment.gmap_key,
-      libraries: ['places']
-    })
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [MatxPromptComponent],
-  providers: [
-    {
-      provide: HIGHLIGHT_OPTIONS, useValue: {
-        coreLibraryLoader: () => import('highlight.js/lib/core'),
-        lineNumbersLoader: () => import('highlightjs-line-numbers.js'), // Optional, only if you want the line numbers
-        languages: {
-          typescript: () => import('highlight.js/lib/languages/typescript'),
-          css: () => import('highlight.js/lib/languages/css'),
-          html: () => import('highlight.js/lib/languages/xml')}
-      }
-    }
-  ]
+    declarations: [
+        AppComponent,
+        MatxAutocompleteDemoComponent,
+        MatxInputDemoComponent,
+        MatxGmapAutocompleteDemoComponent,
+        MatxBackButtonDemoComponent,
+        MatxMenuButtonDemoComponent,
+        MatxPromptDemoComponent,
+        MatxSelectDemoComponent,
+        MatxDatepickerDemoComponent,
+        MatxNavTreeDemoComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot(appRoutes, { useHash: true }),
+        HighlightModule,
+        MatxModule,
+        MatxGmapModule,
+        ValidatorsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatListModule,
+        MatTabsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatNativeDateModule,
+        MatIconModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        AgmCoreModule.forRoot({
+            apiKey: environment.gmap_key,
+            libraries: ['places']
+        })
+    ],
+    bootstrap: [AppComponent],
+    providers: [
+        {
+            provide: HIGHLIGHT_OPTIONS, useValue: {
+                coreLibraryLoader: () => import('highlight.js/lib/core'),
+                lineNumbersLoader: () => import('highlightjs-line-numbers.js'),
+                languages: {
+                    typescript: () => import('highlight.js/lib/languages/typescript'),
+                    css: () => import('highlight.js/lib/languages/css'),
+                    html: () => import('highlight.js/lib/languages/xml')
+                }
+            }
+        }
+    ]
 })
 export class AppModule {}

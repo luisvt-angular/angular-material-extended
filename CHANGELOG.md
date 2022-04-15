@@ -1,10 +1,18 @@
+# 13.0.0
+
+- Upgrade angular dependencies to v13
+
+# 12.0.0
+
+- Upgrade angular dependencies to v12
+
 # 1.0.0
 
-- Upgrade angular dependencies
+- Upgrade angular dependencies to v11
 
 # 0.11.1
 
-- Upgrade dependencies and `tsconfig` files
+- Upgrade angular dependencies to v10 and `tsconfig` files
 
 # 0.11.0
 

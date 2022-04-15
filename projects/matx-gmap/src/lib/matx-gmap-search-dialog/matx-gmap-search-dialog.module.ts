@@ -10,18 +10,17 @@ import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AgmCoreModule,
-    FormsModule,
-    MatRadioModule,
-    MatExpansionModule,
-    MatIconModule,
-    MatButtonModule
-  ],
-  declarations: [MatxGmapSearchDialogComponent],
-  entryComponents: [MatxGmapSearchDialogComponent],
-  exports: [MatxGmapSearchDialogComponent]
+    imports: [
+        CommonModule,
+        AgmCoreModule,
+        FormsModule,
+        MatRadioModule,
+        MatExpansionModule,
+        MatIconModule,
+        MatButtonModule
+    ],
+    declarations: [MatxGmapSearchDialogComponent],
+    exports: [MatxGmapSearchDialogComponent]
 })
 export class MatxGmapSearchDialogModule {
 }
